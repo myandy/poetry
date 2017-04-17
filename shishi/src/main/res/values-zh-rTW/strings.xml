@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">詩Shi</string>
+    <string name="search_hint">在%1$s中搜索</string>
+    <string name="search_cipai_hint">搜索詩</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">確認</string>
+    <string name="delete">刪除</string>
+    <string name="delete_title">確認刪除</string>
+    <string name="delete_content">確定刪除這篇作品？ </string>
+    <string name="save_title">確定保存</string>
+    <string name="save_content">確定保存此次修改？ </string>
+    <string name="save">保存</string>
+    <string name="give_up">放棄</string>
+    <string name="delete_former_content">確定刪除此格律？ </string>
+    <string name="copy_text_done">文本已復製到剪切板</string>
+    <string name="setting_yun">韻典</string>
+    <string name="setting_typeface">簡繁切換</string>
+    <string name="setting_about">關於詩Shi</string>
+    <string name="setting_congratuate_us">給我打分</string>
+    <string name="setting_former">格律編輯</string>
+    <string name="setting_check">檢查平仄</string>
+    <string name="check_true">自動檢查</string>
+    <string name="check_false">不自動檢查</string>
+    <string name="setting_ad">支持開發者（應用推薦）</string>
+    <string name="notice_title">用戶交流可加QQ群：305395176</string>
+    <string name="sort_default">默認排序</string>
+    <string name="sort_count">按詩數量排序</string>
+    <string name="about_text1">本應用為非盈利個人應用，設計風格借鑒於詞Ci。之前開發了詞Ci android版，應用戶的建議再開發了本應用。 </string>
+    <string name="about_text2">有建議或者bug請聯繫：\nandymao1991@gmail.com</string>
+    <string name="about_text3">官方QQ群：305395176</string>
+    <string name="about_text4">官方微信：天涯共詞Ci</string>
+    <string name="about_email">andymao1991@gmail.com</string>
+    <string name="about_qq">305395176</string>
+    <string name="about_wexin">天涯共詞Ci</string>
+    <string name="about_email_toast">郵箱號已復製到剪切板，我們會查看並考慮您的每一個建議</string>
+    <string name="about_qq_toast">QQ群號已復製到剪切板，請打開QQ查找QQ群加入我們</string>
+    <string name="about_wexin_toast">微信公眾號已復製到剪切板，請打開微信查找公眾號找到我們並關注</string>
+    <string name="input_shanglian">請輸入上句</string>
+    <string name="input_former_name">請輸入格律名</string>
+    <string name="input_former_code">請輸入格律碼</string>
+    <string name="former_help">格律編輯幫助</string>
+    <string name="former_help_text">每個數字代表一個漢字，非數字不影響判斷，直接保留。 1代表平,2代表仄,4為可平可仄推薦平,5為可平可仄推薦仄，7為平韻，8為仄韻，每句請用全角的句號。分隔。 </string>
+    <string name="sign_tip">簽到得積分</string>
+    <string name="serial_sign_days">已連續簽到天數</string>
+    <string name="sign_days_of_month">本月已出勤天數</string>
+    <string name="usercenter_sign_finished">已簽到</string>
+
+    <string name="tts_unable">抱歉，您的手機暫不支持系統語音朗讀</string>
+
+    <string name="tip_paste_auto">是否自動保存中文分句符後的內容到下一行</string>
+    <string name="auto_save">智能保存</string>
+
+</resources>
