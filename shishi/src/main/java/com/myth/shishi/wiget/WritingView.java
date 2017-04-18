@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.view.GCDialog;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.EditActivity;
 import com.myth.shishi.activity.MainActivity;
@@ -21,7 +22,7 @@ import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Writing;
 import com.myth.poetrycommon.utils.DateUtils;
 import com.myth.poetrycommon.utils.ResizeUtil;
-import com.myth.shishi.wiget.GCDialog.OnCustomDialogListener;
+import com.myth.poetrycommon.view.GCDialog.OnCustomDialogListener;
 
 public class WritingView extends LinearLayout {
 

@@ -12,9 +12,10 @@ import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.adapter.ImageAdapter;
 import com.myth.cici.entity.Writing;
-import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.cici.wiget.HorizontalListView;
 import com.myth.cici.wiget.ShareView;
+import com.myth.poetrycommon.utils.ResizeUtil;
+import com.myth.poetrycommon.utils.StringUtils;
 
 public class ChangeBackgroundFragment extends Fragment {
 
@@ -26,12 +27,17 @@ public class ChangeBackgroundFragment extends Fragment {
 
     private ShareView shareView;
 
+    private  HorizontalListView listView;
+
     public ChangeBackgroundFragment() {
     }
 
     public static ChangeBackgroundFragment getInstance(Writing writing) {
         ChangeBackgroundFragment fileViewFragment = new ChangeBackgroundFragment();
         fileViewFragment.writing = writing;
+        if (StringUtils.isNumeric(writing.getBgimg())) {
+            fileViewFragment.bg_index = Integer.parseInt(writing.getBgimg());
+        }
         return fileViewFragment;
     }
 
@@ -61,15 +67,17 @@ public class ChangeBackgroundFragment extends Fragment {
     }
 
     private void refresh() {
+        writing.setBgimg(bg_index + "");
         shareView.setWriting(writing);
     }
 
+
     private void initViews(View view) {
-        HorizontalListView imgs = (HorizontalListView) view.findViewById(R.id.imgs);
+        listView = (HorizontalListView) view.findViewById(R.id.imgs);
 
         ImageAdapter adapter = new ImageAdapter(mContext);
-        imgs.setAdapter(adapter);
-        imgs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

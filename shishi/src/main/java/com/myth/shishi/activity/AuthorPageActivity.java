@@ -6,7 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.db.WritingDatabaseHelper;

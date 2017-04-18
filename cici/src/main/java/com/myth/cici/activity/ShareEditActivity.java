@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
-import com.myth.cici.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.Constant;
 import com.myth.cici.R;
 import com.myth.cici.entity.Ci;

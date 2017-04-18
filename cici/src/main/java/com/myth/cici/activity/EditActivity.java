@@ -12,7 +12,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.myth.cici.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.Constant;
 import com.myth.cici.R;
 import com.myth.cici.db.WritingDatabaseHelper;
@@ -21,8 +21,8 @@ import com.myth.cici.entity.Writing;
 import com.myth.cici.fragment.ChangeBackgroundFragment;
 import com.myth.cici.fragment.ChangePictureFragment;
 import com.myth.cici.fragment.EditFragment;
-import com.myth.cici.wiget.GCDialog;
-import com.myth.cici.wiget.GCDialog.OnCustomDialogListener;
+import com.myth.poetrycommon.view.GCDialog;
+import com.myth.poetrycommon.view.GCDialog.OnCustomDialogListener;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.poetrycommon.utils.FileUtils;
@@ -218,9 +218,9 @@ public class EditActivity extends BaseActivity {
 
     private void save() {
         if (!StringUtils.isNumeric(writing.getBgimg()) && writing.getBitmap() != null) {
-                File file = new File(Constant.BACKGROUND_DIR, writing.getBitmap().hashCode()+"");
-                FileUtils.saveBitmap(writing.getBitmap(), file);
-                writing.setBgimg(file.getAbsolutePath());
+            File file = new File(Constant.BACKGROUND_DIR, writing.getBitmap().hashCode() + "");
+            FileUtils.saveBitmap(writing.getBitmap(), file);
+            writing.setBgimg(file.getAbsolutePath());
         }
         WritingDatabaseHelper.saveWriting(mActivity, writing);
     }

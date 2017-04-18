@@ -8,7 +8,7 @@ import android.text.style.StrikethroughSpan;
 import android.widget.EditText;
 
 import com.myth.poetrycommon.utils.OthersUtils;
-import com.myth.shishi.db.YunDatabaseHelper;
+import com.myth.poetrycommon.db.YunDatabaseHelper;
 
 public class CheckUtils
 {

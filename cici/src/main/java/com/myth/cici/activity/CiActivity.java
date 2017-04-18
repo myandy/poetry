@@ -3,7 +3,6 @@ package com.myth.cici.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,16 +16,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myth.cici.BaseActivity;
 import com.myth.cici.R;
 import com.myth.cici.db.CiDatabaseHelper;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Ci;
 import com.myth.cici.entity.Cipai;
-import com.myth.cici.entity.ColorEntity;
+import com.myth.cici.wiget.CircleEditView;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.poetrycommon.utils.OthersUtils;
-import com.myth.cici.wiget.CircleEditView;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
@@ -93,13 +92,8 @@ public class CiActivity extends BaseActivity {
     }
 
     private void setColor() {
-        ColorEntity colorEntity = myApplication.getColorById(cipai
+        int color = BaseApplication.instance.getColorById(cipai
                 .getColor_id());
-        int color = 0xffffff;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(),
-                    colorEntity.getBlue());
-        }
         editView.setColor(color);
     }
 
@@ -112,18 +106,18 @@ public class CiActivity extends BaseActivity {
         topView.addView(editView, 1, param);
 
         title = (TextView) findViewById(R.id.title);
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(BaseApplication.instance.getTypeface());
 
 
         title.setTextSize(44);
 
         title1 = (TextView) findViewById(R.id.title1);
-        title1.setTypeface(myApplication.getTypeface());
+        title1.setTypeface(BaseApplication.instance.getTypeface());
         title1.setTextSize(44);
 
 
         content = (TextView) findViewById(R.id.content);
-        content.setTypeface(myApplication.getTypeface());
+        content.setTypeface(BaseApplication.instance.getTypeface());
         content.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -147,7 +141,7 @@ public class CiActivity extends BaseActivity {
 
             }
         });
-        ((TextView) findViewById(R.id.note)).setTypeface(myApplication
+        ((TextView) findViewById(R.id.note)).setTypeface(BaseApplication.instance
                 .getTypeface());
 
         findViewById(R.id.note).setOnClickListener(new OnClickListener() {
@@ -174,7 +168,7 @@ public class CiActivity extends BaseActivity {
             }
         });
 
-        ((TextView) findViewById(R.id.author)).setTypeface(myApplication
+        ((TextView) findViewById(R.id.author)).setTypeface(BaseApplication.instance
                 .getTypeface());
         if (isIntroduce) {
             findViewById(R.id.share).setVisibility(View.GONE);

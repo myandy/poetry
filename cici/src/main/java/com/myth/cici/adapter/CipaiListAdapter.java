@@ -1,11 +1,9 @@
 package com.myth.cici.adapter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,15 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.activity.CipaiActivity;
 import com.myth.cici.adapter.CipaiListAdapter.ViewHolder.ViewHolderItem;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
-import com.myth.cici.entity.ColorEntity;
-import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.cici.wiget.StoneView;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.poetrycommon.view.VerticalTextView;
 
 import java.util.ArrayList;
@@ -39,11 +36,9 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
         this.list = list;
     }
 
-    private MyApplication myApplication;
 
     public CipaiListAdapter(Context context) {
         mContext = context;
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
     }
 
     // Provide a reference to the type of views that you are using
@@ -166,11 +161,7 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                 }
             });
 
-            ColorEntity colorEntity = myApplication.getColorById(holder.cipai.getColor_id());
-            int color = 0xffffff;
-            if (colorEntity != null) {
-                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-            }
+            int color = BaseApplication.instance.getColorById(holder.cipai.getColor_id());
             holder.head.setBackgroundColor(color);
             holder.num.setTextColor(color);
             holder.name.setTextColor(color);
@@ -185,9 +176,9 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder.name.setText(holder.cipai.getName() + "");
             holder.enname.setText(holder.cipai.getEnname() + "");
 
-            holder.name.setTypeface(myApplication.getTypeface());
-            holder.enname.setTypeface(myApplication.getTypeface());
-            holder.num.setTypeface(myApplication.getTypeface());
+            holder.name.setTypeface(BaseApplication.instance.getTypeface());
+            holder.enname.setTypeface(BaseApplication.instance.getTypeface());
+            holder.num.setTypeface(BaseApplication.instance.getTypeface());
         }
     }
 

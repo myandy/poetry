@@ -1,7 +1,6 @@
 package com.myth.cici.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,16 +12,16 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.myth.cici.BaseActivity;
 import com.myth.cici.R;
 import com.myth.cici.db.CiDatabaseHelper;
 import com.myth.cici.entity.Ci;
 import com.myth.cici.entity.Cipai;
-import com.myth.cici.entity.ColorEntity;
-import com.myth.poetrycommon.utils.DisplayUtil;
-import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.cici.wiget.CircleTextView;
 import com.myth.cici.wiget.SwitchPoint;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtil;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,7 @@ public class CipaiActivity extends BaseActivity {
         writeTV.setText("填词");
         writeTV.setTextSize(18);
         writeTV.setPadding(15, 15, 15, 15);
-        writeTV.setTypeface(myApplication.getTypeface());
+        writeTV.setTypeface(BaseApplication.instance.getTypeface());
         writeTV.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -70,13 +69,8 @@ public class CipaiActivity extends BaseActivity {
         });
         addBottomRightView(writeTV, new LayoutParams(-2, -2));
 
-        ColorEntity colorEntity = myApplication.getColorById(cipai
+        int color = BaseApplication.instance.getColorById(cipai
                 .getColor_id());
-        int color = 0xffffff;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(),
-                    colorEntity.getBlue());
-        }
 
         LinearLayout topView = (LinearLayout) findViewById(R.id.top);
 
@@ -91,13 +85,13 @@ public class CipaiActivity extends BaseActivity {
         topView.addView(new CircleTextView(mActivity, count, color), param);
 
         TextView title = (TextView) findViewById(R.id.title);
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(BaseApplication.instance.getTypeface());
         title.setTextSize(44);
         title.setText(cipai.getName());
 
         if (cipai.getName().length() > 5) {
             TextView title1 = (TextView) findViewById(R.id.title1);
-            title1.setTypeface(myApplication.getTypeface());
+            title1.setTypeface(BaseApplication.instance.getTypeface());
             title1.setTextSize(44);
 
             title1.setText(cipai.getName().substring(0, 5));
@@ -133,8 +127,8 @@ public class CipaiActivity extends BaseActivity {
         if (ciList != null && ciList.size() > 0) {
             switchPoint.addSwitchBtn(ciList.size(),
                     R.drawable.gc_cover_switcher_dot,
-                    ResizeUtil.resize(mActivity, 10),
-                    ResizeUtil.resize(mActivity, 10));
+                    ResizeUtil.resize(10),
+                    ResizeUtil.resize(10));
             switchPoint.setSelectedSwitchBtn(0);
             gallery.setCurrentItem(0);
             gallery.setAdapter(galleryAdapter);
@@ -157,7 +151,7 @@ public class CipaiActivity extends BaseActivity {
 
             container.addView(root, param);
             TextView textView = (TextView) root.findViewById(R.id.textview);
-            textView.setTypeface(myApplication.getTypeface());
+            textView.setTypeface(BaseApplication.instance.getTypeface());
             String text = ciList.get(position % ciList.size()).getText();
             if (!TextUtils.isEmpty(ciList.get(position % ciList.size())
                     .getAuthor())) {

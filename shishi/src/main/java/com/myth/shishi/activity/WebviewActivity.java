@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebSettings.LayoutAlgorithm;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.shishi.R;
 
 public class WebviewActivity extends BaseActivity

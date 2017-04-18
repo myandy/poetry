@@ -1,7 +1,6 @@
 package com.myth.shishi.wiget;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -13,14 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.utils.ResizeUtil;
+import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.poetrycommon.view.MirrorLoaderView;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.db.FormerDatabaseHelper;
-import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
-import com.myth.poetrycommon.utils.ResizeUtil;
-import com.myth.poetrycommon.utils.StringUtils;
 
 public class ShareView extends ScrollView {
 
@@ -169,13 +167,7 @@ public class ShareView extends ScrollView {
 
     public void setColor() {
 
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
-        int color;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        } else {
-            color = Color.rgb(0, 0, 0);
-        }
+        int color = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
         text.setTextColor(color);
         title.setTextColor(color);
         author.setTextColor(color);

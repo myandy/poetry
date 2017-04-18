@@ -8,24 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="20dp"
+        android:layout_margin="16dp"
         android:background="@drawable/setting_bg"
         android:orientation="vertical" >
 
         <RelativeLayout
             android:id="@+id/item_yun"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/yun_title"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:text="@string/setting_yun"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/yun_value"
@@ -36,7 +36,7 @@
                 android:gravity="center"
                 android:text="@string/setting_yun"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <View
@@ -47,17 +47,17 @@
         <RelativeLayout
             android:id="@+id/item_typeface"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/typeface_title"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:text="@string/setting_typeface"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/typeface_value"
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:text="@string/setting_yun"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
         
         <View
@@ -79,17 +79,17 @@
         <RelativeLayout
             android:id="@+id/item_check"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/check_title"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:text="@string/setting_check"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/check_value"
@@ -99,7 +99,7 @@
                 android:drawableRight="@drawable/next_hl"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <View
@@ -110,17 +110,17 @@
         <RelativeLayout
             android:id="@+id/item_about"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/about_title"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:text="@string/setting_about"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/about_value"
@@ -130,7 +130,7 @@
                 android:drawableRight="@drawable/next_hl"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
         
         <View
@@ -141,17 +141,17 @@
         <RelativeLayout
             android:id="@+id/item_username"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/username_title"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:gravity="center"
                 android:text="@string/setting_username"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/username_value"
@@ -162,7 +162,7 @@
                 android:gravity="center"
                 android:hint="点击输入"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <View
@@ -173,14 +173,14 @@
         <RelativeLayout
             android:id="@+id/item_notice"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="45dp" >
 
             <TextView
                 android:id="@+id/notice_title"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
@@ -190,7 +190,7 @@
                 android:singleLine="true"
                 android:text="@string/notice_title"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
 

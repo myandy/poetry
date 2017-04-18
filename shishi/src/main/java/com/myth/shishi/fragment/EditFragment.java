@@ -6,7 +6,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,19 +20,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.activity.YunSearchActivity;
+import com.myth.poetrycommon.utils.StringUtils;
+import com.myth.poetrycommon.view.MirrorLoaderView;
+import com.myth.poetrycommon.view.PasteEditText;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.WebviewActivity;
-import com.myth.shishi.activity.YunSearchActivity;
-import com.myth.shishi.entity.ColorEntity;
 import com.myth.shishi.entity.Former;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.util.CheckUtils;
-import com.myth.poetrycommon.utils.StringUtils;
-import com.myth.shishi.wiget.GCDialog;
-import com.myth.poetrycommon.view.MirrorLoaderView;
-import com.myth.poetrycommon.view.PasteEditText;
+import com.myth.poetrycommon.view.GCDialog;
 import com.myth.shishi.wiget.PingzeLinearlayout;
 
 import java.util.ArrayList;
@@ -125,12 +123,11 @@ public class EditFragment extends Fragment {
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
         String s = former.getYun();
 
-        MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
         if (s == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);
-            edittext.setTypeface(myApplication.getTypeface());
+            edittext.setTypeface(MyApplication.instance.getTypeface());
             edittext.setTextColor(getColor());
             if (writing.getText() != null) {
                 edittext.setText(writing.getText());
@@ -161,7 +158,7 @@ public class EditFragment extends Fragment {
                         edittext.setOnPasteListener(onPasteListener);
                     }
 
-                    edittext.setTypeface(myApplication.getTypeface());
+                    edittext.setTypeface(MyApplication.instance.getTypeface());
                     edittext.setTextColor(getColor());
 
                     edittext.setSingleLine();
@@ -186,7 +183,7 @@ public class EditFragment extends Fragment {
 
         title = (TextView) view.findViewById(R.id.edit_title);
 
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(MyApplication.instance.getTypeface());
         title.setTextColor(getColor());
 
         if (TextUtils.isEmpty(writing.getTitle())) {
@@ -275,11 +272,7 @@ public class EditFragment extends Fragment {
     }
 
     private int getColor() {
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
-        int color = 0x000000;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        }
+        int color =MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
         return color;
     }
 

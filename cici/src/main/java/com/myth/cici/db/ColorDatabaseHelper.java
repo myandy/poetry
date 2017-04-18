@@ -1,11 +1,13 @@
 package com.myth.cici.db;
 
-import java.util.ArrayList;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.myth.cici.entity.ColorEntity;
+import com.myth.poetrycommon.entity.ColorEntity;
+
+import java.util.ArrayList;
+
 
 public class ColorDatabaseHelper
 {

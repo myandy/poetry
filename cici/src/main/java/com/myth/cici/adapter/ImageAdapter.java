@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
-import com.myth.cici.MyApplication;
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.DisplayUtil;
 
 public class ImageAdapter extends BaseAdapter
@@ -16,7 +16,7 @@ public class ImageAdapter extends BaseAdapter
 
     private Context mContext;
 
-    private int[] list = MyApplication.bgSmallimgList;
+    private int[] list = BaseApplication.instance.bgSmallimgList;
 
     public ImageAdapter(Context context)
     {
@@ -46,7 +46,7 @@ public class ImageAdapter extends BaseAdapter
             imageView.setLayoutParams(layoutParams);
         }
 
-        ((ImageView) ((LinearLayout) convertView).getChildAt(0)).setImageResource(MyApplication.bgSmallimgList[position]);
+        ((ImageView) ((LinearLayout) convertView).getChildAt(0)).setImageResource(BaseApplication.instance.bgSmallimgList[position]);
         return convertView;
     }
 

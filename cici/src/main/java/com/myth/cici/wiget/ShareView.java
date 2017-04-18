@@ -1,7 +1,6 @@
 package com.myth.cici.wiget;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.db.CipaiDatabaseHelper;
-import com.myth.cici.entity.ColorEntity;
 import com.myth.cici.entity.Writing;
 import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.poetrycommon.utils.StringUtils;
@@ -166,13 +164,7 @@ public class ShareView extends ScrollView {
 
     public void setColor() {
 
-        ColorEntity colorEntity = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
-        int color ;
-        if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-        } else {
-            color = Color.rgb(0, 0, 0);
-        }
+        int color = MyApplication.getColorByPos(MyApplication.getDefaultShareColor(mContext));
         text.setTextColor(color);
         title.setTextColor(color);
         author.setTextColor(color);

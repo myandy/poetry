@@ -11,22 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorListActivity;
-import com.myth.shishi.activity.AuthorPageActivity;
 import com.myth.shishi.activity.AuthorSearchActivity;
 import com.myth.shishi.activity.DuiShiActivity;
 import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
-import com.myth.shishi.db.WritingDatabaseHelper;
-import com.myth.shishi.entity.Writing;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
-
-import java.util.ArrayList;
 
 public class MainView extends RelativeLayout {
 
@@ -75,21 +69,21 @@ public class MainView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
-                ArrayList<Writing> writings = WritingDatabaseHelper
-                        .getAllWriting();
-                if (writings == null || writings.size() == 0) {
-                    Toast.makeText(mContext, "点击左下角的加号去添加作品吧",
-                            Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Intent intent = new Intent(mContext,
-                            AuthorPageActivity.class);
-                    mContext.startActivity(intent);
-                }
-                // Intent intent = new Intent(mContext,
-                // PoetrySearchActivity.class);
-                // intent.putExtra("collect", true);
-                // mContext.startActivity(intent);
+//                ArrayList<Writing> writings = WritingDatabaseHelper
+//                        .getAllWriting();
+//                if (writings == null || writings.size() == 0) {
+//                    Toast.makeText(mContext, "点击左下角的加号去添加作品吧",
+//                            Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                    Intent intent = new Intent(mContext,
+//                            AuthorPageActivity.class);
+//                    mContext.startActivity(intent);
+//                }
+                Intent intent = new Intent(mContext,
+                        PoetrySearchActivity.class);
+                intent.putExtra("collect", true);
+                mContext.startActivity(intent);
 
             }
         });
@@ -108,7 +102,6 @@ public class MainView extends RelativeLayout {
 
         TextView showOne = (TextView) root.findViewById(R.id.show_one);
 
-        // showOne.setTextColor(mContext.getResources().getColorStateList(R.color.gc_white_to_grey));
         showOne.setTypeface(myApplication.getTypeface());
         showOne.setOnClickListener(new OnClickListener() {
 
@@ -126,7 +119,7 @@ public class MainView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mContext).setItems(
-                        new String[]{"搜索诗人", "搜索诗"},
+                        new String[]{mContext.getString(R.string.search_author_hint), mContext.getString(R.string.search_poetry_hint)},
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -161,18 +154,6 @@ public class MainView extends RelativeLayout {
 
             }
         });
-
-        // TextView ad = (TextView) root.findViewById(R.id.ad);
-        // ad.setTypeface(MyApplication.getTypeface());
-        // ad.setOnClickListener(new OnClickListener()
-        // {
-        //
-        // @Override
-        // public void onClick(View v)
-        // {
-        // // Ads.showAppWall((Activity) mContext, APP_WALL);
-        // }
-        // });
 
         addView(root, new LayoutParams(-1, -1));
     }

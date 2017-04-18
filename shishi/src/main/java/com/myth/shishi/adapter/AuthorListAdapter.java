@@ -117,11 +117,19 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return list == null ? 0 : list.size() / 2;
+        return list == null ? 0 : (list.size() / 2);
     }
 
+    private Author getItem(int position) {
+        if (position >= 0 && position < list.size()) {
+            return list.get(position);
+        }
+        return null;
+    }
+
+
     private void initHolderView(final ViewHolderItem holder, int pos) {
-        holder.author = list.get(pos);
+        holder.author = getItem(pos);
         if (holder.author != null) {
             holder.item.setOnClickListener(new OnClickListener() {
 
@@ -132,14 +140,6 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
                     mContext.startActivity(intent);
                 }
             });
-
-//            ColorEntity colorEntity = MyApplication.getColorByPos(pos);
-//            int color = 0xffffff;
-//            if (colorEntity != null)
-//            {
-//                color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
-//            }
-//            holder.author.setColor(color);
 
             holder.head.setBackgroundColor(holder.author.getColor());
             holder.num.setTextColor(holder.author.getColor());
@@ -161,5 +161,6 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder.num.setTypeface(myApplication.getTypeface());
         }
     }
+
 
 }

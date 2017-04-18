@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <string name="app_name">诗Shi</string>
-    <string name="search_hint">在%1$s中搜索</string>
-    <string name="search_cipai_hint">搜索诗</string>
-    <string name="cancel">取消</string>
-    <string name="confirm">确认</string>
-    <string name="delete">删除</string>
-    <string name="delete_title">确认删除</string>
-    <string name="delete_content">确定删除这篇作品？</string>
-    <string name="save_title">确定保存</string>
-    <string name="save_content">确定保存此次修改？</string>
-    <string name="save">保存</string>
-    <string name="give_up">放弃</string>
-    <string name="delete_former_content">确定删除此格律？</string>
-    <string name="copy_text_done">文本已复制到剪切板</string>
-    <string name="setting_yun">韵典</string>
-    <string name="setting_typeface">简繁切换</string>
+    <string name="search_poetry_hint">搜索诗</string>
+    <string name="search_author_hint">搜索诗人</string>
+    <string name="search_former_hint">搜索格律</string>
     <string name="setting_about">关于诗Shi</string>
-    <string name="setting_congratuate_us">给我打分</string>
-    <string name="setting_former">格律编辑</string>
-    <string name="setting_check">检查平仄</string>
-    <string name="check_true">自动检查</string>
-    <string name="check_false">不自动检查</string>
-    <string name="setting_ad">支持开发者（应用推荐）</string>
     <string name="notice_title">用户交流可加QQ群：305395176</string>
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按诗数量排序</string>
@@ -34,22 +17,7 @@
     <string name="about_email">andymao1991@gmail.com</string>
     <string name="about_qq">305395176</string>
     <string name="about_wexin">天涯共词Ci</string>
-    <string name="about_email_toast">邮箱号已复制到剪切板，我们会查看并考虑您的每一个建议</string>
-    <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
-    <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
-    <string name="input_shanglian">请输入上句</string>
-    <string name="input_former_name">请输入格律名</string>
-    <string name="input_former_code">请输入格律码</string>
-    <string name="former_help">格律编辑帮助</string>
-    <string name="former_help_text">每个数字代表一个汉字，非数字不影响判断，直接保留。1代表平,2代表仄,4为可平可仄推荐平,5为可平可仄推荐仄，7为平韵，8为仄韵，每句请用全角的句号。分隔。</string>
-    <string name="sign_tip">签到得积分</string>
-    <string name="serial_sign_days">已连续签到天数</string>
-    <string name="sign_days_of_month">本月已出勤天数</string>
-    <string name="usercenter_sign_finished">已签到</string>
 
-    <string name="tts_unable">抱歉，您的手机暂不支持系统语音朗读</string>
 
-    <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
-    <string name="auto_save">智能保存</string>
 
 </resources>

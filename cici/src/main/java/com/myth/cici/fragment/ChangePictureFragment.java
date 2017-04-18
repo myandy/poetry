@@ -30,10 +30,10 @@ import android.widget.SeekBar;
 
 import com.myth.cici.R;
 import com.myth.cici.entity.Writing;
+import com.myth.cici.wiget.ShareView;
 import com.myth.poetrycommon.utils.Fastblur;
 import com.myth.poetrycommon.utils.ImageUtils;
 import com.myth.poetrycommon.utils.ResizeUtil;
-import com.myth.cici.wiget.ShareView;
 
 public class ChangePictureFragment extends Fragment {
 

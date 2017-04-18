@@ -5,15 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.db.YunDatabaseHelper;
+import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
-import com.myth.shishi.db.YunDatabaseHelper;
-import com.myth.poetrycommon.utils.OthersUtils;
 
 public class SettingActivity extends BaseActivity {
 
@@ -23,8 +26,6 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         initView();
-
-
     }
 
     private void initView() {
@@ -33,22 +34,12 @@ public class SettingActivity extends BaseActivity {
         refreshTypeface();
         refreshCheck();
 
-        ((TextView) findViewById(R.id.yun_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.yun_value)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.typeface_value)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.typeface_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.check_value)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.check_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.about_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.former_title)).setTypeface(myApplication.getTypeface());
-
         findViewById(R.id.item_yun).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mActivity).setSingleChoiceItems(YunDatabaseHelper.YUNString,
-                        YunDatabaseHelper.getDefaultYunShu(mActivity), new DialogInterface.OnClickListener() {
+                        YunDatabaseHelper.getDefaultYunShu(), new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -69,7 +60,7 @@ public class SettingActivity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 MyApplication.setDefaultTypeface(mActivity, which);
-                                myApplication.setTypeface(mActivity, MyApplication.getDefaultTypeface(mActivity));
+                                BaseApplication.instance.setTypeface(mActivity, MyApplication.getDefaultTypeface(mActivity));
                                 refreshTypeface();
                                 dialog.dismiss();
                             }
@@ -117,21 +108,54 @@ public class SettingActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, FormerListActivity.class);
+                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
                 intent.putExtra("edit", true);
                 startActivity(intent);
             }
         });
 
+        final TextView username = (TextView) findViewById(R.id.username_value);
+        String name = BaseApplication.instance.getDefaultUserName(mActivity);
+        if (!TextUtils.isEmpty(name)) {
+            username.setText(name);
+        }
 
+        findViewById(R.id.item_username).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final EditText et = new EditText(mActivity);
+                et.setText(username.getText());
+                new AlertDialog.Builder(mActivity).setTitle("请输入用户名").setIcon(android.R.drawable.ic_dialog_info).setView(
+                        et).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        username.setText(et.getText().toString().trim());
+                        BaseApplication.instance.setDefaultUserName(mActivity, et.getText().toString().trim());
+                    }
+                }).setNegativeButton("取消", null).show();
+            }
+        });
     }
 
     private void refreshYun() {
-        ((TextView) findViewById(R.id.yun_value)).setText(YunDatabaseHelper.YUNString[YunDatabaseHelper.getDefaultYunShu(mActivity)]);
+        ((TextView) findViewById(R.id.yun_value)).setText(YunDatabaseHelper.YUNString[YunDatabaseHelper.getDefaultYunShu()]);
     }
 
     private void refreshTypeface() {
         ((TextView) findViewById(R.id.typeface_value)).setText(MyApplication.TypefaceString[MyApplication.getDefaultTypeface(mActivity)]);
+        ((TextView) findViewById(R.id.yun_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.yun_value)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.typeface_value)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.typeface_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.check_value)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.check_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.about_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.former_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.username_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.username_value)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {

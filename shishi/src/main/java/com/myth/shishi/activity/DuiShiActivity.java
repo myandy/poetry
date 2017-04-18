@@ -15,13 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.adapter.BaseAdapter;
 import com.myth.shishi.R;
 import com.myth.shishi.adapter.DuiShiAdapter;
-import com.myth.shishi.listener.MyListener;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.shishi.wiget.DuishiEditView;
-import com.myth.shishi.wiget.GProgressDialog;
+import com.myth.poetrycommon.view.GProgressDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,14 +115,13 @@ public class DuiShiActivity extends BaseActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         listview.setLayoutManager(linearLayoutManager);
 
-        adapter = new DuiShiAdapter(mActivity);
+        adapter = new DuiShiAdapter();
         listview.setAdapter(adapter);
 
-        adapter.setMyListener(new MyListener() {
-
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                final String s = adapter.getDatas().get(position);
+                final String s = adapter.list.get(position);
                 new AlertDialog.Builder(mActivity).setItems(new String[]{"复制"},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -132,9 +131,9 @@ public class DuiShiActivity extends BaseActivity {
                             }
 
                         }).show();
-
             }
         });
+
 
         button.setOnClickListener(new OnClickListener() {
 

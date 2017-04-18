@@ -1,138 +1,38 @@
 package com.myth.shishi;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 
-import com.myth.shishi.db.ColorDatabaseHelper;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.shishi.db.DBManager;
-import com.myth.shishi.db.YunDatabaseHelper;
-import com.myth.shishi.entity.ColorEntity;
-import com.myth.poetrycommon.utils.ResizeUtil;
 import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.community.location.DefaultLocationImpl;
-import com.umeng.socialize.PlatformConfig;
 
-import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication {
 
-    private static List<ColorEntity> colorList;
-
-    private Typeface typeface;
-
-    public final static String TypefaceString[] = {"简体", "繁体"};
-
-    public static MyApplication instance;
-
-    private static int defaultTypeface = 0;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
         DBManager.initDatabase(getApplicationContext());
-        YunDatabaseHelper.getYunList(this);
-        setTypeface(getApplicationContext(), getDefaultTypeface(this));
         LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
 
-        PlatformConfig.setWeixin("wx96110a1e3af63a39", "c60e3d3ff109a5d17013df272df99199");
-        PlatformConfig.setSinaWeibo("944955993", "4b6e97140e9417bec7b225bc4477262d");
-        PlatformConfig.setQQZone("1104581811", "KEYlj8gnlPCd4j4vA22");
-
-        ResizeUtil.getInstance().init(this);
-
-        if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {
-            defaultTypeface = 1;
-        }
+        dataDB = DBManager.getNewDatabase();
+        writingDB = DBManager.getDatabase();
     }
 
-    public static ColorEntity getColorByPos(int pos) {
-        if (colorList == null) {
-            colorList = ColorDatabaseHelper.getAll();
-        }
-        while (pos >= colorList.size()) {
-            pos -= colorList.size();
-        }
-        if (pos >= 0) {
-            return colorList.get(pos);
-        } else {
-            return null;
-        }
-    }
 
     public static int getRandomColor() {
         if (colorList == null) {
-            colorList = ColorDatabaseHelper.getAll();
+            colorList = ColorDatabaseHelper.getAll(dataDB);
         }
         return colorList.get(new Random().nextInt(colorList.size())).toColor();
     }
 
-    public void setTypeface(Context context, int type) {
-        if (type == 0) {
-            typeface = Typeface.createFromAsset(context.getAssets(),
-                    "fzqkyuesong.TTF");
-        } else {
-            typeface = Typeface.createFromAsset(context.getAssets(),
-                    "fzsongkebenxiukai_fanti.ttf");
-        }
-    }
-
-    public static int[] bgimgList = {R.drawable.dust, R.drawable.bg001,
-            R.drawable.bg002, R.drawable.bg004, R.drawable.bg006,
-            R.drawable.bg007, R.drawable.bg011, R.drawable.bg013,
-            R.drawable.bg072, R.drawable.bg084, R.drawable.bg096,
-            R.drawable.bg118};
-
-    public static int[] bgSmallimgList = {R.drawable.dust,
-            R.drawable.bg001_small, R.drawable.bg002_small,
-            R.drawable.bg004_small, R.drawable.bg006_small,
-            R.drawable.bg007_small, R.drawable.bg011_small,
-            R.drawable.bg013_small, R.drawable.bg072_small,
-            R.drawable.bg084_small, R.drawable.bg096_small,
-            R.drawable.bg118_small};
-
-    public static void setDefaultTypeface(Context context, int i) {
-        if (i < 2 && i >= 0) {
-            Editor edit = PreferenceManager
-                    .getDefaultSharedPreferences(context).edit();
-            edit.putInt("typeface", i);
-            edit.commit();
-        }
-    }
-
-    public static int getDefaultTypeface(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "typeface", defaultTypeface);
-    }
-
-    public static boolean getDefaultListType(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean("listType", true);
-    }
-
-    public static void setDefaultListType(Context context, boolean bool) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putBoolean("listType", bool);
-        edit.commit();
-    }
-
-    public static boolean getCheckAble(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean("check", true);
-    }
-
-    public static void setCheckAble(Context context, boolean bool) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putBoolean("check", bool);
-        edit.commit();
-    }
 
     public static int getDefaultDynasty(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(
@@ -145,167 +45,4 @@ public class MyApplication extends Application {
         edit.putInt("dynasty", dynasty);
         edit.commit();
     }
-
-    public static int getDefaultTextSize(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "size", 18);
-    }
-
-    public static void setDefaultTextSize(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("size", size);
-        edit.commit();
-    }
-
-    public static int getDefaultShareSize(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "share_size", 18);
-    }
-
-    public static void setDefaultShareSize(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("share_size", size);
-        edit.commit();
-    }
-
-    public static boolean getDefaultShareGravity(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean("share_gravity", true);
-    }
-
-    public static void setDefaultShareGravity(Context context, boolean iscenter) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putBoolean("share_gravity", iscenter);
-        edit.commit();
-    }
-
-    public static boolean getDefaultShareAuthor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean("share_author", true);
-    }
-
-    public static void setDefaultShareAuthor(Context context, boolean iscenter) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putBoolean("share_author", iscenter);
-        edit.commit();
-    }
-
-    public static int getDefaultSharePadding(Context context) {
-        int padding = PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt("share_padding", 0);
-        return padding;
-
-    }
-
-    public static void setDefaultSharePadding(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("share_padding", size);
-        edit.commit();
-    }
-
-    public static int getDefaultShareColor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "share_color", 0);
-    }
-
-    public static void setDefaultShareColor(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("share_color", size);
-        edit.commit();
-    }
-
-    public static String getDefaultSignMonth(Context context) {
-
-        Calendar date = Calendar.getInstance();
-
-        String re = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(
-                        "sign_month" + date.get(Calendar.YEAR)
-                                + date.get(Calendar.MONTH), null);
-        if (re == null) {
-
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < date.getActualMaximum(Calendar.DATE); i++) {
-                sb.append('0');
-            }
-            re = sb.toString();
-            saveDefaultSignMonth(context, re);
-        }
-        return re;
-    }
-
-    public static void saveDefaultSignMonth(Context context, String signMoth) {
-        Calendar date = Calendar.getInstance();
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putString(
-                "sign_month" + date.get(Calendar.YEAR)
-                        + date.get(Calendar.MONTH), signMoth);
-        edit.commit();
-    }
-
-    public static int getDefaultSignDay(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "sign_day", 0);
-    }
-
-    public static void setDefaultSignDay(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("sign_day", size);
-        edit.commit();
-    }
-
-    public static int getDefaultSignPoint(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "sign_point", 0);
-    }
-
-    public static void setDefaultSignPoint(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("sign_point", size);
-        edit.commit();
-    }
-
-    public static int getDefaultPoint(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
-                "point", 0);
-    }
-
-    public static void setDefaultPoint(Context context, int size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putInt("point", size);
-        edit.commit();
-    }
-
-    public static String getDefaultUserName(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString("username", "");
-    }
-
-    public static void setDefaultUserName(Context context, String size) {
-        Editor edit = PreferenceManager.getDefaultSharedPreferences(context)
-                .edit();
-        edit.putString("username", size);
-        edit.commit();
-    }
-
-
-    public Typeface getTypeface() {
-        if (typeface == null) {
-            setTypeface(this, getDefaultTypeface(this));
-        }
-        return typeface;
-    }
-
-
 }

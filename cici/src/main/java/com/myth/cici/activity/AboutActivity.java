@@ -2,7 +2,7 @@ package com.myth.cici.activity;
 
 import android.os.Bundle;
 
-import com.myth.cici.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.R;
 
 public class AboutActivity extends BaseActivity {

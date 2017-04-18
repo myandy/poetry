@@ -21,7 +21,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
@@ -127,15 +128,15 @@ public class PoetryActivity extends BaseActivity {
         });
 
         title = (TextView) findViewById(R.id.title);
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(BaseApplication.instance.getTypeface());
         title.setText(poetry.getAuthor());
 
         content = (TextView) findViewById(R.id.content);
-        content.setTypeface(myApplication.getTypeface());
-        ((TextView) findViewById(R.id.note)).setTypeface(myApplication
+        content.setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.note)).setTypeface(BaseApplication.instance
                 .getTypeface());
 
-        ((TextView) findViewById(R.id.author)).setTypeface(myApplication
+        ((TextView) findViewById(R.id.author)).setTypeface(BaseApplication.instance
                 .getTypeface());
 
         title.setOnClickListener(new OnClickListener() {
@@ -228,19 +229,19 @@ public class PoetryActivity extends BaseActivity {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = myApplication.getDefaultTextSize(mActivity);
+        int size = BaseApplication.instance.getDefaultTextSize(mActivity);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        myApplication.setDefaultTextSize(mActivity, size);
+        BaseApplication.instance.setDefaultTextSize(mActivity, size);
         setTextSize();
     }
 
     public void setTextSize() {
 
-        int size = myApplication.getDefaultTextSize(mActivity);
+        int size = BaseApplication.instance.getDefaultTextSize(mActivity);
         ((TextView) findViewById(R.id.author)).setTextSize(size);
         content.setTextSize(size);
         ((TextView) findViewById(R.id.note)).setTextSize(size - 2);

@@ -45,7 +45,7 @@ public class IntroductionView extends RelativeLayout {
 
         IntroAdapter colorAdapter = new IntroAdapter(mContext, mColors);
         stackView.setAdapter(colorAdapter);
-        stackView.getLayoutParams().height = ResizeUtil.resize(mContext, 600);
+        stackView.getLayoutParams().height = ResizeUtil.resize(600);
 
         addView(root, new LayoutParams(-1, -1));
     }

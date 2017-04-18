@@ -27,20 +27,20 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myth.cici.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.Constant;
-import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.db.ColorDatabaseHelper;
 import com.myth.cici.entity.Cipai;
-import com.myth.cici.entity.ColorEntity;
 import com.myth.cici.entity.Writing;
 import com.myth.cici.wiget.ShareView;
-import com.myth.poetrycommon.view.TouchEffectImageView;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.poetrycommon.utils.FileUtils;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtil;
+import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.io.File;
 import java.util.List;
@@ -166,42 +166,42 @@ public class ShareActivity extends BaseActivity {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = MyApplication.getDefaultShareSize(mActivity);
+        int size = BaseApplication.instance.getDefaultShareSize(mActivity);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        MyApplication.setDefaultShareSize(mActivity, size);
+        BaseApplication.instance.setDefaultShareSize(mActivity, size);
         shareView.setTextSize();
     }
 
 
     private void setGravity(boolean isCenter) {
-        MyApplication.setDefaultShareGravity(mActivity, isCenter);
+        BaseApplication.instance.setDefaultShareGravity(mActivity, isCenter);
         shareView.setGravity();
     }
 
 
     private void setAuthor(boolean showAuthor) {
-        MyApplication.setDefaultShareAuthor(mActivity, showAuthor);
+        BaseApplication.instance.setDefaultShareAuthor(mActivity, showAuthor);
         shareView.setAuthor();
     }
 
     private void setPadding(boolean isAdd) {
-        int margin = MyApplication.getDefaultSharePadding(mActivity);
+        int margin = BaseApplication.instance.getDefaultSharePadding(mActivity);
         if (isAdd) {
             margin += 10;
         } else {
             margin -= 10;
         }
-        MyApplication.setDefaultSharePadding(mActivity, margin);
+        BaseApplication.instance.setDefaultSharePadding(mActivity, margin);
         shareView.setPadding();
     }
 
 
     private void setColor(int color) {
-        MyApplication.setDefaultShareColor(mActivity, color);
+        BaseApplication.instance.setDefaultShareColor(mActivity, color);
         shareView.setColor();
     }
 
@@ -309,7 +309,7 @@ public class ShareActivity extends BaseActivity {
                     for (int i = 1; i < list.size() + 1; i++) {
                         s[i] = list.get(i - 1).getName();
                     }
-                    int color = myApplication.getDefaultShareColor(mActivity);
+                    int color = BaseApplication.instance.getDefaultShareColor(mActivity);
                     new AlertDialog.Builder(mActivity).setSingleChoiceItems(s, color, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             setColor(which);
@@ -326,7 +326,7 @@ public class ShareActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-                    boolean isCollect = myApplication.getDefaultShareAuthor(mActivity);
+                    boolean isCollect = BaseApplication.instance.getDefaultShareAuthor(mActivity);
                     setAuthor(!isCollect);
                     if (menu != null) {
                         menu.dismiss();
@@ -334,7 +334,7 @@ public class ShareActivity extends BaseActivity {
                 }
             });
 
-            if (myApplication.getDefaultShareAuthor(mActivity)) {
+            if (BaseApplication.instance.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
             } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
@@ -353,7 +353,7 @@ public class ShareActivity extends BaseActivity {
             // 显示在某个位置
 
         } else {
-            if (myApplication.getDefaultShareAuthor(mActivity)) {
+            if (BaseApplication.instance.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
             } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");

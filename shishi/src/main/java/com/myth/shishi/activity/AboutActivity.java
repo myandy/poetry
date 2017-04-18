@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.shishi.R;
 import com.myth.poetrycommon.utils.OthersUtils;
 

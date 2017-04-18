@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.utils.FileUtils;
+import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.poetrycommon.view.TouchEffectImageView;
-import com.myth.shishi.BaseActivity;
 import com.myth.shishi.Constant;
 import com.myth.shishi.R;
 import com.myth.shishi.entity.Poetry;
@@ -65,10 +66,12 @@ public class ShareEditActivity extends BaseActivity {
                 } else {
                     changePictureFragment.save();
                 }
-                String filename = writing.getBitmap().hashCode() + "";
-                File file = new File(Constant.SHARE_DIR, filename);
-                FileUtils.saveBitmap(writing.getBitmap(), file);
-                writing.setBgimg(file.getAbsolutePath());
+                if (!StringUtils.isNumeric(writing.getBgimg()) && writing.getBitmap() != null) {
+                    String filename = writing.getBitmap().hashCode() + "";
+                    File file = new File(Constant.SHARE_DIR, filename);
+                    FileUtils.saveBitmap(writing.getBitmap(), file);
+                    writing.setBgimg(file.getAbsolutePath());
+                }
                 writing.setBitmap(null);
                 Intent intent = new Intent(mActivity, ShareActivity.class);
                 intent.putExtra("writing", writing);

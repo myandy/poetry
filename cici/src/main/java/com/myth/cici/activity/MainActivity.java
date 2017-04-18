@@ -15,16 +15,16 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
-import com.myth.cici.BaseActivity;
 import com.myth.cici.R;
 import com.myth.cici.db.BackupTask;
 import com.myth.cici.db.WritingDatabaseHelper;
 import com.myth.cici.entity.Writing;
-import com.myth.poetrycommon.utils.DisplayUtil;
-import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.cici.wiget.IntroductionView;
 import com.myth.cici.wiget.MainView;
-import com.myth.cici.wiget.MainWritingView;
+import com.myth.cici.wiget.WritingView;
+import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
@@ -48,9 +48,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setBottomVisible();
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        layoutItemContainer(viewPager);
+        ResizeUtil.getInstance().layoutSquareView(viewPager, 540, -1);
         viewPagerContainer = (RelativeLayout) findViewById(R.id.pager_layout);
 
         viewPager.setOffscreenPageLimit(3);
@@ -59,7 +60,7 @@ public class MainActivity extends BaseActivity {
 
         // to cache all page, or we will see the right item delayed
 
-        viewPager.setPageMargin(ResizeUtil.resize(mActivity, 60));
+        viewPager.setPageMargin(ResizeUtil.resize(60));
         MyOnPageChangeListener myOnPageChangeListener = new MyOnPageChangeListener();
         viewPager.setOnPageChangeListener(myOnPageChangeListener);
 
@@ -97,12 +98,6 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void layoutItemContainer(View itemContainer) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) itemContainer.getLayoutParams();
-        params.width = ResizeUtil.resize(mActivity, 540);
-        params.height = LayoutParams.MATCH_PARENT;
-        itemContainer.setLayoutParams(params);
-    }
 
     @Override
     protected void onResume() {
@@ -112,7 +107,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
         super.onStop();
 
         new BackupTask(this).execute(BackupTask.COMMAND_BACKUP);
@@ -180,7 +174,7 @@ public class MainActivity extends BaseActivity {
             } else if (isNoWriting()) {
                 view = new IntroductionView(mActivity);
             } else {
-                view = new MainWritingView(mActivity, datas);
+                view = new WritingView(mActivity, datas.get(position));
             }
             ((ViewPager) container).addView(view, 0);
             return view;

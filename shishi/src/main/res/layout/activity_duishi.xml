@@ -75,7 +75,7 @@
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/refresh"
             android:layout_marginRight="20dp"
-            android:scrollbars="@null" >
+            android:scrollbars="none" >
 
             <LinearLayout
                 android:id="@+id/ets"

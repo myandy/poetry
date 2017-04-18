@@ -20,7 +20,8 @@ import com.myth.cici.db.WritingDatabaseHelper;
 import com.myth.cici.entity.Writing;
 import com.myth.poetrycommon.utils.DateUtils;
 import com.myth.poetrycommon.utils.ResizeUtil;
-import com.myth.cici.wiget.GCDialog.OnCustomDialogListener;
+import com.myth.poetrycommon.view.GCDialog;
+import com.myth.poetrycommon.view.GCDialog.OnCustomDialogListener;
 
 public class WritingView extends LinearLayout {
 

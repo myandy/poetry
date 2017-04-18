@@ -25,17 +25,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.poetrycommon.utils.FileUtils;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.poetrycommon.view.TouchEffectImageView;
-import com.myth.shishi.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.shishi.Constant;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
-import com.myth.shishi.db.ColorDatabaseHelper;
-import com.myth.shishi.entity.ColorEntity;
+import com.myth.poetrycommon.db.ColorDatabaseHelper;
+import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.shishi.entity.Writing;
 import com.myth.shishi.wiget.ShareView;
 
@@ -288,7 +289,7 @@ public class ShareActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
 
-                    final List<ColorEntity> list = ColorDatabaseHelper.getAll();
+                    final List<ColorEntity> list = ColorDatabaseHelper.getAll(BaseApplication.dataDB);
                     String s[] = new String[list.size()];
                     for (int i = 0; i < list.size(); i++) {
                         s[i] = list.get(i).getName();

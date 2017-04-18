@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.myth.cici.BaseActivity;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.R;
 import com.myth.cici.adapter.CipaiListAdapter;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
+import com.myth.poetrycommon.BaseApplication;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class CipaiListActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cipai_list);
-        isDefault = myApplication.getDefaulListType(mActivity);
+        isDefault = BaseApplication.instance.getDefaultListType(this);
         initView();
     }
 
@@ -52,9 +53,9 @@ public class CipaiListActivity extends BaseActivity
         adapter = new CipaiListAdapter(mActivity);
         listview.setAdapter(adapter);
         rectLeft = (TextView) findViewById(R.id.rect_left);
-        rectLeft.setTypeface(myApplication.getTypeface());
+        rectLeft.setTypeface(BaseApplication.instance.getTypeface());
         rectRight = (TextView) findViewById(R.id.rect_right);
-        rectRight.setTypeface(myApplication.getTypeface());
+        rectRight.setTypeface(BaseApplication.instance.getTypeface());
 
         setBackground();
 
@@ -67,7 +68,7 @@ public class CipaiListActivity extends BaseActivity
                 if (!isDefault)
                 {
                     isDefault = true;
-                    myApplication.setDefaultListType(mActivity, true);
+                    BaseApplication.instance.setDefaultListType(mActivity, true);
                     setBackground();
                     addView();
                 }
@@ -82,7 +83,7 @@ public class CipaiListActivity extends BaseActivity
                 if (isDefault)
                 {
                     isDefault = false;
-                    myApplication.setDefaultListType(mActivity, false);
+                    BaseApplication.instance.setDefaultListType(mActivity, false);
                     setBackground();
                     addView();
                 }

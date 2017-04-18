@@ -10,7 +10,7 @@ import android.text.style.StrikethroughSpan;
 import android.widget.EditText;
 
 import com.myth.cici.R;
-import com.myth.cici.db.YunDatabaseHelper;
+import com.myth.poetrycommon.db.YunDatabaseHelper;
 import com.myth.poetrycommon.utils.OthersUtils;
 
 public class CheckUtils {

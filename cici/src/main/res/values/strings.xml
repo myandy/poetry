@@ -2,33 +2,11 @@
 <resources>
 
     <string name="app_name">词Ci</string>
-    <string name="search_hint">在%1$s中搜索</string>
-    <string name="search_cipai_hint">搜索词牌</string>
-    <string name="cancel">取消</string>
-    <string name="confirm">确认</string>
-    <string name="delete">删除</string>
-    <string name="delete_title">确认删除</string>
-    <string name="delete_content">确定删除这篇词作？</string>
-    <string name="save_title">确定保存</string>
-    <string name="save_content">确定保存此次修改？</string>
-    <string name="save">保存</string>
-    <string name="give_up">放弃</string>
-    <string name="copy_text_done">文本已复制到剪切板</string>
 
-    
-    <string name="setting_yun">韵典</string>
-    <string name="setting_typeface">简繁切换</string>
+    <string name="search_cipai_hint">搜索词牌</string>
     <string name="setting_about">关于词Ci</string>
-    <string name="setting_username">用户名</string>
-    
-    <string name="setting_check">检查平仄</string>
-    <string name="check_true">自动检查</string>
-    <string name="check_false">不自动检查</string>
-    <string name="setting_ad">支持开发者（应用推荐）</string>
-    
     <string name="notice_title">用户交流QQ群：535860726</string>
 
-    <string name="about_qq_toast">QQ群号已复制到剪切板</string>
     <string name="about_qq">439747099</string>
     
     <string name="sort_default">默认排序</string>
@@ -41,8 +19,5 @@
     <string name="about_text2">方正字库为《词Ci》非商业版本提供字体授权。授权字体为：方正清刻本悦宋。欢迎大家去微博关注@方正字库美丽的字体。</string>
     
     <string name="about_text3">有建议或者bug请联系：\nandymao1991@gmail.com</string>
-    
-     <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
-    <string name="auto_save">智能保存</string>
     
 </resources>
