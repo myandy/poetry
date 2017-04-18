@@ -69,7 +69,7 @@ public class CipaiActivity extends BaseActivity {
         });
         addBottomRightView(writeTV, new LayoutParams(-2, -2));
 
-        int color = BaseApplication.instance.getColorById(cipai
+        int color = BaseApplication.getColorById(cipai
                 .getColor_id());
 
         LinearLayout topView = (LinearLayout) findViewById(R.id.top);
@@ -173,12 +173,12 @@ public class CipaiActivity extends BaseActivity {
             });
 
             return root;
-        };
+        }
 
         public void destroyItem(android.view.ViewGroup container, int position,
                 Object object) {
             container.removeView((View) object);
-        };
+        }
 
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {

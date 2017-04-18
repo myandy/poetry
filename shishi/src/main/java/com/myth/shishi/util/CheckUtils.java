@@ -69,14 +69,7 @@ public class CheckUtils
             {
                 return true;
             }
-            else if (wordStone == 20 && intCode == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return wordStone == 20 && intCode == 2;
         }
         else
         {

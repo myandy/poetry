@@ -234,7 +234,6 @@ public class ChangePictureFragment extends Fragment {
         }
 
         destBitmap = bmp;
-        return;
     }
 
 

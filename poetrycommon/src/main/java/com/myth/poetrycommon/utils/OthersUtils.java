@@ -102,10 +102,7 @@ public class OthersUtils {
     public static boolean isChinese(char c) {
 
         String chinese = "[\u4e00-\u9fa5]";
-        if ((c + "").matches(chinese)) {
-            return true;
-        }
-        return false;
+        return (c + "").matches(chinese);
     }
 
     public static String getFirstChinese(String input) {

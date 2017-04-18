@@ -17,6 +17,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.EditActivity;
@@ -71,7 +72,7 @@ public class PoetryView extends LinearLayout {
         super(context);
         this.writing = writing;
         this.poetry = writing.toPoetry();
-        poetry.setAuthor(myApplication.getDefaultUserName(context));
+        poetry.setAuthor(BaseApplication.getDefaultUserName(context));
         this.page = page;
         mContext = context;
         LayoutInflater inflater = (LayoutInflater) mContext
@@ -135,7 +136,7 @@ public class PoetryView extends LinearLayout {
         if (author != null) {
             color = author.getColor();
         } else {
-            color = myApplication.getRandomColor();
+            color = MyApplication.getRandomColor();
         }
         shareView = new CircleImageView(mContext, color,
                 R.drawable.share3_white);
@@ -242,19 +243,19 @@ public class PoetryView extends LinearLayout {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = myApplication.getDefaultTextSize(mContext);
+        int size = BaseApplication.getDefaultTextSize(mContext);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        myApplication.setDefaultTextSize(mContext, size);
+        BaseApplication.setDefaultTextSize(mContext, size);
         setTextSize();
     }
 
     public void setTextSize() {
 
-        int size = myApplication.getDefaultTextSize(mContext);
+        int size = BaseApplication.getDefaultTextSize(mContext);
         ((TextView) root.findViewById(R.id.author)).setTextSize(size);
         content.setTextSize(size);
         ((TextView) root.findViewById(R.id.note)).setTextSize(size - 2);

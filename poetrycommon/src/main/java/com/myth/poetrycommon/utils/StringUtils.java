@@ -6,11 +6,7 @@ public class StringUtils {
 
     public static boolean isEmpty(String s) {
 
-        if (TextUtils.isEmpty(s) || TextUtils.isEmpty(s.replaceAll("\n", "").replaceAll(" ", ""))) {
-            return true;
-        } else {
-            return false;
-        }
+        return TextUtils.isEmpty(s) || TextUtils.isEmpty(s.replaceAll("\n", "").replaceAll(" ", ""));
     }
 
     public static boolean isNumeric(String str) {

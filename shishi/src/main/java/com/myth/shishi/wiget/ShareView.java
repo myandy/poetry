@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.poetrycommon.view.MirrorLoaderView;
@@ -128,7 +129,7 @@ public class ShareView extends ScrollView {
         title.setText(writing.getTitle());
 
         if (TextUtils.isEmpty(writing.getAuthor())) {
-            author.setText(MyApplication.instance.getDefaultUserName(mContext));
+            author.setText(BaseApplication.getDefaultUserName(mContext));
         } else {
             author.setText(writing.getAuthor());
         }

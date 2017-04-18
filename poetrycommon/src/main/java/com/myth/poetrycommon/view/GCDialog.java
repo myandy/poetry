@@ -46,9 +46,9 @@ public class GCDialog extends Dialog
 
     public interface OnCustomDialogListener
     {
-        public void onConfirm();
+        void onConfirm();
 
-        public void onCancel();
+        void onCancel();
     }
 
     public GCDialog(Context context, OnCustomDialogListener listener, Bundle bundle)

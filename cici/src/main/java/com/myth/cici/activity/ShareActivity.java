@@ -166,42 +166,42 @@ public class ShareActivity extends BaseActivity {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = BaseApplication.instance.getDefaultShareSize(mActivity);
+        int size = BaseApplication.getDefaultShareSize(mActivity);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        BaseApplication.instance.setDefaultShareSize(mActivity, size);
+        BaseApplication.setDefaultShareSize(mActivity, size);
         shareView.setTextSize();
     }
 
 
     private void setGravity(boolean isCenter) {
-        BaseApplication.instance.setDefaultShareGravity(mActivity, isCenter);
+        BaseApplication.setDefaultShareGravity(mActivity, isCenter);
         shareView.setGravity();
     }
 
 
     private void setAuthor(boolean showAuthor) {
-        BaseApplication.instance.setDefaultShareAuthor(mActivity, showAuthor);
+        BaseApplication.setDefaultShareAuthor(mActivity, showAuthor);
         shareView.setAuthor();
     }
 
     private void setPadding(boolean isAdd) {
-        int margin = BaseApplication.instance.getDefaultSharePadding(mActivity);
+        int margin = BaseApplication.getDefaultSharePadding(mActivity);
         if (isAdd) {
             margin += 10;
         } else {
             margin -= 10;
         }
-        BaseApplication.instance.setDefaultSharePadding(mActivity, margin);
+        BaseApplication.setDefaultSharePadding(mActivity, margin);
         shareView.setPadding();
     }
 
 
     private void setColor(int color) {
-        BaseApplication.instance.setDefaultShareColor(mActivity, color);
+        BaseApplication.setDefaultShareColor(mActivity, color);
         shareView.setColor();
     }
 
@@ -309,7 +309,7 @@ public class ShareActivity extends BaseActivity {
                     for (int i = 1; i < list.size() + 1; i++) {
                         s[i] = list.get(i - 1).getName();
                     }
-                    int color = BaseApplication.instance.getDefaultShareColor(mActivity);
+                    int color = BaseApplication.getDefaultShareColor(mActivity);
                     new AlertDialog.Builder(mActivity).setSingleChoiceItems(s, color, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             setColor(which);
@@ -326,7 +326,7 @@ public class ShareActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-                    boolean isCollect = BaseApplication.instance.getDefaultShareAuthor(mActivity);
+                    boolean isCollect = BaseApplication.getDefaultShareAuthor(mActivity);
                     setAuthor(!isCollect);
                     if (menu != null) {
                         menu.dismiss();
@@ -334,7 +334,7 @@ public class ShareActivity extends BaseActivity {
                 }
             });
 
-            if (BaseApplication.instance.getDefaultShareAuthor(mActivity)) {
+            if (BaseApplication.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
             } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");
@@ -353,7 +353,7 @@ public class ShareActivity extends BaseActivity {
             // 显示在某个位置
 
         } else {
-            if (BaseApplication.instance.getDefaultShareAuthor(mActivity)) {
+            if (BaseApplication.getDefaultShareAuthor(mActivity)) {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("隐藏作者");
             } else {
                 ((TextView) menuView.findViewById(R.id.tv8)).setText("显示作者");

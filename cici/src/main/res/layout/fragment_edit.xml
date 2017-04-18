@@ -92,7 +92,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:paddingBottom="8dp"
-                android:paddingLeft="10dp"></LinearLayout>
+                android:paddingLeft="10dp"/>
 
 
         </FrameLayout>

@@ -360,7 +360,6 @@ public class HorizontalListView extends AdapterView<ListAdapter>
     public boolean dispatchTouchEvent(MotionEvent ev)
     {
         boolean handled = super.dispatchTouchEvent(ev);
-        ;
         return handled | mGesture.onTouchEvent(ev);
     }
 

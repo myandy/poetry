@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
@@ -85,7 +86,7 @@ public class AuthorView extends RelativeLayout {
     }
 
     private void setTextSize() {
-        int size = myApplication.getDefaultTextSize(mContext);
+        int size = BaseApplication.getDefaultTextSize(mContext);
         ((TextView) root.findViewById(R.id.content)).setTextSize(size);
     }
 

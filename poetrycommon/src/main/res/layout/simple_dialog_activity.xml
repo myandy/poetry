@@ -6,8 +6,6 @@
     android:background="@drawable/live_alarm_bg"
     android:orientation="vertical" >
 
-    <!-- 直播提醒框标题：PPTV提醒您 -->
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

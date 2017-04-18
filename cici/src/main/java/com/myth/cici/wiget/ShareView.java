@@ -16,6 +16,7 @@ import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Writing;
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.ResizeUtil;
 import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.poetrycommon.view.MirrorLoaderView;
@@ -128,7 +129,7 @@ public class ShareView extends ScrollView {
         text.setText(writing.getText());
         title.setText(writing.getCipai().getName());
 
-        author.setText(MyApplication.instance.getDefaultUserName(mContext));
+        author.setText(BaseApplication.getDefaultUserName(mContext));
 
         setTextSize();
         setGravity();

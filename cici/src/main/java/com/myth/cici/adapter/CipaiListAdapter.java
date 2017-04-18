@@ -161,7 +161,7 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                 }
             });
 
-            int color = BaseApplication.instance.getColorById(holder.cipai.getColor_id());
+            int color = BaseApplication.getColorById(holder.cipai.getColor_id());
             holder.head.setBackgroundColor(color);
             holder.num.setTextColor(color);
             holder.name.setTextColor(color);

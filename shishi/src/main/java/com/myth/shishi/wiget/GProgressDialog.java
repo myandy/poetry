@@ -1,4 +1,4 @@
-package com.myth.poetrycommon.view;
+package com.myth.shishi.wiget;
 
 import android.app.Dialog;
 import android.content.Context;

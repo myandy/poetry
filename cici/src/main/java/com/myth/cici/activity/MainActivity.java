@@ -176,14 +176,14 @@ public class MainActivity extends BaseActivity {
             } else {
                 view = new WritingView(mActivity, datas.get(position));
             }
-            ((ViewPager) container).addView(view, 0);
+            container.addView(view, 0);
             return view;
 
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
+            container.removeView((View) object);
         }
 
         @Override

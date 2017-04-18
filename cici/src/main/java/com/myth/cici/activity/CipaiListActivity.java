@@ -37,7 +37,7 @@ public class CipaiListActivity extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cipai_list);
-        isDefault = BaseApplication.instance.getDefaultListType(this);
+        isDefault = BaseApplication.getDefaultListType(this);
         initView();
     }
 
@@ -68,7 +68,7 @@ public class CipaiListActivity extends BaseActivity
                 if (!isDefault)
                 {
                     isDefault = true;
-                    BaseApplication.instance.setDefaultListType(mActivity, true);
+                    BaseApplication.setDefaultListType(mActivity, true);
                     setBackground();
                     addView();
                 }
@@ -83,7 +83,7 @@ public class CipaiListActivity extends BaseActivity
                 if (isDefault)
                 {
                     isDefault = false;
-                    BaseApplication.instance.setDefaultListType(mActivity, false);
+                    BaseApplication.setDefaultListType(mActivity, false);
                     setBackground();
                     addView();
                 }

@@ -115,7 +115,7 @@ public class SettingActivity extends BaseActivity {
         });
 
         final TextView username = (TextView) findViewById(R.id.username_value);
-        String name = BaseApplication.instance.getDefaultUserName(mActivity);
+        String name = BaseApplication.getDefaultUserName(mActivity);
         if (!TextUtils.isEmpty(name)) {
             username.setText(name);
         }
@@ -132,7 +132,7 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         username.setText(et.getText().toString().trim());
-                        BaseApplication.instance.setDefaultUserName(mActivity, et.getText().toString().trim());
+                        BaseApplication.setDefaultUserName(mActivity, et.getText().toString().trim());
                     }
                 }).setNegativeButton("取消", null).show();
             }

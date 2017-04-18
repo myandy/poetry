@@ -69,13 +69,13 @@ public class SettingActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(mActivity).setSingleChoiceItems(BaseApplication.instance.TypefaceString,
-                        BaseApplication.instance.getDefaultTypeface(mActivity), new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(mActivity).setSingleChoiceItems(BaseApplication.TypefaceString,
+                        BaseApplication.getDefaultTypeface(mActivity), new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                BaseApplication.instance.setDefaultTypeface(mActivity, which);
-                                BaseApplication.instance.setTypeface(mActivity, BaseApplication.instance.getDefaultTypeface(mActivity));
+                                BaseApplication.setDefaultTypeface(mActivity, which);
+                                BaseApplication.instance.setTypeface(mActivity, BaseApplication.getDefaultTypeface(mActivity));
                                 refreshTypeface();
                                 dialog.dismiss();
                             }
@@ -88,10 +88,10 @@ public class SettingActivity extends BaseActivity {
             public void onClick(View v) {
                 String[] s = {mActivity.getString(R.string.check_true), mActivity.getString(R.string.check_false)};
                 new AlertDialog.Builder(mActivity).setSingleChoiceItems(s,
-                        BaseApplication.instance.getCheckAble(mActivity) ? 0 : 1, new DialogInterface.OnClickListener() {
+                        BaseApplication.getCheckAble(mActivity) ? 0 : 1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                BaseApplication.instance.setCheckAble(mActivity, which == 0);
+                                BaseApplication.setCheckAble(mActivity, which == 0);
                                 refreshCheck();
                                 dialog.dismiss();
                             }
@@ -107,7 +107,7 @@ public class SettingActivity extends BaseActivity {
         });
 
         final TextView username = (TextView) findViewById(R.id.username_value);
-        String name = BaseApplication.instance.getDefaultUserName(mActivity);
+        String name = BaseApplication.getDefaultUserName(mActivity);
         if (!TextUtils.isEmpty(name)) {
             username.setText(name);
         }
@@ -124,7 +124,7 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         username.setText(et.getText().toString().trim());
-                        BaseApplication.instance.setDefaultUserName(mActivity, et.getText().toString().trim());
+                        BaseApplication.setDefaultUserName(mActivity, et.getText().toString().trim());
                     }
                 }).setNegativeButton("取消", null).show();
             }
@@ -136,7 +136,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void refreshTypeface() {
-        ((TextView) findViewById(R.id.typeface_value)).setText(BaseApplication.instance.TypefaceString[BaseApplication.instance.getDefaultTypeface(mActivity)]);
+        ((TextView) findViewById(R.id.typeface_value)).setText(BaseApplication.TypefaceString[BaseApplication.getDefaultTypeface(mActivity)]);
         ((TextView) findViewById(R.id.yun_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.yun_value)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.typeface_value)).setTypeface(BaseApplication.instance.getTypeface());
@@ -151,7 +151,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void refreshCheck() {
-        if (BaseApplication.instance.getCheckAble(mActivity)) {
+        if (BaseApplication.getCheckAble(mActivity)) {
             ((TextView) findViewById(R.id.check_value)).setText(R.string.check_true);
         } else {
             ((TextView) findViewById(R.id.check_value)).setText(R.string.check_false);

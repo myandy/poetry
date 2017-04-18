@@ -229,19 +229,19 @@ public class PoetryActivity extends BaseActivity {
     }
 
     public void isAddTextSize(boolean add) {
-        int size = BaseApplication.instance.getDefaultTextSize(mActivity);
+        int size = BaseApplication.getDefaultTextSize(mActivity);
         if (add) {
             size += 2;
         } else {
             size -= 2;
         }
-        BaseApplication.instance.setDefaultTextSize(mActivity, size);
+        BaseApplication.setDefaultTextSize(mActivity, size);
         setTextSize();
     }
 
     public void setTextSize() {
 
-        int size = BaseApplication.instance.getDefaultTextSize(mActivity);
+        int size = BaseApplication.getDefaultTextSize(mActivity);
         ((TextView) findViewById(R.id.author)).setTextSize(size);
         content.setTextSize(size);
         ((TextView) findViewById(R.id.note)).setTextSize(size - 2);

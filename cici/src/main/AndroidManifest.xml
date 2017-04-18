@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress CheckTagEmptyBody -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myth.cici"
 >
@@ -36,6 +37,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
+    <!--suppress CheckTagEmptyBody, CheckTagEmptyBody, CheckTagEmptyBody, CheckTagEmptyBody -->
     <application
         android:name="com.myth.cici.MyApplication"
         android:icon="@drawable/appicon"
@@ -52,38 +54,38 @@
         </activity>
         <activity
             android:name=".activity.CipaiListActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.CipaiActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.CiActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.ShareActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.EditActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name="com.myth.poetrycommon.activity.YunSearchActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.CipaiSearchActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.AboutActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.ShareEditActivity"
-            android:theme="@style/AppBaseTheme"></activity>
+            android:theme="@style/AppBaseTheme"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="550b99fafd98c544ba0006c6"></meta-data>
+            android:value="550b99fafd98c544ba0006c6"/>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="xiaomi" />
@@ -168,7 +170,7 @@
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
             android:exported="false"
-            android:process=":push"></receiver>
+            android:process=":push"/>
         <receiver
             android:name="com.umeng.message.SystemReceiver"
             android:process=":push">

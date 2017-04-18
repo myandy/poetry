@@ -92,7 +92,7 @@ public class CiActivity extends BaseActivity {
     }
 
     private void setColor() {
-        int color = BaseApplication.instance.getColorById(cipai
+        int color = BaseApplication.getColorById(cipai
                 .getColor_id());
         editView.setColor(color);
     }

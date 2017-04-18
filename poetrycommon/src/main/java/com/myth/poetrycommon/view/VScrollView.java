@@ -121,11 +121,7 @@ public class VScrollView extends ScrollView
         int srollHight = getHeight();
         int offset = viewHight - srollHight;
         int scrollY = getScrollY();
-        if (scrollY == 0 || scrollY == offset)
-        {
-            return true;
-        }
-        return false;
+        return scrollY == 0 || scrollY == offset;
     }
 
     private void animation()
@@ -166,6 +162,6 @@ public class VScrollView extends ScrollView
                 mView.scrollTo(0, scrollY);
                 sendEmptyMessageDelayed(0, 5);
             }
-        };
+        }
     };
 }

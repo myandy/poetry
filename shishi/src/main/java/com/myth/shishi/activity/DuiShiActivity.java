@@ -21,7 +21,7 @@ import com.myth.shishi.R;
 import com.myth.shishi.adapter.DuiShiAdapter;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.shishi.wiget.DuishiEditView;
-import com.myth.poetrycommon.view.GProgressDialog;
+import com.myth.shishi.wiget.GProgressDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,7 +91,6 @@ public class DuiShiActivity extends BaseActivity {
             }
         }
 
-        ;
     };
 
     @Override
