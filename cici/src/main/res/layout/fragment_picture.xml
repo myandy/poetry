@@ -5,7 +5,7 @@
               android:orientation="vertical"
               android:paddingTop="50dp">
 
-    <com.myth.cici.wiget.ShareView
+    <com.myth.poetrycommon.view.ShareView
         android:id="@+id/share_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

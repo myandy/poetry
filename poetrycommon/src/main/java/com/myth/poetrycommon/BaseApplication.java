@@ -10,12 +10,13 @@ import android.preference.PreferenceManager;
 
 import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.poetrycommon.entity.ColorEntity;
-import com.myth.poetrycommon.utils.ResizeUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.umeng.socialize.PlatformConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by AndyMao on 17-4-18.
@@ -23,9 +24,10 @@ import java.util.List;
 
 public class BaseApplication extends Application {
 
-    public static List<ColorEntity> colorList;
+    public static boolean needBackup;
+    public List<ColorEntity> colorList;
 
-    private static HashMap<Integer, ColorEntity> colorMap;
+    private HashMap<Integer, ColorEntity> colorMap;
 
     private Typeface typeface;
 
@@ -35,9 +37,27 @@ public class BaseApplication extends Application {
 
     private static int defaultTypeface = 0;
 
-    public static SQLiteDatabase dataDB;
+    protected SQLiteDatabase dataDB;
 
-    public static SQLiteDatabase writingDB;
+    protected SQLiteDatabase writingDB;
+
+    public SQLiteDatabase getWritingDB() {
+        if (writingDB == null) {
+            openDB();
+        }
+        return writingDB;
+    }
+
+    public SQLiteDatabase getDataDB() {
+        if (dataDB == null) {
+            openDB();
+        }
+        return dataDB;
+    }
+
+    protected void openDB() {
+    }
+
 
     @Override
     public void onCreate() {
@@ -49,7 +69,7 @@ public class BaseApplication extends Application {
         PlatformConfig.setSinaWeibo("2655542749", "d3c6e64eb912183bdf2ecc299ddfe3a7");
         PlatformConfig.setQQZone("1104396282", "KEYwA42NSJxWzHJjHRe");
 
-        ResizeUtil.getInstance().init(this);
+        ResizeUtils.getInstance().init(this);
 
 
         if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {
@@ -57,7 +77,7 @@ public class BaseApplication extends Application {
         }
     }
 
-    public static int getColorByPos(int pos) {
+    public int getColorByPos(int pos) {
         ColorEntity colorEntity = getColorEntityByPos(pos);
         int color;
         if (colorEntity != null) {
@@ -68,9 +88,9 @@ public class BaseApplication extends Application {
         return color;
     }
 
-    public static ColorEntity getColorEntityByPos(int pos) {
+    public ColorEntity getColorEntityByPos(int pos) {
         if (colorList == null) {
-            colorList = ColorDatabaseHelper.getAll(dataDB);
+            colorList = ColorDatabaseHelper.getAll();
         }
         pos--;
         if (pos >= 0 && pos < colorList.size()) {
@@ -80,7 +100,16 @@ public class BaseApplication extends Application {
         }
     }
 
-    public static int getColorById(int id) {
+
+    public  int getRandomColor() {
+        if (colorList == null) {
+            colorList = ColorDatabaseHelper.getAll();
+        }
+        return colorList.get(new Random().nextInt(colorList.size())).toColor();
+    }
+
+
+    public int getColorById(int id) {
         ColorEntity colorEntity = getColorEntityById(id);
         int color;
         if (colorEntity != null) {
@@ -91,10 +120,10 @@ public class BaseApplication extends Application {
         return color;
     }
 
-    public static ColorEntity getColorEntityById(int id) {
+    public ColorEntity getColorEntityById(int id) {
         if (colorMap == null) {
             colorMap = new HashMap();
-            ArrayList<ColorEntity> colorList = ColorDatabaseHelper.getAll(dataDB);
+            ArrayList<ColorEntity> colorList = ColorDatabaseHelper.getAll();
             for (ColorEntity color : colorList) {
                 colorMap.put(color.getId(), color);
             }
@@ -202,12 +231,12 @@ public class BaseApplication extends Application {
         edit.commit();
     }
 
-    public static String getDefaultUserName(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("username", "");
+    public static String getDefaultUserName() {
+        return PreferenceManager.getDefaultSharedPreferences(instance).getString("username", "");
     }
 
-    public static void setDefaultUserName(Context context, String size) {
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+    public static void setDefaultUserName(String size) {
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(instance).edit();
         edit.putString("username", size);
         edit.commit();
     }

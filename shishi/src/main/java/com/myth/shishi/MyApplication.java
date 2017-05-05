@@ -4,13 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.db.ColorDatabaseHelper;
+import com.myth.poetrycommon.*;
 import com.myth.shishi.db.DBManager;
 import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.community.location.DefaultLocationImpl;
-
-import java.util.Random;
 
 public class MyApplication extends BaseApplication {
 
@@ -20,19 +17,14 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
         LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
+        com.myth.poetrycommon.Constant.init("shishi");
+    }
 
+    @Override
+    protected void openDB() {
         dataDB = DBManager.getNewDatabase();
         writingDB = DBManager.getDatabase();
     }
-
-
-    public static int getRandomColor() {
-        if (colorList == null) {
-            colorList = ColorDatabaseHelper.getAll(dataDB);
-        }
-        return colorList.get(new Random().nextInt(colorList.size())).toColor();
-    }
-
 
     public static int getDefaultDynasty(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(

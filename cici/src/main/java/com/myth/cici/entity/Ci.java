@@ -8,19 +8,19 @@ public class Ci implements Serializable
     /**
      * 注释内容
      */
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
-    private int id;
+    public int id;
 
-    private String author;
+    public String author;
 
-    private String text;
+    public String text;
 
-    private String note;
+    public String note;
 
-    private int ci_id;
+    public int ci_id;
 
-    private Cipai cipai;
+    public Cipai cipai;
 
     public Cipai getCipai()
     {

@@ -5,7 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
+
 
 public class CircleStringView extends View
 {
@@ -44,10 +45,10 @@ public class CircleStringView extends View
         paint.setColor(mColor);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        canvas.drawCircle(DisplayUtil.dip2px(mContext, 12), DisplayUtil.dip2px(mContext, 12),
-                DisplayUtil.dip2px(mContext, 11), paint);
+        canvas.drawCircle(ResizeUtils.getInstance().dip2px(12), ResizeUtils.getInstance().dip2px(12),
+                ResizeUtils.getInstance().dip2px(11), paint);
         paint.setTextSize(24);
-        canvas.drawText(mString.charAt(0)+"",DisplayUtil.dip2px(mContext, 7), DisplayUtil.dip2px(mContext, 15), paint);
+        canvas.drawText(mString.charAt(0)+"",ResizeUtils.getInstance().dip2px(7), ResizeUtils.getInstance().dip2px(15), paint);
     }
 
 }

@@ -89,6 +89,7 @@ public class CipaiListActivity extends BaseActivity
                 }
             }
         });
+        setBottomVisible();
         addView();
         try
         {

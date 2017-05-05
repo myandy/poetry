@@ -1,17 +1,17 @@
 package com.myth.shishi.wiget;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.myth.shishi.R;
-import com.myth.poetrycommon.utils.DisplayUtil;
-
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.shishi.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DuishiEditView extends LinearLayout
 {
@@ -52,9 +52,9 @@ public class DuishiEditView extends LinearLayout
         removeAllViews();
         setOrientation(LinearLayout.HORIZONTAL);
 
-        eList = new ArrayList<EditText>();
+        eList = new ArrayList<>();
 
-        LinearLayout.LayoutParams lps = new LayoutParams(DisplayUtil.dip2px(mContext, 34), DisplayUtil.dip2px(mContext,
+        LinearLayout.LayoutParams lps = new LayoutParams(ResizeUtils.getInstance().dip2px(34), ResizeUtils.getInstance().dip2px(
                 34));
 
         lps.setMargins(20, 0, 0, 0);

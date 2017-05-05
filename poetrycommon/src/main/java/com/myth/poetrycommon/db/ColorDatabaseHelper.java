@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.entity.ColorEntity;
 
 import java.util.ArrayList;
@@ -11,8 +12,14 @@ import java.util.ArrayList;
 public class ColorDatabaseHelper {
     private static String TABLE_NAME = "color";
 
-    public static ArrayList<ColorEntity> getAll(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by displayidx", null);
+//    + " order by displayidx"
+
+    private static SQLiteDatabase getDB(){
+        return BaseApplication.instance.getDataDB();
+    }
+
+    public static ArrayList<ColorEntity> getAll() {
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME , null);
         return getColorListFromCursor(cursor);
     }
 

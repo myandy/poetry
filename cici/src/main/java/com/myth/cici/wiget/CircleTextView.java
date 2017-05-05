@@ -8,7 +8,8 @@ import android.view.View;
 
 import com.myth.cici.MyApplication;
 import com.myth.cici.R;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
+
 
 public class CircleTextView extends View {
 
@@ -35,12 +36,12 @@ public class CircleTextView extends View {
         paint.setColor(mColor);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(DisplayUtil.dip2px(mContext, 32), DisplayUtil.dip2px(mContext, 32),
-                DisplayUtil.dip2px(mContext, 30), paint);
-        paint.setTextSize(DisplayUtil.dip2px(mContext, 16));
+        canvas.drawCircle(ResizeUtils.getInstance().dip2px(32), ResizeUtils.getInstance().dip2px(32),
+                ResizeUtils.getInstance().dip2px(30), paint);
+        paint.setTextSize(ResizeUtils.getInstance().dip2px(16));
         paint.setTypeface(myApplication.getTypeface());
         paint.setColor(getResources().getColor((R.color.white)));
-        canvas.drawText(mText, DisplayUtil.dip2px(mContext, 21), DisplayUtil.dip2px(mContext, 37), paint);
+        canvas.drawText(mText, ResizeUtils.getInstance().dip2px(21), ResizeUtils.getInstance().dip2px(37), paint);
     }
 
 }

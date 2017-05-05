@@ -11,11 +11,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
 import com.myth.shishi.entity.Author;
-import com.myth.poetrycommon.utils.DisplayUtil;
+
 
 public class AuthorView extends RelativeLayout {
 
@@ -55,7 +56,7 @@ public class AuthorView extends RelativeLayout {
         root = inflater.inflate(R.layout.layout_author, null);
 
         LinearLayout topView = (LinearLayout) root.findViewById(R.id.right);
-        LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mContext, 80), DisplayUtil.dip2px(mContext, 120));
+        LayoutParams param = new LayoutParams(ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(120));
         CircleImageView dirView = new CircleImageView(mContext, author.getColor(), R.drawable.director);
         topView.addView(dirView, 1, param);
 

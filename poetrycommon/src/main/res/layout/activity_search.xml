@@ -18,8 +18,7 @@
             android:layout_gravity="left|center_vertical"
             android:layout_marginLeft="15dp"
             android:clickable="true"
-            android:padding="3dp"
-            android:scaleType="fitXY"
+            android:scaleType="center"
             android:src="@drawable/cancel" />
 
         <RelativeLayout

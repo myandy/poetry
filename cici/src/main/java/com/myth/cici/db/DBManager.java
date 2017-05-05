@@ -1,18 +1,17 @@
 package com.myth.cici.db;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+import android.util.Log;
+
+import com.myth.cici.R;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.myth.cici.R;
 
 public class DBManager {
     private final static int BUFFER_SIZE = 400000;
@@ -31,12 +30,10 @@ public class DBManager {
             + Environment.getDataDirectory().getAbsolutePath() + "/"
             + PACKAGE_NAME + "/" + DB_NEW_NAME; // 在手机里存放数据库的位置
 
-    /** The Constant VERSION. */
-    public static final int DB_VERSION = 3;
-
-    private static SQLiteDatabase db_new;
-
-    private static SQLiteDatabase db;
+    /**
+     * The Constant VERSION.
+     */
+    public static final int DB_VERSION = 4;
 
     public static void initDatabase(Context context) {
         try {
@@ -67,7 +64,7 @@ public class DBManager {
                 if (!BackupTask.restoreDatabase(context)) {
                     // 判断数据库文件是否存在，若不存在则执行导入，否则直接打开数据库
                     InputStream is = context.getResources().openRawResource(
-                            R.raw.ci); // 欲导入的数据库
+                            R.raw.writing); // 欲导入的数据库
                     FileOutputStream fos = new FileOutputStream(DB_PATH);
                     byte[] buffer = new byte[BUFFER_SIZE];
                     int count = 0;
@@ -89,17 +86,10 @@ public class DBManager {
     }
 
     public static SQLiteDatabase getNewDatabase() {
-        if (db_new == null) {
-            db_new = SQLiteDatabase.openOrCreateDatabase(DB_NEW_PATH, null);
-        }
-        return db_new;
+        return SQLiteDatabase.openOrCreateDatabase(DB_NEW_PATH, null);
     }
 
     public static SQLiteDatabase getDatabase() {
-        if (db == null) {
-            db = SQLiteDatabase.openOrCreateDatabase(DB_PATH, null);
-        }
-        return db;
+        return SQLiteDatabase.openOrCreateDatabase(DB_PATH, null);
     }
-
 }

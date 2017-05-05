@@ -21,7 +21,7 @@ import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
 import com.myth.cici.wiget.StoneView;
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.VerticalTextView;
 
 import java.util.ArrayList;
@@ -41,8 +41,6 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
         mContext = context;
     }
 
-    // Provide a reference to the type of views that you are using
-    // (custom viewholder)
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ViewHolderItem holder1;
 
@@ -80,7 +78,7 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder1.enname = (VerticalTextView) convertView.findViewById(R.id.enname1);
             holder1.stoneView = new StoneView(parent.getContext());
             android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
-                    DisplayUtil.dip2px(parent.getContext(), 40), DisplayUtil.dip2px(parent.getContext(), 40));
+                    ResizeUtils.getInstance().dip2px(40), ResizeUtils.getInstance().dip2px(40));
             holder1.middle.addView(holder1.stoneView, layoutParams);
 
             holder2.item = convertView.findViewById(R.id.item2);
@@ -94,24 +92,17 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
 
 
         }
-
-        TextView name;
-
-        TextView tag;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public CipaiListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
         mContext = parent.getContext();
         View convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_cipai_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
         ViewHolder holder = new ViewHolder(convertView, parent);
         return holder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         initHolderView(holder.holder1, 2 * position);
@@ -120,7 +111,6 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return list == null ? 0 : list.size() / 2;
@@ -133,16 +123,16 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
 
                 @Override
                 public void onClick(View v) {
-                    final ArrayList<Cipai> cipais = CipaiDatabaseHelper.getParentCipaiById(holder.cipai.getId());
+                    final ArrayList<Cipai> cipais = CipaiDatabaseHelper.getParentCipaiById(holder.cipai.id);
 
                     String[] titles = new String[cipais.size()];
 
                     for (int i = 0; i < cipais.size(); i++) {
-                        titles[i] = cipais.get(i).getName();
-                        if (TextUtils.isEmpty(cipais.get(i).getSource())) {
-                            cipais.get(i).setSource(holder.cipai.getSource());
+                        titles[i] = cipais.get(i).name;
+                        if (TextUtils.isEmpty(cipais.get(i).source)) {
+                            cipais.get(i).source = (holder.cipai.source);
                         }
-                        cipais.get(i).setColor_id(holder.cipai.getColor_id());
+                        cipais.get(i).color_id = (holder.cipai.color_id);
                     }
                     if (cipais.size() > 1) {
                         new AlertDialog.Builder(mContext).setItems(titles, new DialogInterface.OnClickListener() {
@@ -161,20 +151,20 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                 }
             });
 
-            int color = BaseApplication.getColorById(holder.cipai.getColor_id());
+            int color = BaseApplication.instance.getColorById(holder.cipai.color_id);
             holder.head.setBackgroundColor(color);
             holder.num.setTextColor(color);
-            holder.name.setTextColor(color);
-            holder.enname.setTextColor(color);
+            holder.name.setTextColor(mContext.getResources().getColor(R.color.white));
+            holder.enname.setTextColor(mContext.getResources().getColor(R.color.white));
 
-            holder.stoneView.setType(holder.cipai.getTone_type(), color);
-            String count = holder.cipai.getWordcount() + "";
-            if (holder.cipai.getWordcount() < 100) {
-                count = "0" + holder.cipai.getWordcount();
+            holder.stoneView.setType(holder.cipai.tone_type, color);
+            String count = holder.cipai.wordcount + "";
+            if (holder.cipai.wordcount < 100) {
+                count = "0" + holder.cipai.wordcount;
             }
             holder.num.setText(count);
-            holder.name.setText(holder.cipai.getName() + "");
-            holder.enname.setText(holder.cipai.getEnname() + "");
+            holder.name.setText(holder.cipai.name + "");
+            holder.enname.setText(holder.cipai.enname + "");
 
             holder.name.setTypeface(BaseApplication.instance.getTypeface());
             holder.enname.setTypeface(BaseApplication.instance.getTypeface());

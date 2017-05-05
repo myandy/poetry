@@ -2,6 +2,7 @@ package com.myth.cici;
 
 import com.myth.cici.db.DBManager;
 import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.Constant;
 
 public class MyApplication extends BaseApplication {
 
@@ -10,8 +11,12 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
 
+        Constant.init("cici");
+    }
+
+    @Override
+    protected void openDB() {
         dataDB = DBManager.getNewDatabase();
         writingDB = DBManager.getDatabase();
     }
-
 }

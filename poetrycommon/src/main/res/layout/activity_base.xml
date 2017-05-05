@@ -14,12 +14,11 @@
 
         <com.myth.poetrycommon.view.TouchEffectImageView
             android:id="@+id/bottom_left"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="left|center_vertical"
             android:clickable="true"
-            android:padding="6dp"
-            android:scaleType="fitXY"
+            android:scaleType="center"
             android:src="@drawable/cancel" />
 
         <LinearLayout

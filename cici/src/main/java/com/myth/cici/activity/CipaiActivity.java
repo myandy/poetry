@@ -20,8 +20,8 @@ import com.myth.cici.wiget.CircleTextView;
 import com.myth.cici.wiget.SwitchPoint;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.utils.DisplayUtil;
-import com.myth.poetrycommon.utils.ResizeUtil;
+import com.myth.poetrycommon.activity.EditActivity;
+import com.myth.poetrycommon.utils.ResizeUtils;
 
 import java.util.ArrayList;
 
@@ -44,9 +44,9 @@ public class CipaiActivity extends BaseActivity {
             cipai = (Cipai) getIntent().getSerializableExtra("cipai");
         }
 
-        ArrayList<Ci> cis = CiDatabaseHelper.getCiByCipaiId(cipai.getId());
+        ArrayList<Ci> cis = CiDatabaseHelper.getCiByCipaiId(cipai.id);
         Ci intro = new Ci();
-        intro.setText(cipai.getSource());
+        intro.setText(cipai.source);
         ciList.add(intro);
         ciList.addAll(cis);
         initView();
@@ -63,39 +63,39 @@ public class CipaiActivity extends BaseActivity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(mActivity, EditActivity.class);
-                intent.putExtra("cipai", cipai);
+                intent.putExtra("former", cipai);
                 startActivity(intent);
             }
         });
         addBottomRightView(writeTV, new LayoutParams(-2, -2));
-
-        int color = BaseApplication.getColorById(cipai
-                .getColor_id());
+        setBottomVisible();
+        int color = BaseApplication.instance.getColorById(cipai
+                .color_id);
 
         LinearLayout topView = (LinearLayout) findViewById(R.id.top);
 
         android.widget.LinearLayout.LayoutParams param = new android.widget.LinearLayout.LayoutParams(
-                DisplayUtil.dip2px(mActivity, 64), DisplayUtil.dip2px(
-                        mActivity, 64));
+                ResizeUtils.getInstance().dip2px(64), ResizeUtils.getInstance().dip2px(
+                64));
 
-        String count = cipai.getWordcount() + "";
-        if (cipai.getWordcount() < 100) {
-            count = "0" + cipai.getWordcount();
+        String count = cipai.wordcount + "";
+        if (cipai.wordcount < 100) {
+            count = "0" + cipai.wordcount;
         }
         topView.addView(new CircleTextView(mActivity, count, color), param);
 
         TextView title = (TextView) findViewById(R.id.title);
         title.setTypeface(BaseApplication.instance.getTypeface());
         title.setTextSize(44);
-        title.setText(cipai.getName());
+        title.setText(cipai.name);
 
-        if (cipai.getName().length() > 5) {
+        if (cipai.name.length() > 5) {
             TextView title1 = (TextView) findViewById(R.id.title1);
             title1.setTypeface(BaseApplication.instance.getTypeface());
             title1.setTextSize(44);
 
-            title1.setText(cipai.getName().substring(0, 5));
-            title.setText(cipai.getName().substring(5));
+            title1.setText(cipai.name.substring(0, 5));
+            title.setText(cipai.name.substring(5));
         }
         gallery = (ViewPager) findViewById(R.id.gc_main_gallery);
 
@@ -127,8 +127,8 @@ public class CipaiActivity extends BaseActivity {
         if (ciList != null && ciList.size() > 0) {
             switchPoint.addSwitchBtn(ciList.size(),
                     R.drawable.gc_cover_switcher_dot,
-                    ResizeUtil.resize(10),
-                    ResizeUtil.resize(10));
+                    ResizeUtils.resize(10),
+                    ResizeUtils.resize(10));
             switchPoint.setSelectedSwitchBtn(0);
             gallery.setCurrentItem(0);
             gallery.setAdapter(galleryAdapter);
@@ -141,7 +141,7 @@ public class CipaiActivity extends BaseActivity {
      */
     private PagerAdapter galleryAdapter = new PagerAdapter() {
         public Object instantiateItem(android.view.ViewGroup container,
-                final int position) {
+                                      final int position) {
             View root = getLayoutInflater().inflate(R.layout.layout_textview,
                     null);
 
@@ -176,7 +176,7 @@ public class CipaiActivity extends BaseActivity {
         }
 
         public void destroyItem(android.view.ViewGroup container, int position,
-                Object object) {
+                                Object object) {
             container.removeView((View) object);
         }
 

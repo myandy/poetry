@@ -1,6 +1,5 @@
 package com.myth.shishi.wiget;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,21 +17,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.shishi.MyApplication;
+import com.myth.poetrycommon.activity.EditActivity;
+import com.myth.poetrycommon.activity.ShareActivity;
+import com.myth.poetrycommon.activity.ShareEditActivity;
+import com.myth.poetrycommon.db.FormerDatabaseHelper;
+import com.myth.poetrycommon.entity.Writing;
+import com.myth.poetrycommon.utils.OthersUtils;
+import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.shishi.R;
-import com.myth.shishi.activity.EditActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
-import com.myth.shishi.activity.ShareActivity;
-import com.myth.shishi.activity.ShareEditActivity;
 import com.myth.shishi.activity.WebviewActivity;
-import com.myth.shishi.db.FormerDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
-import com.myth.shishi.entity.Writing;
-import com.myth.poetrycommon.utils.DisplayUtil;
-import com.myth.poetrycommon.utils.OthersUtils;
-import com.myth.poetrycommon.utils.StringUtils;
 
 import java.util.Locale;
 
@@ -68,19 +66,19 @@ public class PoetryView extends LinearLayout {
 
     private Writing writing;
 
-    public PoetryView(Context context, Writing writing, String page) {
-        super(context);
-        this.writing = writing;
-        this.poetry = writing.toPoetry();
-        poetry.setAuthor(BaseApplication.getDefaultUserName(context));
-        this.page = page;
-        mContext = context;
-        LayoutInflater inflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        root = inflater.inflate(R.layout.layout_poetry, null);
-        initView(root);
-        addView(root);
-    }
+//    public PoetryView(Context context, Writing writing, String page) {
+//        super(context);
+//        this.writing = writing;
+//        this.poetry = writing.toPoetry();
+//        poetry.setAuthor(BaseApplication.getDefaultUserName());
+//        this.page = page;
+//        mContext = context;
+//        LayoutInflater inflater = (LayoutInflater) mContext
+//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        root = inflater.inflate(R.layout.layout_poetry, null);
+//        initView(root);
+//        addView(root);
+//    }
 
     private TextView content;
 
@@ -93,8 +91,6 @@ public class PoetryView extends LinearLayout {
     int[] location;
 
     int color;
-
-    private MyApplication myApplication;
 
     private TextToSpeech mSpeech;
 
@@ -127,16 +123,14 @@ public class PoetryView extends LinearLayout {
             }
         });
 
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
-
         LinearLayout topView = (LinearLayout) root.findViewById(R.id.right);
-        LayoutParams param = new LayoutParams(DisplayUtil.dip2px(mContext, 80),
-                DisplayUtil.dip2px(mContext, 120));
+        LayoutParams param = new LayoutParams(ResizeUtils.getInstance().dip2px(80),
+                ResizeUtils.getInstance().dip2px(120));
 
         if (author != null) {
             color = author.getColor();
         } else {
-            color = MyApplication.getRandomColor();
+            color = BaseApplication.instance.getRandomColor();
         }
         shareView = new CircleImageView(mContext, color,
                 R.drawable.share3_white);
@@ -153,19 +147,19 @@ public class PoetryView extends LinearLayout {
                 } else {
                     Intent intent = new Intent(mContext,
                             ShareEditActivity.class);
-                    intent.putExtra("data", poetry);
+                    intent.putExtra("data", poetry.toWriting());
                     mContext.startActivity(intent);
                 }
             }
         });
 
         title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(BaseApplication.instance.getTypeface());
         title.setText(poetry.getAuthor());
 
         content = (TextView) root.findViewById(R.id.content);
-        content.setTypeface(myApplication.getTypeface());
-        ((TextView) root.findViewById(R.id.note)).setTypeface(myApplication
+        content.setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) root.findViewById(R.id.note)).setTypeface(BaseApplication.instance
                 .getTypeface());
 
         root.findViewById(R.id.content).setOnClickListener(
@@ -176,10 +170,10 @@ public class PoetryView extends LinearLayout {
                         if (writing != null) {
                             Intent intent = new Intent(mContext,
                                     EditActivity.class);
-                            if (writing.getFormer() == null) {
-                                writing.setFormer(FormerDatabaseHelper
-                                        .getFormerByName(writing
-                                                .getFormerName()));
+                            if (writing.former == null) {
+                                writing.former = (FormerDatabaseHelper
+                                        .getFormerById(writing
+                                                .formerId));
                             }
                             intent.putExtra("writing", writing);
                             mContext.startActivity(intent);
@@ -202,7 +196,7 @@ public class PoetryView extends LinearLayout {
                     }
                 });
 
-        ((TextView) root.findViewById(R.id.author)).setTypeface(myApplication
+        ((TextView) root.findViewById(R.id.author)).setTypeface(BaseApplication.instance
                 .getTypeface());
 
         ((TextView) root.findViewById(R.id.page)).setText(page);

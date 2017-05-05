@@ -21,18 +21,19 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.activity.ShareEditActivity;
+import com.myth.poetrycommon.utils.OthersUtils;
+import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.poetrycommon.utils.StringUtils;
+import com.myth.poetrycommon.view.TouchEffectImageView;
 import com.myth.shishi.R;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
-import com.myth.poetrycommon.utils.DisplayUtil;
-import com.myth.poetrycommon.utils.OthersUtils;
-import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.shishi.wiget.CircleImageView;
-import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -111,8 +112,8 @@ public class PoetryActivity extends BaseActivity {
     private void initView() {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(
-                DisplayUtil.dip2px(mActivity, 80), DisplayUtil.dip2px(
-                mActivity, 120));
+                ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(
+                120));
         shareView = new CircleImageView(mActivity, author.getColor(),
                 R.drawable.share3_white);
         topView.addView(shareView, 1, param);
@@ -122,7 +123,7 @@ public class PoetryActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, ShareEditActivity.class);
-                intent.putExtra("data", poetry);
+                intent.putExtra("data", poetry.toWriting());
                 startActivity(intent);
             }
         });
@@ -152,19 +153,14 @@ public class PoetryActivity extends BaseActivity {
         });
 
         initBottomRightView();
-
         initContentView();
-
     }
 
     private void initBottomRightView() {
         ImageView view = new TouchEffectImageView(mActivity, null);
         view.setImageResource(R.drawable.random);
-        view.setScaleType(ScaleType.FIT_XY);
-        view.setPadding(15, 15, 15, 15);
-        ViewGroup.LayoutParams lps = new LayoutParams(DisplayUtil.dip2px(
-                mActivity, 30.4), DisplayUtil.dip2px(mActivity, 24));
-        addBottomRightView(view, lps);
+        view.setScaleType(ScaleType.CENTER);
+        addBottomRightView(view);
         view.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -179,8 +175,8 @@ public class PoetryActivity extends BaseActivity {
         more.setScaleType(ScaleType.FIT_XY);
         addBottomRightView(
                 more,
-                new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil
-                        .dip2px(mActivity, 48)));
+                new LayoutParams(ResizeUtils.getInstance().dip2px(48), ResizeUtils.getInstance()
+                        .dip2px(48)));
         more.setOnClickListener(new OnClickListener() {
 
             @Override

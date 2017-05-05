@@ -3,6 +3,7 @@ package com.myth.poetrycommon.db;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -19,9 +20,13 @@ public class YunDatabaseHelper {
 
     private static ArrayList<Yun> yunList;
 
+    private static SQLiteDatabase getDb() {
+        return BaseApplication.instance.getDataDB();
+    }
+
     public static void getYunList() {
         if (yunList == null) {
-            Cursor cursor = BaseApplication.dataDB.rawQuery("select * from " + YUNSHU[getDefaultYunShu()], null);
+            Cursor cursor = getDb().rawQuery("select * from " + YUNSHU[getDefaultYunShu()], null);
             yunList = getYunListFromCursor(cursor);
         }
     }

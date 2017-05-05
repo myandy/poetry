@@ -16,6 +16,7 @@ import com.myth.poetrycommon.adapter.BaseAdapter;
 import java.util.List;
 
 
+
 /**
  * Created by AndyMao on 17-4-18.
  */
@@ -24,7 +25,7 @@ public abstract class SearchListActivity<T> extends BaseActivity {
 
     private View clear;
 
-    private RecyclerView listview;
+    protected RecyclerView listview;
 
     public BaseAdapter adapter;
 
@@ -55,7 +56,7 @@ public abstract class SearchListActivity<T> extends BaseActivity {
     public abstract BaseAdapter getSearchListAdapter();
 
 
-    private void refreshData() {
+    protected void refreshData() {
         String word = search.getText().toString().trim();
         if (TextUtils.isEmpty(word)) {
             list = originList;
@@ -64,10 +65,9 @@ public abstract class SearchListActivity<T> extends BaseActivity {
         }
         adapter.setList(list);
         adapter.notifyDataSetChanged();
-
     }
 
-    private void initView() {
+    protected void initView() {
         listview = (RecyclerView) findViewById(R.id.listview);
         listview.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
@@ -118,6 +118,7 @@ public abstract class SearchListActivity<T> extends BaseActivity {
                 refreshData();
             }
         });
+
     }
 
 
