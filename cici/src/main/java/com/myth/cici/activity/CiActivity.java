@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
@@ -24,8 +22,11 @@ import com.myth.cici.entity.Cipai;
 import com.myth.cici.wiget.CircleEditView;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.activity.EditActivity;
+import com.myth.poetrycommon.activity.ShareEditActivity;
+import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.OthersUtils;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
@@ -40,8 +41,6 @@ public class CiActivity extends BaseActivity {
     private int num;
 
     private TextView content;
-
-    private boolean isIntroduce = false;
 
     private boolean isRandom = false;
 
@@ -66,11 +65,7 @@ public class CiActivity extends BaseActivity {
             ciList = (ArrayList<Ci>) getIntent().getSerializableExtra("cilist");
             cipai = (Cipai) getIntent().getSerializableExtra("cipai");
             num = getIntent().getIntExtra("num", 0);
-            if (num == 0) {
-                isIntroduce = true;
-            } else {
-                ci = ciList.get(num);
-            }
+            ci = ciList.get(num);
         } else {
             isRandom = true;
             ciList = CiDatabaseHelper.getAllCi();
@@ -83,25 +78,25 @@ public class CiActivity extends BaseActivity {
     private void getRandomCi() {
         ci = ciList.get(new Random().nextInt(ciList.size()));
         cipai = CipaiDatabaseHelper.getCipaiById(ci.getCi_id());
-        if (cipai.getParent_id() > 0) {
+        if (cipai.parent_id > 0) {
             Cipai cipai1 = CipaiDatabaseHelper.getCipaiById(cipai
-                    .getParent_id());
-            cipai.setColor_id(cipai1.getColor_id());
-            cipai.setSource(cipai1.getSource());
+                    .parent_id);
+            cipai.color_id = (cipai1.color_id);
+            cipai.source = (cipai1.source);
         }
     }
 
     private void setColor() {
-        int color = BaseApplication.getColorById(cipai
-                .getColor_id());
+        int color = BaseApplication.instance.getColorById(cipai
+                .color_id);
         editView.setColor(color);
     }
 
     private void initView() {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(
-                DisplayUtil.dip2px(mActivity, 80), DisplayUtil.dip2px(
-                mActivity, 120));
+                ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(
+                80));
         editView = new CircleEditView(mActivity);
         topView.addView(editView, 1, param);
 
@@ -127,7 +122,6 @@ public class CiActivity extends BaseActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-
                                 if (which == 0) {
                                     OthersUtils.copy(title.getText() + "\n"
                                             + content.getText(), mActivity);
@@ -153,7 +147,6 @@ public class CiActivity extends BaseActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-
                                 if (which == 0) {
                                     OthersUtils.copy(title.getText() + "\n"
                                             + content.getText(), mActivity);
@@ -170,27 +163,27 @@ public class CiActivity extends BaseActivity {
 
         ((TextView) findViewById(R.id.author)).setTypeface(BaseApplication.instance
                 .getTypeface());
-        if (isIntroduce) {
-            findViewById(R.id.share).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.share).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.share).setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mActivity,
-                            ShareEditActivity.class);
-                    ci.setCipai(cipai);
-                    intent.putExtra("ci", ci);
-                    startActivity(intent);
-                }
-            });
-        }
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity,
+                        ShareEditActivity.class);
+                Writing writing = new Writing();
+                writing.content = ci.text;
+                writing.author = ci.author;
+                cipai = ci.getCipai();
+                writing.former = cipai;
+                intent.putExtra("data", writing);
+                startActivity(intent);
+            }
+        });
         editView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, EditActivity.class);
-                intent.putExtra("cipai", cipai);
+                intent.putExtra("former", cipai);
                 startActivity(intent);
             }
         });
@@ -198,20 +191,15 @@ public class CiActivity extends BaseActivity {
         initBottomRightView();
 
         refreshRandomView();
-
+        setBottomVisible();
     }
 
     private void initBottomRightView() {
-        if (isIntroduce) {
-            return;
-        } else if (isRandom) {
+        if (isRandom) {
             ImageView view = new TouchEffectImageView(mActivity, null);
             view.setImageResource(R.drawable.random);
-            view.setScaleType(ScaleType.FIT_XY);
-            view.setPadding(12, 12, 12, 12);
-            addBottomRightView(view,
-                    new LayoutParams(DisplayUtil.dip2px(mActivity, 30.4),
-                            DisplayUtil.dip2px(mActivity, 24)));
+            view.setScaleType(ScaleType.CENTER);
+            addBottomRightView(view);
             view.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -225,8 +213,8 @@ public class CiActivity extends BaseActivity {
             prev.setImageResource(R.drawable.prev);
             prev.setScaleType(ScaleType.FIT_XY);
             addBottomRightView(prev,
-                    new LayoutParams(DisplayUtil.dip2px(mActivity, 42),
-                            DisplayUtil.dip2px(mActivity, 42)));
+                    new LayoutParams(ResizeUtils.getInstance().dip2px(42),
+                            ResizeUtils.getInstance().dip2px(42)));
             prev.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -243,8 +231,8 @@ public class CiActivity extends BaseActivity {
             next.setImageResource(R.drawable.next);
             next.setScaleType(ScaleType.FIT_XY);
             addBottomRightView(next,
-                    new LayoutParams(DisplayUtil.dip2px(mActivity, 42),
-                            DisplayUtil.dip2px(mActivity, 42)));
+                    new LayoutParams(ResizeUtils.getInstance().dip2px(42),
+                            ResizeUtils.getInstance().dip2px(42)));
             next.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -262,11 +250,11 @@ public class CiActivity extends BaseActivity {
     }
 
     private void refreshRandomView() {
-        if (!TextUtils.isEmpty(cipai.getName())) {
-            title.setText(cipai.getName());
-            if (cipai.getName().length() > 5) {
-                title1.setText(cipai.getName().substring(0, 5));
-                title.setText(cipai.getName().substring(5));
+        if (!TextUtils.isEmpty(cipai.name)) {
+            title.setText(cipai.name);
+            if (cipai.name.length() > 5) {
+                title1.setText(cipai.name.substring(0, 5));
+                title.setText(cipai.name.substring(5));
             } else {
                 title1.setText("");
             }
@@ -276,36 +264,37 @@ public class CiActivity extends BaseActivity {
     }
 
     private void initContentView() {
-        if (isIntroduce) {
-            WebView intro = (WebView) findViewById(R.id.intro);
-            intro.setBackgroundColor(0);
-            intro.setVisibility(View.VISIBLE);
-            WebSettings settings = intro.getSettings();
-            settings.setDefaultTextEncodingName("UTF-8");
-            intro.loadUrl("file:///android_asset/intro.html");
-            content.setText(cipai.getSource());
-        } else {
-            if (!isRandom) {
-                if (num < ciList.size() - 1) {
-                    next.setClickEnable();
-                } else {
-                    next.setClickDisable();
-                }
-                if (num > 1) {
-                    prev.setClickEnable();
-                } else {
-                    prev.setClickDisable();
-                }
+//        if (isIntroduce) {
+//            WebView intro = (WebView) findViewById(R.id.intro);
+//            intro.setBackgroundColor(0);
+//            intro.setVisibility(View.VISIBLE);
+//            WebSettings settings = intro.getSettings();
+//            settings.setDefaultTextEncodingName("UTF-8");
+//            intro.loadUrl("file:///android_asset/intro.html");
+//            content.setText(cipai.source);
+//        } else
+//        {
+        if (!isRandom) {
+            if (num < ciList.size() - 1) {
+                next.setClickEnable();
+            } else {
+                next.setClickDisable();
             }
-            String note = ci.getNote();
-            if (note == null) {
-                note = "";
+            if (num > 1) {
+                prev.setClickEnable();
+            } else {
+                prev.setClickDisable();
             }
-            content.setText(ci.getText());
-            ((TextView) findViewById(R.id.note)).setText(note);
-            ((TextView) findViewById(R.id.author)).setText(ci.getAuthor()
-                    + "\n");
         }
+        String note = ci.getNote();
+        if (note == null) {
+            note = "";
+        }
+        content.setText(ci.getText());
+        ((TextView) findViewById(R.id.note)).setText(note);
+        ((TextView) findViewById(R.id.author)).setText(ci.getAuthor()
+                + "\n");
+//        }
     }
 
 }

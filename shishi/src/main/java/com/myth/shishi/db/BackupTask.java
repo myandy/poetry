@@ -1,16 +1,16 @@
 package com.myth.shishi.db;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 
 import com.myth.poetrycommon.utils.Logs;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 public class BackupTask extends AsyncTask<String, Void, Integer> {
     public static final String COMMAND_BACKUP = "backupDatabase";
@@ -24,9 +24,6 @@ public class BackupTask extends AsyncTask<String, Void, Integer> {
 
     @Override
     protected Integer doInBackground(String... params) {
-        // 获得正在使用的数据库路径，我的是 sdcard 目录下的 /dlion/db_dlion.db
-        // 默认路径是 /data/data/(包名)/databases/*.db
-
         String dbPath = "/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"
                 + mContext.getPackageName();

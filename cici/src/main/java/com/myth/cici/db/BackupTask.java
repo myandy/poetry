@@ -1,22 +1,22 @@
 package com.myth.cici.db;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Environment;
+
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.utils.Logs;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Environment;
-
-import com.myth.poetrycommon.utils.Logs;
-
 public class BackupTask extends AsyncTask<String, Void, Integer> {
     public static final String COMMAND_BACKUP = "backupDatabase";
     public static final String COMMAND_RESTORE = "restoreDatabase";
     private Context mContext;
-    public static boolean needBackup;
 
     public BackupTask(Context context) {
         this.mContext = context;
@@ -45,8 +45,8 @@ public class BackupTask extends AsyncTask<String, Void, Integer> {
         String command = params[0];
         Logs.error("BackUpTask:" + command);
         if (command.equals(COMMAND_BACKUP)) {
-            if (needBackup) {
-                needBackup = false;
+            if (BaseApplication.needBackup) {
+                BaseApplication.needBackup = false;
                 if (dbFile.exists()) {
                     try {
                         backup.createNewFile();

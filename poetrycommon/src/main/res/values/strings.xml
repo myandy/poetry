@@ -2,6 +2,7 @@
 <resources>
 
     <string name="search_hint">在%1$s中搜索</string>
+    <string name="search_writing_hint">搜索作品夹</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
     <string name="delete">删除</string>
@@ -32,6 +33,9 @@
     <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
     <string name="auto_save">智能保存</string>
     <string name="collect">收藏夹</string>
-    <string name="setting_username">用户名</string>
+    <string name="setting_username">作者名</string>
+    <string name="username_input">请输入作者名</string>
+    <string name="weibo_title">关注微博</string>
+    <string name="input_title">输入标题</string>
 
 </resources>

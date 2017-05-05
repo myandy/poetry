@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
@@ -63,7 +63,7 @@ public class AuthorListActivity extends BaseActivity {
         setting.setImageResource(R.drawable.setting);
         setting.setScaleType(ScaleType.FIT_XY);
         addBottomRightView(setting,
-                new LayoutParams(DisplayUtil.dip2px(mActivity, 48), DisplayUtil.dip2px(mActivity, 48)));
+                new LayoutParams(ResizeUtils.getInstance().dip2px(48), ResizeUtils.getInstance().dip2px(48)));
         setting.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -131,7 +131,7 @@ public class AuthorListActivity extends BaseActivity {
         List<Author> list = aList;
 
         for (int i = 0; i < list.size(); i++) {
-            int color = MyApplication.getColorByPos(i / 2);
+            int color = MyApplication.instance.getColorByPos(i / 2);
             list.get(i).setColor(color);
 
             AuthorDatabaseHelper.update(list.get(i).getAuthor(), list.get(i).getColor());

@@ -3,6 +3,7 @@ package com.myth.cici.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,7 +25,7 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         initView();
-
+        setBottomVisible();
     }
 
     private void initView() {
@@ -107,7 +108,7 @@ public class SettingActivity extends BaseActivity {
         });
 
         final TextView username = (TextView) findViewById(R.id.username_value);
-        String name = BaseApplication.getDefaultUserName(mActivity);
+        String name = BaseApplication.getDefaultUserName();
         if (!TextUtils.isEmpty(name)) {
             username.setText(name);
         }
@@ -118,17 +119,28 @@ public class SettingActivity extends BaseActivity {
             public void onClick(View v) {
                 final EditText et = new EditText(mActivity);
                 et.setText(username.getText());
-                new AlertDialog.Builder(mActivity).setTitle("请输入用户名").setIcon(android.R.drawable.ic_dialog_info).setView(
-                        et).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(mActivity).setTitle(R.string.username_input).setIcon(android.R.drawable.ic_dialog_info).setView(
+                        et).setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         username.setText(et.getText().toString().trim());
-                        BaseApplication.setDefaultUserName(mActivity, et.getText().toString().trim());
+                        BaseApplication.setDefaultUserName(et.getText().toString().trim());
                     }
-                }).setNegativeButton("取消", null).show();
+                }).setNegativeButton(R.string.cancel, null).show();
             }
         });
+
+        findViewById(R.id.item_weibo).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.weibo.com/anddymao"));
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void refreshYun() {

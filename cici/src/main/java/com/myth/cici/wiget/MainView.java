@@ -14,6 +14,7 @@ import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
 import com.myth.cici.activity.CipaiListActivity;
+import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
 
@@ -81,6 +82,17 @@ public class MainView extends RelativeLayout {
             }
         });
 
+        TextView writing = (TextView) root.findViewById(R.id.writing);
+        writing.setTypeface(myApplication.getTypeface());
+        writing.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, WritingSearchActivity.class);
+                mContext.startActivity(intent);
+
+            }
+        });
 
         addView(root, new LayoutParams(-1, -1));
     }

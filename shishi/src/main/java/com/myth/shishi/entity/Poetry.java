@@ -1,9 +1,10 @@
 package com.myth.shishi.entity;
 
+import com.myth.poetrycommon.entity.Writing;
+
 import java.io.Serializable;
 
-public class Poetry implements Serializable
-{
+public class Poetry implements Serializable {
 
     /**
      * 注释内容
@@ -22,53 +23,43 @@ public class Poetry implements Serializable
 
     private int id;
 
-    public String getAuthor()
-    {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author)
-    {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getIntro()
-    {
+    public String getIntro() {
         return intro;
     }
 
-    public void setIntro(String intro)
-    {
+    public void setIntro(String intro) {
         this.intro = intro;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getPoetry()
-    {
+    public String getPoetry() {
         return poetry;
     }
 
-    public void setPoetry(String poetry)
-    {
+    public void setPoetry(String poetry) {
         this.poetry = poetry;
     }
 
-    public int getCollect()
-    {
+    public int getCollect() {
         return collect;
     }
 
-    public void setCollect(int collect)
-    {
+    public void setCollect(int collect) {
         this.collect = collect;
     }
 
@@ -79,4 +70,15 @@ public class Poetry implements Serializable
     public void setId(int id) {
         this.id = id;
     }
+
+
+    public Writing toWriting() {
+        Writing writing = new Writing();
+        writing.content = poetry.replaceAll("[\\[\\]0-9]", "");
+        writing.author = author;
+        writing.title = title;
+        writing.formerId = -1;
+        return writing;
+    }
+
 }

@@ -5,15 +5,15 @@ import android.graphics.Color;
 public class ColorEntity
 {
 
-    private int id;
+    public int id;
 
-    private String name;
+    public String name;
 
-    private int red;
+    public int red;
 
-    private int green;
+    public int green;
 
-    private int blue;
+    public int blue;
 
     public int toColor()
     {

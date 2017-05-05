@@ -26,6 +26,7 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         initView();
+        setBottomVisible();
     }
 
     private void initView() {
@@ -104,18 +105,9 @@ public class SettingActivity extends BaseActivity {
                 }
             }
         });
-        findViewById(R.id.item_former).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
-                intent.putExtra("edit", true);
-                startActivity(intent);
-            }
-        });
 
         final TextView username = (TextView) findViewById(R.id.username_value);
-        String name = BaseApplication.getDefaultUserName(mActivity);
+        String name = BaseApplication.getDefaultUserName();
         if (!TextUtils.isEmpty(name)) {
             username.setText(name);
         }
@@ -132,9 +124,19 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         username.setText(et.getText().toString().trim());
-                        BaseApplication.setDefaultUserName(mActivity, et.getText().toString().trim());
+                        BaseApplication.setDefaultUserName(et.getText().toString().trim());
                     }
                 }).setNegativeButton("取消", null).show();
+            }
+        });
+
+        findViewById(R.id.item_weibo).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.weibo.com/anddymao"));
+                startActivity(intent);
             }
         });
     }
@@ -153,7 +155,6 @@ public class SettingActivity extends BaseActivity {
         ((TextView) findViewById(R.id.check_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.about_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
-        ((TextView) findViewById(R.id.former_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_value)).setTypeface(BaseApplication.instance.getTypeface());
     }

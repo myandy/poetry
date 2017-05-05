@@ -12,14 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.poetrycommon.view.VerticalTextView;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorPageActivity;
 import com.myth.shishi.adapter.AuthorListAdapter.ViewHolder.ViewHolderItem;
 import com.myth.shishi.entity.Author;
-import com.myth.poetrycommon.utils.DisplayUtil;
 import com.myth.shishi.wiget.CircleStringView;
-import com.myth.poetrycommon.view.VerticalTextView;
 
 import java.util.List;
 
@@ -36,8 +36,6 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
         mContext = context;
     }
 
-    // Provide a reference to the type of views that you are using
-    // (custom viewholder)
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ViewHolderItem holder1;
 
@@ -75,7 +73,7 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder1.enname = (VerticalTextView) convertView.findViewById(R.id.enname1);
             holder1.stoneView = new CircleStringView(parent.getContext());
             android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
-                    DisplayUtil.dip2px(parent.getContext(), 40), DisplayUtil.dip2px(parent.getContext(), 40));
+                    ResizeUtils.getInstance().dip2px(40), ResizeUtils.getInstance().dip2px(40));
             holder1.middle.addView(holder1.stoneView, layoutParams);
 
             holder2.item = convertView.findViewById(R.id.item2);
@@ -86,35 +84,23 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder2.enname = (VerticalTextView) convertView.findViewById(R.id.enname2);
             holder2.stoneView = new CircleStringView(parent.getContext());
             holder2.middle.addView(holder2.stoneView, layoutParams);
-
-
         }
-
-        TextView name;
-
-        TextView tag;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public AuthorListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
         mContext = parent.getContext();
         View convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_cipai_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
         ViewHolder holder = new ViewHolder(convertView, parent);
         return holder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         initHolderView(holder.holder1, 2 * position);
         initHolderView(holder.holder2, 2 * position + 1);
-
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return list == null ? 0 : (list.size() / 2);
@@ -143,8 +129,8 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
 
             holder.head.setBackgroundColor(holder.author.getColor());
             holder.num.setTextColor(holder.author.getColor());
-            holder.name.setTextColor(holder.author.getColor());
-            holder.enname.setTextColor(holder.author.getColor());
+            holder.name.setTextColor(mContext.getResources().getColor(R.color.white));
+            holder.enname.setTextColor(mContext.getResources().getColor(R.color.white));
 
             holder.stoneView.setType(holder.author.getDynasty(), holder.author.getColor());
             String count = holder.author.getP_num() + "";

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.myth.cici.R;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
 
 
 /** 点点 */
@@ -30,8 +30,8 @@ public class SwitchPoint extends LinearLayout
     /** 按照海报个数，添加点 */
     public void addSwitchBtn(int size)
     {
-        addSwitchBtn(size, R.drawable.gc_cover_switcher_dot, DisplayUtil.dip2px(mContext, 4),
-                DisplayUtil.dip2px(mContext, 4));
+        addSwitchBtn(size, R.drawable.gc_cover_switcher_dot, ResizeUtils.getInstance().dip2px(4),
+                ResizeUtils.getInstance().dip2px(4));
     }
 
     public void addSwitchBtn(int size, int imageId, int width, int height)

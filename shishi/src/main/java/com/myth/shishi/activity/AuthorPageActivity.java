@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 
 import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.db.WritingDatabaseHelper;
+import com.myth.poetrycommon.entity.Writing;
 import com.myth.shishi.R;
 import com.myth.shishi.db.PoetryDatabaseHelper;
-import com.myth.shishi.db.WritingDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
-import com.myth.shishi.entity.Writing;
 import com.myth.shishi.wiget.AuthorView;
 import com.myth.shishi.wiget.PoetryView;
 import com.myth.shishi.wiget.ScanView;
@@ -21,9 +20,9 @@ import java.util.ArrayList;
 
 public class AuthorPageActivity extends BaseActivity {
 
-    private ArrayList<Poetry> list = new ArrayList<Poetry>();
+    private ArrayList<Poetry> list = new ArrayList<>();
 
-    private ArrayList<Writing> writings = new ArrayList<Writing>();
+    private ArrayList<Writing> writings = new ArrayList<>();
 
     private Author author;
 
@@ -101,17 +100,10 @@ public class AuthorPageActivity extends BaseActivity {
 
     }
 
-    /**
-     * 滚图的adapter
-     */
     private PagerAdapter galleryAdapter = new PagerAdapter() {
         public Object instantiateItem(android.view.ViewGroup container,
                                       int position) {
-            View root = getLayoutInflater().inflate(R.layout.layout_textview,
-                    null);
-
-            LayoutParams param = new LayoutParams(-1, -1);
-
+            View root=null;
             if (!isSelf) {
                 if (position <= 0 || position > list.size() + 1) {
                     return new View(mActivity);
@@ -122,17 +114,16 @@ public class AuthorPageActivity extends BaseActivity {
                             list.get(position - 2), position - 1 + "/"
                             + list.size());
                 }
-            } else {
-
-                if (position <= 0 || position > writings.size()) {
-                    return new View(mActivity);
-                } else {
-                    root = new PoetryView(mActivity,
-                            writings.get(position - 1), position + "/"
-                            + writings.size());
-                }
             }
-            // container.addView(root, param);
+//            else {
+//                if (position <= 0 || position > writings.size()) {
+//                    return new View(mActivity);
+//                } else {
+//                    root = new PoetryView(mActivity,
+//                            writings.get(position - 1), position + "/"
+//                            + writings.size());
+//                }
+//            }
             return root;
         }
 

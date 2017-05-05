@@ -7,7 +7,8 @@ import android.graphics.Paint;
 import android.view.View;
 
 import com.myth.cici.R;
-import com.myth.poetrycommon.utils.DisplayUtil;
+import com.myth.poetrycommon.utils.ResizeUtils;
+
 
 public class CircleEditView extends View
 {
@@ -43,10 +44,10 @@ public class CircleEditView extends View
         paint.setColor(mColor);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(DisplayUtil.dip2px(mContext, 48), DisplayUtil.dip2px(mContext, 48),
-                DisplayUtil.dip2px(mContext, 46), paint);
+        canvas.drawCircle(ResizeUtils.getInstance().dip2px(50), ResizeUtils.getInstance().dip2px(38),
+                ResizeUtils.getInstance().dip2px(36), paint);
         canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.edit_white),
-                DisplayUtil.dip2px(mContext, 16), DisplayUtil.dip2px(mContext, 16), paint);
+                ResizeUtils.getInstance().dip2px(22), ResizeUtils.getInstance().dip2px(10), paint);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.myth.shishi.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.util.Log;
@@ -30,12 +31,10 @@ public class DBManager {
             + Environment.getDataDirectory().getAbsolutePath() + "/"
             + PACKAGE_NAME + "/" + DB_NEW_NAME; // 在手机里存放数据库的位置
 
-    /** The Constant VERSION. */
-    public static final int DB_VERSION = 1;
-
-    private static SQLiteDatabase db_new;
-
-    private static SQLiteDatabase db;
+    /**
+     * The Constant VERSION.
+     */
+    public static final int DB_VERSION = 2;
 
     public static void initDatabase(Context context) {
         try {
@@ -51,7 +50,7 @@ public class DBManager {
             if (copy) {
                 // 判断数据库文件是否存在，若不存在则执行导入，否则直接打开数据库
                 InputStream is = context.getResources().openRawResource(
-                        R.raw.shi_new); // 欲导入的数据库
+                        R.raw.shishi); // 欲导入的数据库
                 FileOutputStream fos = new FileOutputStream(DB_NEW_PATH);
                 byte[] buffer = new byte[BUFFER_SIZE];
                 int count = 0;
@@ -67,7 +66,7 @@ public class DBManager {
                 if (!BackupTask.restoreDatabase(context)) {
                     // 判断数据库文件是否存在，若不存在则执行导入，否则直接打开数据库
                     InputStream is = context.getResources().openRawResource(
-                            R.raw.sqlite); // 欲导入的数据库
+                            R.raw.writing); // 欲导入的数据库
                     FileOutputStream fos = new FileOutputStream(DB_PATH);
                     byte[] buffer = new byte[BUFFER_SIZE];
                     int count = 0;
@@ -78,6 +77,7 @@ public class DBManager {
                     is.close();
                 }
             }
+            doUpdate();
 
         } catch (FileNotFoundException e) {
             Log.e("Database", "File not found");
@@ -88,17 +88,51 @@ public class DBManager {
         }
     }
 
-    public static SQLiteDatabase getNewDatabase() {
-        if (db_new == null) {
-            db_new = SQLiteDatabase.openOrCreateDatabase(DB_NEW_PATH, null);
+    private static void doUpdate() {
+        SQLiteDatabase db = getDatabase();
+        if (db.getVersion() == 0) {
+            // old version former_name is not null,need to be drop
+            db.execSQL(" create table writing1(id integer,title text,text text, bgimg char(40), layout integer,create_dt DATETIME DEFAULT CURRENT_TIMESTAMP,update_dt DATETIME DEFAULT CURRENT_TIMESTAMP, primary key (id) )");
+            db.execSQL(" INSERT INTO writing1 (id,title,text,bgimg,layout,create_dt,update_dt) SELECT id,title,text,bgimg,layout,create_dt,update_dt FROM writing"); //将旧表的内容插入到新表中
+            db.execSQL(" DROP TABLE writing");
+            db.execSQL(" alter table writing1 rename to writing");
+            db.setVersion(1);
+            Log.d("myth", "DB update to 1");
         }
-        return db_new;
+    }
+
+    public static SQLiteDatabase getNewDatabase() {
+        return SQLiteDatabase.openOrCreateDatabase(DB_NEW_PATH, null);
     }
 
     public static SQLiteDatabase getDatabase() {
-        if (db == null) {
-            db = SQLiteDatabase.openOrCreateDatabase(DB_PATH, null);
+        return SQLiteDatabase.openOrCreateDatabase(DB_PATH, null);
+    }
+
+
+    /**
+     * 判断某表里某字段是否存在
+     *
+     * @param db
+     * @param tableName
+     * @param fieldName
+     * @return
+     */
+    private static boolean isFieldExist(SQLiteDatabase db, String tableName, String fieldName) {
+        String queryStr = "select sql from sqlite_master where type = 'table' and name = '%s'";
+        queryStr = String.format(queryStr, tableName);
+        Cursor c = db.rawQuery(queryStr, null);
+        String tableCreateSql = null;
+        try {
+            if (c != null && c.moveToFirst()) {
+                tableCreateSql = c.getString(c.getColumnIndex("sql"));
+            }
+        } finally {
+            if (c != null)
+                c.close();
         }
-        return db;
+        if (tableCreateSql != null && tableCreateSql.contains(fieldName))
+            return true;
+        return false;
     }
 }
