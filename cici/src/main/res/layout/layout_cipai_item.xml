@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:id="@+id/num_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,15 +54,15 @@
                     android:ellipsize="end"
                     android:lines="1"
                     android:maxLength="30"
-                    android:textSize="18sp" />
+                    android:textSize="16dp" />
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:id="@+id/name1"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_alignParentRight="true"
                     android:maxEms="1"
-                    android:textSize="34sp" />
+                    android:textSize="32dp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:id="@+id/num_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,16 +111,16 @@
                     android:ellipsize="end"
                     android:lines="1"
                     android:maxLength="30"
-                    android:textSize="18sp" />
+                    android:textSize="16dp" />
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:id="@+id/name2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="right"
                     android:maxEms="1"
-                    android:textSize="34sp" />
+                    android:textSize="32dp" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

@@ -66,10 +66,6 @@ public abstract class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        PlatformConfig.setWeixin("wx96110a1e3af63a39", "c60e3d3ff109a5d17013df272df99199");
-        PlatformConfig.setSinaWeibo("2655542749", "d3c6e64eb912183bdf2ecc299ddfe3a7");
-        PlatformConfig.setQQZone("1104396282", "KEYwA42NSJxWzHJjHRe");
-
         ResizeUtils.getInstance().init(this);
 
         if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {

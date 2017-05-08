@@ -149,9 +149,6 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder.enname.setText(holder.author.getEn_name());
 
             MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
-            holder.name.setTypeface(myApplication.getTypeface());
-            holder.enname.setTypeface(myApplication.getTypeface());
-            holder.num.setTypeface(myApplication.getTypeface());
         }
     }
 

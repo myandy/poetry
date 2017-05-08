@@ -21,7 +21,7 @@
             android:paddingRight="5dp"
             android:orientation="horizontal">
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:text="忆江南"
                 android:textSize="40sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/title1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,13 +61,13 @@
             android:paddingLeft="20dp"
             android:paddingRight="30dp">
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:textIsSelectable="true"
                 android:textSize="18sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

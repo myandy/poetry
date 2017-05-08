@@ -34,8 +34,7 @@ public class SettingActivity extends BaseActivity {
         refreshYun();
         refreshTypeface();
         refreshCheck();
-
-
+        
         findViewById(R.id.item_notice).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,6 +183,7 @@ public class SettingActivity extends BaseActivity {
         ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.backup_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {

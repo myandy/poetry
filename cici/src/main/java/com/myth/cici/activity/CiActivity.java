@@ -102,11 +102,11 @@ public class CiActivity extends BaseActivity {
         title.setTypeface(BaseApplication.instance.getTypeface());
 
 
-        title.setTextSize(44);
+        title.setTextSize(40);
 
         title1 = (TextView) findViewById(R.id.title1);
         title1.setTypeface(BaseApplication.instance.getTypeface());
-        title1.setTextSize(44);
+        title1.setTextSize(40);
 
 
         content = (TextView) findViewById(R.id.content);
@@ -133,8 +133,6 @@ public class CiActivity extends BaseActivity {
 
             }
         });
-        ((TextView) findViewById(R.id.note)).setTypeface(BaseApplication.instance
-                .getTypeface());
 
         findViewById(R.id.note).setOnClickListener(new OnClickListener() {
 
@@ -159,8 +157,6 @@ public class CiActivity extends BaseActivity {
             }
         });
 
-        ((TextView) findViewById(R.id.author)).setTypeface(BaseApplication.instance
-                .getTypeface());
         findViewById(R.id.share).setOnClickListener(new OnClickListener() {
 
             @Override
@@ -262,16 +258,6 @@ public class CiActivity extends BaseActivity {
     }
 
     private void initContentView() {
-//        if (isIntroduce) {
-//            WebView intro = (WebView) findViewById(R.id.intro);
-//            intro.setBackgroundColor(0);
-//            intro.setVisibility(View.VISIBLE);
-//            WebSettings settings = intro.getSettings();
-//            settings.setDefaultTextEncodingName("UTF-8");
-//            intro.loadUrl("file:///android_asset/intro.html");
-//            content.setText(cipai.source);
-//        } else
-//        {
         if (!isRandom) {
             if (num < ciList.size() - 1) {
                 next.setClickEnable();
@@ -290,9 +276,10 @@ public class CiActivity extends BaseActivity {
         }
         content.setText(ci.getText());
         ((TextView) findViewById(R.id.note)).setText(note);
-        ((TextView) findViewById(R.id.author)).setText(ci.getAuthor()
-                + "\n");
-//        }
+        if (!TextUtils.isEmpty(ci.getAuthor())) {
+            ((TextView) findViewById(R.id.author)).setText(ci.getAuthor()
+                    + "\n");
+        }
     }
 
 }

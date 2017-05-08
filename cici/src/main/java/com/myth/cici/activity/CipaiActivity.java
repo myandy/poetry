@@ -84,7 +84,7 @@ public class CipaiActivity extends BaseActivity {
 
         TextView title = (TextView) findViewById(R.id.title);
         title.setTypeface(BaseApplication.instance.getTypeface());
-        title.setTextSize(44);
+        title.setTextSize(40);
         title.setText(cipai.name);
 
         if (cipai.name.length() > 5) {

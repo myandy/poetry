@@ -20,7 +20,6 @@ import com.myth.cici.adapter.CipaiListAdapter.ViewHolder.ViewHolderItem;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
 import com.myth.cici.wiget.StoneView;
-import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.poetrycommon.utils.ResizeUtils;
@@ -119,14 +118,15 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
     private void initHolderView(final ViewHolderItem holder, int pos) {
         holder.cipai = list.get(pos);
         if (holder.cipai != null) {
+
+            final int color = mColorEntities.get(pos % mColorEntities.size()).toColor();
+
             holder.item.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     final ArrayList<Cipai> cipais = CipaiDatabaseHelper.getParentCipaiById(holder.cipai.id);
-
                     String[] titles = new String[cipais.size()];
-
                     for (int i = 0; i < cipais.size(); i++) {
                         titles[i] = cipais.get(i).name;
                         if (TextUtils.isEmpty(cipais.get(i).source)) {
@@ -137,21 +137,23 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                         new AlertDialog.Builder(mContext).setItems(titles, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(mContext, CipaiActivity.class);
-                                intent.putExtra("cipai", cipais.get(which));
+                                Cipai cipai = cipais.get(which);
+                                cipai.color = color;
+                                intent.putExtra("cipai", cipai);
                                 mContext.startActivity(intent);
                                 dialog.dismiss();
                             }
                         }).show();
                     } else {
                         Intent intent = new Intent(mContext, CipaiActivity.class);
+                        holder.cipai.color = color;
                         intent.putExtra("cipai", holder.cipai);
                         mContext.startActivity(intent);
                     }
                 }
             });
 
-            int color = mColorEntities.get(pos % mColorEntities.size()).toColor();
-            holder.cipai.color = color;
+
             holder.head.setBackgroundColor(color);
             holder.num.setTextColor(color);
             holder.name.setTextColor(mContext.getResources().getColor(R.color.white));
@@ -166,9 +168,6 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder.name.setText(holder.cipai.name + "");
             holder.enname.setText(holder.cipai.enname + "");
 
-            holder.name.setTypeface(BaseApplication.instance.getTypeface());
-            holder.enname.setTypeface(BaseApplication.instance.getTypeface());
-            holder.num.setTypeface(BaseApplication.instance.getTypeface());
         }
     }
 }
