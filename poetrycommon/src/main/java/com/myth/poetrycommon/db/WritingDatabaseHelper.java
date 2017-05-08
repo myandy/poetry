@@ -29,11 +29,11 @@ public class WritingDatabaseHelper {
         generateText(writing);
         String sqlStr = "insert into "
                 + TABLE_NAME
-                + " (title,id,bgimg,create_dt,text,update_dt) values ( "
+                + " (id,ci_id,bgimg,create_dt,text,update_dt) values ( "
                 + "?,?,?,?,?,?)";
         getDB().execSQL(
                 sqlStr,
-                new String[]{writing.title, writing.id + "",
+                new String[]{writing.id + "", writing.formerId + "",
                         writing.bgimg,
                         writing.create_dt + "", writing.text,
                         System.currentTimeMillis() + ""});
@@ -88,7 +88,8 @@ public class WritingDatabaseHelper {
             writing.author = jb.optString("author");
             writing.desc = jb.optString("desc");
             writing.content = jb.optString("content");
-            writing.formerId = jb.optInt("former_id");
+            writing.title = jb.optString("title");
+            writing.formerId = jb.optInt("ci_id");
         } catch (JSONException e) {
             writing.content = writing.text;
             e.printStackTrace();
@@ -107,7 +108,8 @@ public class WritingDatabaseHelper {
             }
             jb.put("desc", writing.desc);
             jb.put("content", writing.content);
-            jb.put("former_id", writing.formerId);
+            jb.put("title", writing.title);
+            jb.put("ci_id", writing.formerId);
             writing.text = jb.toString();
 
         } catch (JSONException e) {

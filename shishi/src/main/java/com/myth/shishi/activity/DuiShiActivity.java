@@ -131,6 +131,11 @@ public class DuiShiActivity extends BaseActivity {
 
                         }).show();
             }
+
+            @Override
+            public void onItemLongClick(int position) {
+
+            }
         });
 
 

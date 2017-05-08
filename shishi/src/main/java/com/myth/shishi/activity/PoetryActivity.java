@@ -104,9 +104,12 @@ public class PoetryActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    private int color;
+
     private void getRandomPoetry() {
         poetry = ciList.get(new Random().nextInt(ciList.size()));
         author = AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
+        color = BaseApplication.instance.getRandomColor();
     }
 
     private void initView() {
@@ -114,7 +117,7 @@ public class PoetryActivity extends BaseActivity {
         LayoutParams param = new LayoutParams(
                 ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(
                 120));
-        shareView = new CircleImageView(mActivity, author.getColor(),
+        shareView = new CircleImageView(mActivity, color,
                 R.drawable.share3_white);
         topView.addView(shareView, 1, param);
 
@@ -146,6 +149,7 @@ public class PoetryActivity extends BaseActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
+                author.color = color;
                 intent.putExtra("author", author);
                 startActivity(intent);
 
@@ -202,7 +206,7 @@ public class PoetryActivity extends BaseActivity {
     }
 
     private void setColor() {
-        shareView.setmColor(author.getColor());
+        shareView.setmColor(color);
     }
 
     private void initContentView() {

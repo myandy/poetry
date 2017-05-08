@@ -11,12 +11,17 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
 
-        Constant.init("cici");
+        Constant.init("cici","ci.db");
     }
 
     @Override
     protected void openDB() {
         dataDB = DBManager.getNewDatabase();
         writingDB = DBManager.getDatabase();
+    }
+
+    @Override
+    public boolean isCiApp() {
+        return true;
     }
 }

@@ -66,6 +66,11 @@ public class PoetrySearchActivity extends SearchListActivity<Poetry> {
                 }
                 startActivity(intent);
             }
+
+            @Override
+            public void onItemLongClick(int position) {
+
+            }
         };
     }
 

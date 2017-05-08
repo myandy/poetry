@@ -16,21 +16,18 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.myth.poetrycommon.BaseActivity;
-import com.myth.poetrycommon.utils.ResizeUtils;
-import com.myth.poetrycommon.view.TouchEffectImageView;
-import com.myth.shishi.MyApplication;
-import com.myth.shishi.R;
-import com.myth.shishi.db.AuthorDatabaseHelper;
-import com.myth.shishi.db.BackupTask;
+import com.myth.poetrycommon.activity.FormerSearchActivity;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
-import com.myth.shishi.entity.Author;
 import com.myth.poetrycommon.entity.Writing;
+import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.IntroductionView;
-import com.myth.shishi.wiget.MainView;
+import com.myth.poetrycommon.view.TouchEffectImageView;
 import com.myth.poetrycommon.view.WritingView;
+import com.myth.shishi.R;
+import com.myth.shishi.db.BackupTask;
+import com.myth.shishi.wiget.MainView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * ViewPager实现画廊效果
@@ -65,7 +62,6 @@ public class MainActivity extends BaseActivity {
         pagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
 
-        // to cache all page, or we will see the right item delayed
 
         viewPager.setPageMargin(ResizeUtils.getInstance().resize(60));
         MyOnPageChangeListener myOnPageChangeListener = new MyOnPageChangeListener();
@@ -75,8 +71,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // dispatch the events to the ViewPager, to solve the problem
-                // that we can swipe only the middle view.
                 return viewPager.dispatchTouchEvent(event);
             }
         });
@@ -86,8 +80,8 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
+                startActivity(intent);
             }
         });
         ImageView setting = new TouchEffectImageView(mActivity, null);
@@ -107,14 +101,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    public void doIt() {
-        List<Author> list = AuthorDatabaseHelper.getAll();
-        for (int i = 0; i < list.size(); i++) {
-            int color =MyApplication.instance.getColorByPos(i);
-            AuthorDatabaseHelper.update(list.get(i).getAuthor(), color);
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -123,7 +109,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
         super.onStop();
 
         new BackupTask(this).execute(BackupTask.COMMAND_BACKUP);
@@ -163,13 +148,10 @@ public class MainActivity extends BaseActivity {
             return (datas == null || datas.isEmpty());
         }
 
-        public ArrayList<Writing> getWritings() {
-            return datas;
-        }
 
         public void setWritings(ArrayList<Writing> writings) {
             if (datas == null) {
-                datas = new ArrayList<Writing>();
+                datas = new ArrayList<>();
             }
             datas.clear();
             datas.addAll(writings);
@@ -186,9 +168,16 @@ public class MainActivity extends BaseActivity {
             if (position == getCount() - 1) {
                 view = new MainView(mActivity);
             } else if (isNoWriting()) {
-                view = new IntroductionView(mActivity,INTRO_LIST);
+                view = new IntroductionView(mActivity, INTRO_LIST);
             } else {
-                view = new WritingView(mActivity, datas.get(position));
+                WritingView writingView = new WritingView(mActivity, datas.get(position));
+                writingView.setOnDeleteListener(new WritingView.OnDeleteListener() {
+                    @Override
+                    public void onDelete() {
+                        refresh();
+                    }
+                });
+                view = writingView;
             }
             container.addView(view, 0);
             return view;
@@ -216,7 +205,6 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            // to refresh frameLayout
             if (viewPagerContainer != null) {
                 viewPagerContainer.invalidate();
             }

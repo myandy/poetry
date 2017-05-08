@@ -14,7 +14,7 @@ import java.util.List;
  * Created by AndyMao on 17-4-18.
  */
 
-public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.BaseHolder> implements View.OnClickListener {
+public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.BaseHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     public List<T> list;
 
@@ -42,6 +42,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
     @Override
     public void onBindViewHolder(BaseHolder holder, int position) {
         holder.itemView.setOnClickListener(this);
+        holder.itemView.setOnLongClickListener(this);
     }
 
     @Override
@@ -51,6 +52,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
         if (mOnItemClickListener != null) {
             mOnItemClickListener.onItemClick(position);
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        BaseHolder holder = (BaseHolder) v.getTag(R.id.item_root);
+        int position = holder.getPosition();
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemLongClick(position);
+            return true;
+        }
+        return false;
     }
 
     public static abstract class BaseHolder extends RecyclerView.ViewHolder {
@@ -73,6 +85,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onItemLongClick(int position);
     }
 }
 

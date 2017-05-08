@@ -78,18 +78,16 @@ public class CiActivity extends BaseActivity {
     private void getRandomCi() {
         ci = ciList.get(new Random().nextInt(ciList.size()));
         cipai = CipaiDatabaseHelper.getCipaiById(ci.getCi_id());
+        cipai.color = BaseApplication.instance.getRandomColor();
         if (cipai.parent_id > 0) {
             Cipai cipai1 = CipaiDatabaseHelper.getCipaiById(cipai
                     .parent_id);
-            cipai.color_id = (cipai1.color_id);
             cipai.source = (cipai1.source);
         }
     }
 
     private void setColor() {
-        int color = BaseApplication.instance.getColorById(cipai
-                .color_id);
-        editView.setColor(color);
+        editView.setColor(cipai.color);
     }
 
     private void initView() {

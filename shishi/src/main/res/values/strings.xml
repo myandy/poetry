@@ -5,7 +5,7 @@
     <string name="app_name">诗Shi</string>
     <string name="search_poetry_hint">搜索诗</string>
     <string name="search_author_hint">搜索诗人</string>
-    <string name="search_former_hint">搜索格律</string>
+
     <string name="setting_about">关于诗Shi</string>
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按诗数量排序</string>
@@ -16,7 +16,6 @@
     <string name="about_email">andymao1991@gmail.com</string>
     <string name="about_qq">305395176</string>
     <string name="about_wexin">天涯共词Ci</string>
-
 
 
 </resources>

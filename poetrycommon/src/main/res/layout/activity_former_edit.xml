@@ -8,12 +8,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cipai_name"/>
+        android:text="@string/former_name"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="fill_parent"
         android:layout_height="38dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/search_background"
         android:cursorVisible="true"
         android:drawablePadding="5dip"
@@ -22,18 +24,21 @@
         android:singleLine="true"
         android:textColor="@color/black"
         android:textCursorDrawable="@null"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cipai_intro"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/former_intro"
+        android:textColor="@color/black"/>
 
 
     <EditText
         android:id="@+id/et_intro"
         android:layout_width="fill_parent"
         android:layout_height="38dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/search_background"
         android:cursorVisible="true"
         android:drawablePadding="5dip"
@@ -42,39 +47,20 @@
         android:singleLine="true"
         android:textColor="@color/black"
         android:textCursorDrawable="@null"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cipai_yun_type"/>
-
-
-    <EditText
-        android:id="@+id/et_yun_type"
-        android:layout_width="fill_parent"
-        android:layout_height="38dp"
-        android:background="@drawable/search_background"
-        android:cursorVisible="true"
-        android:drawablePadding="5dip"
-        android:gravity="center|left"
-        android:paddingLeft="5dp"
-        android:singleLine="true"
-        android:textColor="@color/black"
-        android:textCursorDrawable="@null"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cipai_yun"/>
-
+        android:layout_marginTop="10dp"
+        android:text="@string/former_pingze"
+        android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/et_yun"
+        android:id="@+id/et_pingze"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/search_background"
         android:cursorVisible="true"
         android:drawablePadding="5dip"

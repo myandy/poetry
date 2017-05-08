@@ -12,14 +12,17 @@ import java.util.ArrayList;
 public class ColorDatabaseHelper {
     private static String TABLE_NAME = "color";
 
-//    + " order by displayidx"
-
     private static SQLiteDatabase getDB(){
         return BaseApplication.instance.getDataDB();
     }
 
     public static ArrayList<ColorEntity> getAll() {
         Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME , null);
+        return getColorListFromCursor(cursor);
+    }
+
+    public static ArrayList<ColorEntity> getAllShow() {
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME +" where displayidx > 101 order by displayidx desc", null);
         return getColorListFromCursor(cursor);
     }
 

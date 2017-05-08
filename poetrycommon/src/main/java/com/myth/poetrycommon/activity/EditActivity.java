@@ -16,6 +16,7 @@ import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.Constant;
 import com.myth.poetrycommon.R;
+import com.myth.poetrycommon.db.FormerDatabaseHelper;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Former;
 import com.myth.poetrycommon.entity.Writing;
@@ -63,14 +64,17 @@ public class EditActivity extends BaseActivity {
         // 填新词
         if (former != null) {
             writing = new Writing();
-//            writing.setId(writing.hashCode());
-            writing.formerId = (former.id);
+            writing.id = (int) System.currentTimeMillis();
+            writing.formerId = former.id;
             writing.bgimg = ("0");
             writing.former = (former);
         }
         // 旧词编辑
         else if (writing != null) {
             former = writing.former;
+            if (former == null) {
+                former = FormerDatabaseHelper.getFormerById(writing.formerId);
+            }
         }
 
 

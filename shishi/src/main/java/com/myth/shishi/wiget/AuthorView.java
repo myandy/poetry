@@ -1,6 +1,5 @@
 package com.myth.shishi.wiget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.ResizeUtils;
-import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
 import com.myth.shishi.entity.Author;
@@ -40,8 +38,6 @@ public class AuthorView extends RelativeLayout {
         initView();
     }
 
-    private MyApplication myApplication;
-
     public AuthorView(Context context, Author author) {
         super(context);
         this.author = author;
@@ -51,13 +47,12 @@ public class AuthorView extends RelativeLayout {
 
 
     private void initView() {
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         root = inflater.inflate(R.layout.layout_author, null);
 
         LinearLayout topView = (LinearLayout) root.findViewById(R.id.right);
         LayoutParams param = new LayoutParams(ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(120));
-        CircleImageView dirView = new CircleImageView(mContext, author.getColor(), R.drawable.director);
+        CircleImageView dirView = new CircleImageView(mContext, author.color, R.drawable.director);
         topView.addView(dirView, 1, param);
 
         dirView.setOnClickListener(new OnClickListener() {
@@ -72,13 +67,13 @@ public class AuthorView extends RelativeLayout {
 
         TextView content = (TextView) root.findViewById(R.id.content);
 
-        content.setTypeface(myApplication.getTypeface());
+        content.setTypeface(BaseApplication.instance.getTypeface());
 
         content.setText(author.getIntro());
 
         TextView title = (TextView) root.findViewById(R.id.title);
 
-        title.setTypeface(myApplication.getTypeface());
+        title.setTypeface(BaseApplication.instance.getTypeface());
 
         title.setText(author.getAuthor());
 

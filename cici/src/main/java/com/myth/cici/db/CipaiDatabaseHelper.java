@@ -54,7 +54,6 @@ public class CipaiDatabaseHelper {
             Cipai cipai = new Cipai();
             cipai.id = (cursor.getInt(cursor.getColumnIndex("id")));
             cipai.alias = (cursor.getString(cursor.getColumnIndex("alias")));
-            cipai.color_id = (cursor.getInt(cursor.getColumnIndex("color_id")));
             cipai.enname = (cursor.getString(cursor.getColumnIndex("enname")));
             cipai.name = (cursor.getString(cursor.getColumnIndex("name")));
             cipai.parent_id = (cursor.getInt(cursor.getColumnIndex("parent_id")));

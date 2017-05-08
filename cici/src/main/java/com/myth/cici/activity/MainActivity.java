@@ -17,6 +17,7 @@ import com.myth.cici.R;
 import com.myth.cici.db.BackupTask;
 import com.myth.cici.wiget.MainView;
 import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.activity.FormerSearchActivity;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.ResizeUtils;
@@ -55,7 +56,6 @@ public class MainActivity extends BaseActivity {
         pagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
 
-        // to cache all page, or we will see the right item delayed
 
         viewPager.setPageMargin(ResizeUtils.resize(60));
         MyOnPageChangeListener myOnPageChangeListener = new MyOnPageChangeListener();
@@ -65,8 +65,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // dispatch the events to the ViewPager, to solve the problem
-                // that we can swipe only the middle view.
                 return viewPager.dispatchTouchEvent(event);
             }
         });
@@ -76,8 +74,8 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(mActivity, FormerSearchActivity.class);
+                startActivity(intent);
             }
         });
         ImageView setting = new TouchEffectImageView(mActivity, null);
@@ -142,13 +140,9 @@ public class MainActivity extends BaseActivity {
             return (datas == null || datas.isEmpty());
         }
 
-        public ArrayList<Writing> getWritings() {
-            return datas;
-        }
-
         public void setWritings(ArrayList<Writing> writings) {
             if (datas == null) {
-                datas = new ArrayList<Writing>();
+                datas = new ArrayList<>();
             }
             datas.clear();
             datas.addAll(writings);
@@ -167,7 +161,14 @@ public class MainActivity extends BaseActivity {
             } else if (isNoWriting()) {
                 view = new IntroductionView(mActivity, INTRO_LIST);
             } else {
-                view = new WritingView(mActivity, datas.get(position));
+                WritingView writingView=new WritingView(mActivity, datas.get(position));
+                writingView.setOnDeleteListener(new WritingView.OnDeleteListener() {
+                    @Override
+                    public void onDelete() {
+                        refresh();
+                    }
+                });
+                view = writingView;
             }
             container.addView(view, 0);
             return view;

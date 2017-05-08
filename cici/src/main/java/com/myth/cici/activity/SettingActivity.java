@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.myth.cici.R;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.activity.BackupActivity;
 import com.myth.poetrycommon.db.YunDatabaseHelper;
 import com.myth.poetrycommon.utils.OthersUtils;
 
@@ -131,6 +132,19 @@ public class SettingActivity extends BaseActivity {
             }
         });
 
+        findViewById(R.id.item_congratuate_us).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (OthersUtils.isValidIntent(mActivity, intent)) {
+                    startActivity(intent);
+                }
+            }
+        });
+
         findViewById(R.id.item_weibo).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +155,13 @@ public class SettingActivity extends BaseActivity {
             }
         });
 
+        findViewById(R.id.item_backup).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, BackupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void refreshYun() {
@@ -160,6 +181,9 @@ public class SettingActivity extends BaseActivity {
 
         ((TextView) findViewById(R.id.username_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_value)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.backup_title)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {

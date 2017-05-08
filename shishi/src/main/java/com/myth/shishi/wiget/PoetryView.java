@@ -17,11 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.myth.poetrycommon.BaseApplication;
-import com.myth.poetrycommon.activity.EditActivity;
-import com.myth.poetrycommon.activity.ShareActivity;
 import com.myth.poetrycommon.activity.ShareEditActivity;
-import com.myth.poetrycommon.db.FormerDatabaseHelper;
-import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.utils.StringUtils;
@@ -63,22 +59,6 @@ public class PoetryView extends LinearLayout {
         initView(root);
         addView(root);
     }
-
-    private Writing writing;
-
-//    public PoetryView(Context context, Writing writing, String page) {
-//        super(context);
-//        this.writing = writing;
-//        this.poetry = writing.toPoetry();
-//        poetry.setAuthor(BaseApplication.getDefaultUserName());
-//        this.page = page;
-//        mContext = context;
-//        LayoutInflater inflater = (LayoutInflater) mContext
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        root = inflater.inflate(R.layout.layout_poetry, null);
-//        initView(root);
-//        addView(root);
-//    }
 
     private TextView content;
 
@@ -127,11 +107,7 @@ public class PoetryView extends LinearLayout {
         LayoutParams param = new LayoutParams(ResizeUtils.getInstance().dip2px(80),
                 ResizeUtils.getInstance().dip2px(120));
 
-        if (author != null) {
-            color = author.getColor();
-        } else {
-            color = BaseApplication.instance.getRandomColor();
-        }
+        color = author.color;
         shareView = new CircleImageView(mContext, color,
                 R.drawable.share3_white);
         topView.addView(shareView, 1, param);
@@ -140,16 +116,10 @@ public class PoetryView extends LinearLayout {
 
             @Override
             public void onClick(View v) {
-                if (writing != null) {
-                    Intent intent = new Intent(mContext, ShareActivity.class);
-                    intent.putExtra("writing", writing);
-                    mContext.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(mContext,
-                            ShareEditActivity.class);
-                    intent.putExtra("data", poetry.toWriting());
-                    mContext.startActivity(intent);
-                }
+                Intent intent = new Intent(mContext,
+                        ShareEditActivity.class);
+                intent.putExtra("data", poetry.toWriting());
+                mContext.startActivity(intent);
             }
         });
 
@@ -167,32 +137,20 @@ public class PoetryView extends LinearLayout {
 
                     @Override
                     public void onClick(View v) {
-                        if (writing != null) {
-                            Intent intent = new Intent(mContext,
-                                    EditActivity.class);
-                            if (writing.former == null) {
-                                writing.former = (FormerDatabaseHelper
-                                        .getFormerById(writing
-                                                .formerId));
-                            }
-                            intent.putExtra("writing", writing);
-                            mContext.startActivity(intent);
-                        } else {
-                            new AlertDialog.Builder(mContext).setItems(
-                                    new String[]{"复制文本"},
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(
-                                                DialogInterface dialog,
-                                                int which) {
+                        new AlertDialog.Builder(mContext).setItems(
+                                new String[]{"复制文本"},
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
 
-                                            if (which == 0) {
+                                        if (which == 0) {
 
-                                            }
-                                            dialog.dismiss();
                                         }
-                                    }).show();
+                                        dialog.dismiss();
+                                    }
+                                }).show();
 
-                        }
                     }
                 });
 
@@ -317,36 +275,31 @@ public class PoetryView extends LinearLayout {
                     });
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
 
-            if (writing == null) {
-                if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
-                    collect.setText("取消收藏");
-                } else {
-                    collect.setText("收藏");
-                }
-                collect.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        boolean isCollect = PoetryDatabaseHelper
-                                .isCollect(poetry.getPoetry());
-                        PoetryDatabaseHelper.updateCollect(poetry.getId(),
-                                !isCollect);
-                        if (isCollect) {
-                            Toast.makeText(mContext, "已取消收藏", Toast.LENGTH_LONG)
-                                    .show();
-                        } else {
-                            Toast.makeText(mContext, "已收藏", Toast.LENGTH_LONG)
-                                    .show();
-                        }
-                        if (menu != null) {
-                            menu.dismiss();
-                        }
-                    }
-                });
+            if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
+                collect.setText("取消收藏");
             } else {
-                menuView.findViewById(R.id.divide_3).setVisibility(View.GONE);
-                collect.setVisibility(View.GONE);
+                collect.setText("收藏");
             }
+            collect.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    boolean isCollect = PoetryDatabaseHelper
+                            .isCollect(poetry.getPoetry());
+                    PoetryDatabaseHelper.updateCollect(poetry.getId(),
+                            !isCollect);
+                    if (isCollect) {
+                        Toast.makeText(mContext, "已取消收藏", Toast.LENGTH_LONG)
+                                .show();
+                    } else {
+                        Toast.makeText(mContext, "已收藏", Toast.LENGTH_LONG)
+                                .show();
+                    }
+                    if (menu != null) {
+                        menu.dismiss();
+                    }
+                }
+            });
             menuView.findViewById(R.id.tv4).setOnClickListener(
                     new OnClickListener() {
 
@@ -354,11 +307,7 @@ public class PoetryView extends LinearLayout {
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext,
                                     PoetrySearchActivity.class);
-                            if (writing != null) {
-                                intent.putExtra("self", author);
-                            } else {
-                                intent.putExtra("author", author);
-                            }
+                            intent.putExtra("author", author);
                             mContext.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
@@ -366,42 +315,35 @@ public class PoetryView extends LinearLayout {
                         }
                     });
 
-            if (writing != null) {
-                menuView.findViewById(R.id.divide_5).setVisibility(View.GONE);
-                menuView.findViewById(R.id.divide_6).setVisibility(View.GONE);
-                menuView.findViewById(R.id.tv5).setVisibility(View.GONE);
-                menuView.findViewById(R.id.tv6).setVisibility(View.GONE);
-            } else {
-                menuView.findViewById(R.id.tv5).setOnClickListener(
-                        new OnClickListener() {
+            menuView.findViewById(R.id.tv5).setOnClickListener(
+                    new OnClickListener() {
 
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(mContext,
-                                        WebviewActivity.class);
-                                intent.putExtra("string", poetry.getAuthor());
-                                mContext.startActivity(intent);
-                                if (menu != null) {
-                                    menu.dismiss();
-                                }
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext,
+                                    WebviewActivity.class);
+                            intent.putExtra("string", poetry.getAuthor());
+                            mContext.startActivity(intent);
+                            if (menu != null) {
+                                menu.dismiss();
                             }
-                        });
-                menuView.findViewById(R.id.tv6).setOnClickListener(
-                        new OnClickListener() {
+                        }
+                    });
+            menuView.findViewById(R.id.tv6).setOnClickListener(
+                    new OnClickListener() {
 
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(mContext,
-                                        WebviewActivity.class);
-                                intent.putExtra("string", poetry.getTitle());
-                                mContext.startActivity(intent);
-                                if (menu != null) {
-                                    menu.dismiss();
-                                }
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext,
+                                    WebviewActivity.class);
+                            intent.putExtra("string", poetry.getTitle());
+                            mContext.startActivity(intent);
+                            if (menu != null) {
+                                menu.dismiss();
                             }
-                        });
+                        }
+                    });
 
-            }
             menuView.findViewById(R.id.tv7).setOnClickListener(
                     new OnClickListener() {
 

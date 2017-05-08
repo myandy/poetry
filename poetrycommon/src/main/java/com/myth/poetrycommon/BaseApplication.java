@@ -22,7 +22,7 @@ import java.util.Random;
  * Created by AndyMao on 17-4-18.
  */
 
-public class BaseApplication extends Application {
+public abstract class BaseApplication extends Application {
 
     public static boolean needBackup;
     public List<ColorEntity> colorList;
@@ -55,7 +55,10 @@ public class BaseApplication extends Application {
         return dataDB;
     }
 
-    protected void openDB() {
+    protected abstract void openDB();
+
+    public boolean isCiApp() {
+        return false;
     }
 
 
@@ -63,14 +66,11 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        setTypeface(getApplicationContext(), getDefaultTypeface(this));
-
         PlatformConfig.setWeixin("wx96110a1e3af63a39", "c60e3d3ff109a5d17013df272df99199");
         PlatformConfig.setSinaWeibo("2655542749", "d3c6e64eb912183bdf2ecc299ddfe3a7");
         PlatformConfig.setQQZone("1104396282", "KEYwA42NSJxWzHJjHRe");
 
         ResizeUtils.getInstance().init(this);
-
 
         if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {
             defaultTypeface = 1;
@@ -81,18 +81,17 @@ public class BaseApplication extends Application {
         ColorEntity colorEntity = getColorEntityByPos(pos);
         int color;
         if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+            color = colorEntity.toColor();
         } else {
             color = Color.rgb(0, 0, 0);
         }
         return color;
     }
 
-    public ColorEntity getColorEntityByPos(int pos) {
+    private ColorEntity getColorEntityByPos(int pos) {
         if (colorList == null) {
             colorList = ColorDatabaseHelper.getAll();
         }
-        pos--;
         if (pos >= 0 && pos < colorList.size()) {
             return colorList.get(pos);
         } else {
@@ -101,11 +100,11 @@ public class BaseApplication extends Application {
     }
 
 
-    public  int getRandomColor() {
+    public int getRandomColor() {
         if (colorList == null) {
             colorList = ColorDatabaseHelper.getAll();
         }
-        return colorList.get(new Random().nextInt(colorList.size())).toColor();
+        return colorList.get(new Random().nextInt(colorList.size() - 1) + 1).toColor();
     }
 
 
@@ -113,7 +112,7 @@ public class BaseApplication extends Application {
         ColorEntity colorEntity = getColorEntityById(id);
         int color;
         if (colorEntity != null) {
-            color = Color.rgb(colorEntity.getRed(), colorEntity.getGreen(), colorEntity.getBlue());
+            color = colorEntity.toColor();
         } else {
             color = Color.rgb(0, 0, 0);
         }

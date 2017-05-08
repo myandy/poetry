@@ -10,8 +10,8 @@ public class Cipai extends Former {
 
     public int tone_type;
 
-    public int color_id;
-
     public int parent_id;
+
+    public int color;
 
 }

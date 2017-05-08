@@ -60,7 +60,6 @@ public class DBManager {
                 getNewDatabase().setVersion(DB_VERSION);
             }
             if (!new File(DB_PATH).exists()) {
-
                 if (!BackupTask.restoreDatabase(context)) {
                     // 判断数据库文件是否存在，若不存在则执行导入，否则直接打开数据库
                     InputStream is = context.getResources().openRawResource(
@@ -73,8 +72,10 @@ public class DBManager {
                     }
                     fos.close();
                     is.close();
+                    getDatabase().setVersion(DB_VERSION);
                 }
             }
+            doUpdate();
 
         } catch (FileNotFoundException e) {
             Log.e("Database", "File not found");
@@ -82,6 +83,14 @@ public class DBManager {
         } catch (IOException e) {
             Log.e("Database", "IO exception");
             e.printStackTrace();
+        }
+    }
+
+    private static void doUpdate() {
+        SQLiteDatabase db = getDatabase();
+        if (db.getVersion() < 4) {
+            db.execSQL("CREATE TABLE \"cipai\" (\"id\" INTEGER PRIMARY KEY  NOT NULL ,\"name\" NVARCHAR(100) NOT NULL ,\"source\" TEXT,\"pingze\" TEXT,\"type\" INTEGER)");
+            db.setVersion(DB_VERSION);
         }
     }
 

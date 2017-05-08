@@ -3,22 +3,20 @@ package com.myth.cici.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.myth.poetrycommon.BaseActivity;
 import com.myth.cici.R;
 import com.myth.cici.adapter.CipaiListAdapter;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
+import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
 
 import java.util.ArrayList;
 
-public class CipaiListActivity extends BaseActivity
-{
+public class CipaiListActivity extends BaseActivity {
 
     private RecyclerView listview;
 
@@ -33,16 +31,14 @@ public class CipaiListActivity extends BaseActivity
     TextView rectRight;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cipai_list);
         isDefault = BaseApplication.getDefaultListType(this);
         initView();
     }
 
-    private void initView()
-    {
+    private void initView() {
         listview = (RecyclerView) findViewById(R.id.listview);
 
         listview.setHasFixedSize(true);
@@ -59,14 +55,11 @@ public class CipaiListActivity extends BaseActivity
 
         setBackground();
 
-        rectLeft.setOnClickListener(new OnClickListener()
-        {
+        rectLeft.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View arg0)
-            {
-                if (!isDefault)
-                {
+            public void onClick(View arg0) {
+                if (!isDefault) {
                     isDefault = true;
                     BaseApplication.setDefaultListType(mActivity, true);
                     setBackground();
@@ -74,14 +67,11 @@ public class CipaiListActivity extends BaseActivity
                 }
             }
         });
-        rectRight.setOnClickListener(new OnClickListener()
-        {
+        rectRight.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View arg0)
-            {
-                if (isDefault)
-                {
+            public void onClick(View arg0) {
+                if (isDefault) {
                     isDefault = false;
                     BaseApplication.setDefaultListType(mActivity, false);
                     setBackground();
@@ -91,39 +81,24 @@ public class CipaiListActivity extends BaseActivity
         });
         setBottomVisible();
         addView();
-        try
-        {
-            listview.smoothScrollToPosition(ciList.size());
-
-        }
-        catch (Exception e)
-        {
-            Log.e("CipaiList", e.toString());
-        }
     }
 
-    private void addView()
-    {
-        if (ciList == null || ciList.size() == 0)
-        {
+    private void addView() {
+        if (ciList == null || ciList.size() == 0) {
             finish();
         }
         adapter.setList(ciList);
         adapter.notifyDataSetChanged();
     }
 
-    private void setBackground()
-    {
-        if (isDefault)
-        {
+    private void setBackground() {
+        if (isDefault) {
             rectLeft.setBackgroundResource(R.drawable.rect_left_selected);
             rectLeft.setTextColor(getResources().getColor(R.color.black));
             rectRight.setBackgroundResource(R.drawable.rect_right);
             rectRight.setTextColor(getResources().getColor(R.color.white));
             ciList = CipaiDatabaseHelper.getAllShowCipai();
-        }
-        else
-        {
+        } else {
             rectLeft.setBackgroundResource(R.drawable.rect_left);
             rectLeft.setTextColor(getResources().getColor(R.color.white));
             rectRight.setBackgroundResource(R.drawable.rect_right_selected);

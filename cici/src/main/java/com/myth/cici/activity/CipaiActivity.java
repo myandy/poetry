@@ -69,8 +69,6 @@ public class CipaiActivity extends BaseActivity {
         });
         addBottomRightView(writeTV, new LayoutParams(-2, -2));
         setBottomVisible();
-        int color = BaseApplication.instance.getColorById(cipai
-                .color_id);
 
         LinearLayout topView = (LinearLayout) findViewById(R.id.top);
 
@@ -82,7 +80,7 @@ public class CipaiActivity extends BaseActivity {
         if (cipai.wordcount < 100) {
             count = "0" + cipai.wordcount;
         }
-        topView.addView(new CircleTextView(mActivity, count, color), param);
+        topView.addView(new CircleTextView(mActivity, count, cipai.color), param);
 
         TextView title = (TextView) findViewById(R.id.title);
         title.setTypeface(BaseApplication.instance.getTypeface());
@@ -136,9 +134,6 @@ public class CipaiActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 滚图的adapter
-     */
     private PagerAdapter galleryAdapter = new PagerAdapter() {
         public Object instantiateItem(android.view.ViewGroup container,
                                       final int position) {
@@ -146,8 +141,6 @@ public class CipaiActivity extends BaseActivity {
                     null);
 
             LayoutParams param = new LayoutParams(-1, -1);
-            // TextView textView = new TextView(mActivity);
-            // container.addView(textView, param);
 
             container.addView(root, param);
             TextView textView = (TextView) root.findViewById(R.id.textview);

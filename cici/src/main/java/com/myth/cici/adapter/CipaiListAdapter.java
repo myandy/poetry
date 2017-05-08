@@ -21,6 +21,8 @@ import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Cipai;
 import com.myth.cici.wiget.StoneView;
 import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.db.ColorDatabaseHelper;
+import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.VerticalTextView;
 
@@ -36,9 +38,11 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
         this.list = list;
     }
 
+    private List<ColorEntity> mColorEntities;
 
     public CipaiListAdapter(Context context) {
         mContext = context;
+        mColorEntities = ColorDatabaseHelper.getAllShow();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -128,7 +132,6 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                         if (TextUtils.isEmpty(cipais.get(i).source)) {
                             cipais.get(i).source = (holder.cipai.source);
                         }
-                        cipais.get(i).color_id = (holder.cipai.color_id);
                     }
                     if (cipais.size() > 1) {
                         new AlertDialog.Builder(mContext).setItems(titles, new DialogInterface.OnClickListener() {
@@ -147,7 +150,8 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
                 }
             });
 
-            int color = BaseApplication.instance.getColorById(holder.cipai.color_id);
+            int color = mColorEntities.get(pos % mColorEntities.size()).toColor();
+            holder.cipai.color = color;
             holder.head.setBackgroundColor(color);
             holder.num.setTextColor(color);
             holder.name.setTextColor(mContext.getResources().getColor(R.color.white));

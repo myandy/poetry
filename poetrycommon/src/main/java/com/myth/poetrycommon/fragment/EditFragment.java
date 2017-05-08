@@ -127,7 +127,7 @@ public class EditFragment extends Fragment {
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
         String s = former.pingze;
 
-        if (s == null) {
+        if (TextUtils.isEmpty(s)) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final EditText edittext = (EditText) inflater.inflate(R.layout.edittext, null);
             edittext.setPadding(0, 30, 0, 0);

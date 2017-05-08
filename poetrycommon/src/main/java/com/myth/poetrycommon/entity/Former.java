@@ -19,7 +19,13 @@ public class Former implements Serializable {
     public String source;
 
     public int wordcount;
-    
+
     public int type;
+
+    public static int TYPE_MANUAL = 4;
+
+    public boolean isManual() {
+        return type == TYPE_MANUAL;
+    }
 
 }

@@ -3,6 +3,7 @@
 
     <string name="search_hint">在%1$s中搜索</string>
     <string name="search_writing_hint">搜索作品夹</string>
+    <string name="search_former_hint">搜索格律</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
     <string name="delete">删除</string>
@@ -37,5 +38,20 @@
     <string name="username_input">请输入作者名</string>
     <string name="weibo_title">关注微博</string>
     <string name="input_title">输入标题</string>
+
+    <!--格律编辑-->
+    <string name="former_name">格律名</string>
+    <string name="former_intro">格律介绍</string>
+    <string name="former_pingze">平仄</string>
+    <string name="former_add_value_null">格律名和平仄不能为空</string>
+    <string name="former_save">格律已保存</string>
+    <string name="former_add">格律已添加</string>
+    <string name="manual">自定义</string>
+    <string name="no_limit">不限</string>
+
+    <!--数据迁移-->
+    <string name="backup_title">数据迁移</string>
+    <string name="backup_text">说明：\n此功能用于非社区创建的诗词作品数据的迁移，更换手机时把旧手机的作品迁移到新手机上</string>
+    <string name="backup_step">迁移步骤：\n1.到旧手机目录%1$s下找到%2$s文件，复制到新手机对应目录，如果没有对应目录就手动创建，如果新手机已有同名文件请替换\n2.如果新手机的应用已经启动过请清除应用数据或者卸载后再安装，没有启动过请跳过此步骤\n3.打开应用数据即可自动更新了</string>
 
 </resources>

@@ -74,15 +74,6 @@
             android:theme="@style/AppBaseTheme"
             android:screenOrientation="portrait"/>
 
-        <activity
-            android:name="com.myth.poetrycommon.activity.WritingSearchActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activity.CipaiEditActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="550b99fafd98c544ba0006c6"/>
@@ -96,6 +87,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="d9d0b7012b8240035a3cad73ef30efed" />
+
     </application>
 
 </manifest>

@@ -27,10 +27,7 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    compile (project(':umeng_community_library_project'), {
-    })
-
-    compile 'com.android.support:recyclerview-v7:+'
+//    compile 'com.android.support:recyclerview-v7:+'
+    compile project(':umeng_community_library_project')
     compile ('com.umeng.analytics:analytics:latest.integration')
-
 }

@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
@@ -34,11 +34,11 @@
                 android:orientation="vertical"
                 android:padding="10dp" >
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="all"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="@string/about_text"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
@@ -52,11 +52,11 @@
                 android:orientation="vertical"
                 android:padding="10dp" >
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="all"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="@string/about_text1"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
@@ -64,7 +64,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/zuibaichi" />
             </LinearLayout>
@@ -77,11 +77,11 @@
                 android:orientation="vertical"
                 android:padding="10dp" >
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="all"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="@string/about_text2"
                     android:textColor="@color/white"
                     android:textSize="16dp" />
@@ -89,7 +89,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:src="@drawable/fangzheng_logo" />
             </LinearLayout>
 
@@ -101,11 +101,11 @@
                 android:orientation="vertical"
                 android:padding="10dp" >
 
-                <TextView
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="all"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="@string/about_text3"
                     android:textColor="@color/white"
                     android:textSize="16sp" />

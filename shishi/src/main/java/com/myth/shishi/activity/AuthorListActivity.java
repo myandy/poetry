@@ -24,7 +24,6 @@ import com.myth.shishi.db.DynastyDatabaseHelper;
 import com.myth.shishi.entity.Author;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class AuthorListActivity extends BaseActivity {
@@ -126,18 +125,6 @@ public class AuthorListActivity extends BaseActivity {
         addView();
     }
 
-    public void doIt() {
-
-        List<Author> list = aList;
-
-        for (int i = 0; i < list.size(); i++) {
-            int color = MyApplication.instance.getColorByPos(i / 2);
-            list.get(i).setColor(color);
-
-            AuthorDatabaseHelper.update(list.get(i).getAuthor(), list.get(i).getColor());
-        }
-
-    }
 
     private void addView() {
         if (aList == null || aList.size() == 0) {

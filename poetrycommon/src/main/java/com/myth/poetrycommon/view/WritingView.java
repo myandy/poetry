@@ -27,6 +27,11 @@ public class WritingView extends LinearLayout {
 
     private Writing writing;
 
+    public void setOnDeleteListener(OnDeleteListener onDeleteListener) {
+        mOnDeleteListener = onDeleteListener;
+    }
+
+    private OnDeleteListener mOnDeleteListener;
 
     public WritingView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -82,8 +87,9 @@ public class WritingView extends LinearLayout {
                                 @Override
                                 public void onConfirm() {
                                     WritingDatabaseHelper.deleteWriting(writing);
-                                    // TODO: 17-5-4
-//                                    ((MainActivity) mContext).refresh();
+                                    if (mOnDeleteListener != null) {
+                                        mOnDeleteListener.onDelete();
+                                    }
                                 }
 
                                 @Override
@@ -106,11 +112,13 @@ public class WritingView extends LinearLayout {
                 } else {
                     dialog.show();
                 }
-
             }
         });
 
     }
 
+    public interface OnDeleteListener {
+        void onDelete();
+    }
 
 }

@@ -44,7 +44,6 @@ public class WritingSearchActivity extends SearchListActivity<Writing> {
     @Override
     public BaseAdapter.OnItemClickListener getItemClickListener() {
         return new BaseAdapter.OnItemClickListener() {
-
             @Override
             public void onItemClick(final int position) {
                 new AlertDialog.Builder(mActivity).setItems(new String[]{"分享", "编辑", "删除"},
@@ -86,6 +85,11 @@ public class WritingSearchActivity extends SearchListActivity<Writing> {
 
                             }
                         }).create().show();
+            }
+
+            @Override
+            public void onItemLongClick(int position) {
+
             }
         };
     }

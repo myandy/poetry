@@ -32,8 +32,7 @@ public class AuthorDatabaseHelper {
                 author.setAuthor(cursor.getString(cursor.getColumnIndex("d_author")));
                 author.setIntro(cursor.getString(cursor.getColumnIndex("d_intro")));
                 author.setP_num(cursor.getInt(cursor.getColumnIndex("p_num")));
-                author.setEn_name(cursor.getString(cursor.getColumnIndex("en_name")));
-                author.setColor(cursor.getInt(cursor.getColumnIndex("color")));
+                author.en_name=(cursor.getString(cursor.getColumnIndex("en_name")));
                 list.add(author);
             }
         } catch (Exception e) {

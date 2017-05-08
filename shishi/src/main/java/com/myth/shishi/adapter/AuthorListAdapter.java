@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.db.ColorDatabaseHelper;
+import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.VerticalTextView;
 import com.myth.shishi.MyApplication;
@@ -32,8 +34,11 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
         this.list = list;
     }
 
+    private List<ColorEntity> mColorEntities;
+
     public AuthorListAdapter(Context context) {
         mContext = context;
+        mColorEntities = ColorDatabaseHelper.getAllShow();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -117,22 +122,24 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
     private void initHolderView(final ViewHolderItem holder, int pos) {
         holder.author = getItem(pos);
         if (holder.author != null) {
+            final int color = mColorEntities.get(pos % mColorEntities.size()).toColor();
             holder.item.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, AuthorPageActivity.class);
+                    holder.author.color = color;
                     intent.putExtra("author", holder.author);
                     mContext.startActivity(intent);
                 }
             });
 
-            holder.head.setBackgroundColor(holder.author.getColor());
-            holder.num.setTextColor(holder.author.getColor());
+            holder.head.setBackgroundColor(color);
+            holder.num.setTextColor(color);
             holder.name.setTextColor(mContext.getResources().getColor(R.color.white));
             holder.enname.setTextColor(mContext.getResources().getColor(R.color.white));
 
-            holder.stoneView.setType(holder.author.getDynasty(), holder.author.getColor());
+            holder.stoneView.setType(holder.author.getDynasty(), color);
             String count = holder.author.getP_num() + "";
             if (holder.author.getP_num() < 100) {
                 count = "0" + holder.author.getP_num();

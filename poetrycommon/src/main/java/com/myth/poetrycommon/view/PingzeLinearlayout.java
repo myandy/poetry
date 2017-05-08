@@ -15,7 +15,7 @@ public class PingzeLinearlayout extends LinearLayout {
         super(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ResizeUtils.getInstance().dip2px(20),
                 ResizeUtils.getInstance().dip2px(20));
-        LinearLayout.LayoutParams lps = new LinearLayout.LayoutParams(ResizeUtils.getInstance().dip2px(10),
+        LinearLayout.LayoutParams lps = new LinearLayout.LayoutParams(ResizeUtils.getInstance().dip2px(20),
                 ResizeUtils.getInstance().dip2px(20));
         setVerticalGravity(HORIZONTAL);
         for (int i = 0; i < code.length(); i++) {
@@ -24,6 +24,7 @@ public class PingzeLinearlayout extends LinearLayout {
                 addView(new PingzeView(context, c - '0'), layoutParams);
             } else if (!TextUtils.isEmpty((c + "").trim())) {
                 TextView tv = new TextView(context);
+                tv.setTextSize(16);
                 tv.setTextColor(getResources().getColor(R.color.black_light));
                 tv.setText(c + "");
                 addView(tv, lps);

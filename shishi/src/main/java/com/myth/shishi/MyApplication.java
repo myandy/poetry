@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.myth.poetrycommon.*;
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.shishi.db.DBManager;
 import com.umeng.comm.core.sdkmanager.LocationSDKManager;
 import com.umeng.community.location.DefaultLocationImpl;
@@ -17,7 +17,7 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
         LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
-        com.myth.poetrycommon.Constant.init("shishi");
+        com.myth.poetrycommon.Constant.init("shishi", "sqlite.db");
     }
 
     @Override

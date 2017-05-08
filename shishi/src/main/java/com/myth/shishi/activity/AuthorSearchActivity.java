@@ -43,8 +43,14 @@ public class AuthorSearchActivity extends SearchListActivity<Author> {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
+                list.get(position).color = BaseApplication.instance.getRandomColor();
                 intent.putExtra("author", list.get(position));
                 startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(int position) {
+
             }
         };
     }

@@ -75,6 +75,8 @@ public class DBManager {
                     }
                     fos.close();
                     is.close();
+
+                    getDatabase().setVersion(DB_VERSION);
                 }
             }
             doUpdate();
@@ -98,6 +100,8 @@ public class DBManager {
             db.execSQL(" alter table writing1 rename to writing");
             db.setVersion(1);
             Log.d("myth", "DB update to 1");
+
+            db.execSQL("CREATE TABLE \"cipai\" (\"id\" INTEGER PRIMARY KEY  NOT NULL ,\"name\" NVARCHAR(100) NOT NULL ,\"source\" TEXT,\"pingze\" TEXT,\"type\" INTEGER)");
         }
     }
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.activity.BackupActivity;
 import com.myth.poetrycommon.db.YunDatabaseHelper;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.shishi.MyApplication;
@@ -139,6 +140,14 @@ public class SettingActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.item_backup).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, BackupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void refreshYun() {
@@ -157,6 +166,8 @@ public class SettingActivity extends BaseActivity {
         ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_value)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.backup_title)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {

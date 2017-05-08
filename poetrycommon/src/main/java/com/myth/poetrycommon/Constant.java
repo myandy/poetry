@@ -27,10 +27,14 @@ public class Constant {
      */
     public static String SHARE_DIR;
 
-    public static void init(String name) {
-        ROOT_DIR = Environment.getExternalStorageDirectory() + File.pathSeparator + name;
+    public static String DBName;
+
+    public static void init(String name, String dbName) {
+        ROOT_DIR = Environment.getExternalStorageDirectory() + File.separator + name;
         BACKGROUND_DIR = ROOT_DIR + "/background";
         SHARE_DIR = ROOT_DIR + "/share";
+
+        DBName = dbName;
         FileUtils.createDir(BACKGROUND_DIR);
         FileUtils.createDir(SHARE_DIR);
     }
