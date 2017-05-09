@@ -280,6 +280,11 @@ public class CiActivity extends BaseActivity {
             ((TextView) findViewById(R.id.author)).setText(ci.getAuthor()
                     + "\n");
         }
+        if (num == 0) {
+            findViewById(R.id.share).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.share).setVisibility(View.VISIBLE);
+        }
     }
 
 }

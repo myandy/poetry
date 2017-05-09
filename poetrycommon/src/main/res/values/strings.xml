@@ -22,9 +22,6 @@
     <string name="setting_check">检查平仄</string>
     <string name="check_true">自动检查</string>
     <string name="check_false">不自动检查</string>
-    <string name="about_email_toast">邮箱号已复制到剪切板，我们会查看并考虑您的每一个建议</string>
-    <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
-    <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
     <string name="input_shanglian">请输入上句</string>
     <string name="input_former_name">请输入格律名</string>
     <string name="input_former_code">请输入格律码</string>
@@ -53,5 +50,15 @@
     <string name="backup_title">数据迁移</string>
     <string name="backup_text">说明：\n此功能用于非社区创建的诗词作品数据的迁移，更换手机时把旧手机的作品迁移到新手机上</string>
     <string name="backup_step">迁移步骤：\n1.到旧手机目录%1$s下找到%2$s文件，复制到新手机对应目录，如果没有对应目录就手动创建，如果新手机已有同名文件请替换\n2.如果新手机的应用已经启动过请清除应用数据或者卸载后再安装，没有启动过请跳过此步骤\n3.打开应用数据即可自动更新了</string>
+
+    <!--about-->
+    <string name="version_text">当前版本：V%s</string>
+    <string name="about_text_weixin">微信公众号：天涯共词Ci</string>
+    <string name="about_wexin">天涯共词Ci</string>
+    <string name="about_text_email">有建议或者bug请联系：\nandymao1991@gmail.com</string>
+    <string name="about_email">andymao1991@gmail.com</string>
+    <string name="about_email_toast">邮箱号已复制到剪切板，我们会查看并考虑您的每一个建议</string>
+    <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
+    <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
 
 </resources>

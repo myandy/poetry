@@ -35,6 +35,80 @@
                 android:padding="10dp" >
 
                 <com.myth.poetrycommon.view.TypefaceTextView
+                    android:id="@+id/version_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_qq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.myth.poetrycommon.view.TypefaceTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="start"
+                    android:text="@string/about_text_qq"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_wexin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.myth.poetrycommon.view.TypefaceTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="start"
+                    android:text="@string/about_text_weixin"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.myth.poetrycommon.view.TypefaceTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="start"
+                    android:text="@string/about_text_email"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_bg"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:padding="10dp" >
+
+                <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoLink="all"
@@ -93,23 +167,6 @@
                     android:src="@drawable/fangzheng_logo" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/setting_bg"
-                android:orientation="vertical"
-                android:padding="10dp" >
-
-                <com.myth.poetrycommon.view.TypefaceTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoLink="all"
-                    android:gravity="start"
-                    android:text="@string/about_text3"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

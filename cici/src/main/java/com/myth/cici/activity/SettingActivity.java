@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myth.cici.R;
 import com.myth.poetrycommon.BaseActivity;
@@ -34,21 +33,6 @@ public class SettingActivity extends BaseActivity {
         refreshYun();
         refreshTypeface();
         refreshCheck();
-        
-        findViewById(R.id.item_notice).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(mActivity).setItems(new String[]{"复制"},
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                OthersUtils.copy(getString(R.string.about_qq), mActivity);
-                                Toast.makeText(mActivity, R.string.about_qq_toast, Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                            }
-                        }).show();
-
-            }
-        });
 
         findViewById(R.id.item_yun).setOnClickListener(new OnClickListener() {
 
@@ -176,7 +160,6 @@ public class SettingActivity extends BaseActivity {
         ((TextView) findViewById(R.id.check_value)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.check_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.about_title)).setTypeface(BaseApplication.instance.getTypeface());
-        ((TextView) findViewById(R.id.notice_title)).setTypeface(BaseApplication.instance.getTypeface());
 
         ((TextView) findViewById(R.id.username_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.username_value)).setTypeface(BaseApplication.instance.getTypeface());

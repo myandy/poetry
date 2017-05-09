@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.myth.poetrycommon.BaseActivity;
@@ -59,6 +60,8 @@ public class AboutActivity extends BaseActivity {
 
             }
         });
+
+        ((TextView)findViewById(R.id.version_text)).setText(String.format(getString(R.string.version_text), OthersUtils.getVersionName(mActivity)));
     }
 
 }
