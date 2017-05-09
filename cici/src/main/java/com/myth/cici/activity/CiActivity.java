@@ -19,7 +19,7 @@ import com.myth.cici.db.CiDatabaseHelper;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Ci;
 import com.myth.cici.entity.Cipai;
-import com.myth.cici.wiget.CircleEditView;
+import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.activity.EditActivity;
@@ -50,7 +50,7 @@ public class CiActivity extends BaseActivity {
 
     private TextView title1;
 
-    private CircleEditView editView;
+    private CircleImageView editView;
 
     TouchEffectImageView prev;
 
@@ -95,7 +95,7 @@ public class CiActivity extends BaseActivity {
         LayoutParams param = new LayoutParams(
                 ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(
                 80));
-        editView = new CircleEditView(mActivity);
+        editView = new CircleImageView(mActivity, R.color.white, R.drawable.edit_white);
         topView.addView(editView, 1, param);
 
         title = (TextView) findViewById(R.id.title);

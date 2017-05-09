@@ -27,13 +27,13 @@ import com.myth.poetrycommon.activity.ShareEditActivity;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.utils.StringUtils;
+import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 import com.myth.shishi.R;
 import com.myth.shishi.db.AuthorDatabaseHelper;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
-import com.myth.shishi.wiget.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -116,7 +116,7 @@ public class PoetryActivity extends BaseActivity {
         LinearLayout topView = (LinearLayout) findViewById(R.id.right);
         LayoutParams param = new LayoutParams(
                 ResizeUtils.getInstance().dip2px(80), ResizeUtils.getInstance().dip2px(
-                120));
+                80));
         shareView = new CircleImageView(mActivity, color,
                 R.drawable.share3_white);
         topView.addView(shareView, 1, param);
@@ -177,10 +177,7 @@ public class PoetryActivity extends BaseActivity {
         more = new TouchEffectImageView(mActivity, null);
         more.setImageResource(R.drawable.setting);
         more.setScaleType(ScaleType.FIT_XY);
-        addBottomRightView(
-                more,
-                new LayoutParams(ResizeUtils.getInstance().dip2px(48), ResizeUtils.getInstance()
-                        .dip2px(48)));
+        addBottomRightView(more);
         more.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -206,17 +203,13 @@ public class PoetryActivity extends BaseActivity {
     }
 
     private void setColor() {
-        shareView.setmColor(color);
+        shareView.setColor(color);
     }
 
     private void initContentView() {
 
         String note = poetry.getIntro();
-        if (note != null && note.length() > 10) {
-            ((TextView) findViewById(R.id.note)).setText(note);
-        } else {
-            ((TextView) findViewById(R.id.note)).setText("");
-        }
+        ((TextView) findViewById(R.id.note)).setText(note);
 
         poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
         poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());

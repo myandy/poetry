@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
 import com.myth.shishi.entity.Author;

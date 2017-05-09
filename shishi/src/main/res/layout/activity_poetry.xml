@@ -1,27 +1,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/launch_image"
-    android:paddingTop="50dp" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="50dp">
 
     <LinearLayout
         android:id="@+id/right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
-        <TextView
+        <com.myth.poetrycommon.view.TypefaceTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginBottom="30dp"
             android:maxEms="1"
+            android:paddingRight="5dp"
             android:text="2"
             android:textColor="@color/white"
-            android:textSize="48sp" />
+            android:textSize="40sp"/>
     </LinearLayout>
 
     <ScrollView
@@ -29,32 +29,32 @@
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/right"
         android:fillViewport="true"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:paddingLeft="20dp"
-            android:paddingRight="30dp" >
+            android:paddingRight="30dp">
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/author"
                 android:lineSpacingMultiplier="1.2"
-                android:textIsSelectable="true"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textIsSelectable="true"
+                android:textSize="18sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/white_hint"
                 android:textIsSelectable="true"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
         </RelativeLayout>
     </ScrollView>
 

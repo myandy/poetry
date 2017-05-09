@@ -1,4 +1,4 @@
-package com.myth.cici.wiget;
+package com.myth.poetrycommon.view;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -6,38 +6,33 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 
-import com.myth.cici.R;
 import com.myth.poetrycommon.utils.ResizeUtils;
 
 
-public class CircleEditView extends View
-{
+public class CircleImageView extends View {
 
     private int mColor;
 
-    private Context mContext;
+    private int mImage;
 
-    public int getColor()
-    {
+    public int getColor() {
         return mColor;
     }
 
-    public void setColor(int mColor)
-    {
+    public void setColor(int mColor) {
         this.mColor = mColor;
         invalidate();
     }
 
-    public CircleEditView(Context context)
-    {
+    public CircleImageView(Context context, int color, int image) {
         super(context);
-        mContext = context;
+        this.mColor = color;
+        this.mImage = image;
     }
 
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         Paint paint = new Paint();
@@ -46,7 +41,7 @@ public class CircleEditView extends View
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(ResizeUtils.getInstance().dip2px(50), ResizeUtils.getInstance().dip2px(38),
                 ResizeUtils.getInstance().dip2px(36), paint);
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.edit_white),
+        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), mImage),
                 ResizeUtils.getInstance().dip2px(22), ResizeUtils.getInstance().dip2px(10), paint);
     }
 

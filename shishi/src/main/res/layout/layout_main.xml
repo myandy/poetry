@@ -1,40 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/duishi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:text="智能对诗"
-        android:textColor="@color/gc_white_to_grey"
-        android:textSize="22sp" />
-
-    <TextView
-        android:id="@+id/show_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/duishi"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
-        android:clickable="true"
-        android:gravity="center_horizontal"
-        android:text="随机一首诗"
-        android:textColor="@color/gc_white_to_grey"
-        android:textSize="22sp" />
+    >
 
     <LinearLayout
         android:id="@+id/show_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/show_one"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/show_one"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:clickable="true"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +19,7 @@
             android:duplicateParentState="true"
             android:text="浏览所有"
             android:textColor="@color/gc_white_to_grey"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
 
         <TextView
             android:layout_width="40dp"
@@ -52,52 +29,60 @@
             android:padding="5dp"
             android:text="诗"
             android:textColor="@color/black_text"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="人"
             android:textColor="@color/gc_white_to_grey"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/favorite"
+        android:id="@+id/show_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/duishi"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
-        android:text="@string/collect"
+        android:layout_above="@+id/duishi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:text="随机一首诗"
         android:textColor="@color/gc_white_to_grey"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
+
+    <TextView
+        android:id="@+id/duishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="智能对诗"
+        android:textColor="@color/gc_white_to_grey"
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/favorite"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/duishi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:clickable="true"
-        android:gravity="center_horizontal"
-        android:text="搜索"
+        android:gravity="center"
+        android:text="@string/search_poetry_hint"
         android:textColor="@color/gc_white_to_grey"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/search"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:clickable="true"
-        android:gravity="center_horizontal"
         android:text="社区"
         android:textColor="@color/gc_white_to_grey"
-        android:textSize="22sp" />
+        android:textSize="22sp"/>
 
 </RelativeLayout>

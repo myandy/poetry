@@ -3,8 +3,12 @@
 
 
     <string name="app_name">诗Shi</string>
+    <string name="search_poetry">所有诗</string>
     <string name="search_poetry_hint">搜索诗</string>
+    <string name="search_author">所有诗人</string>
     <string name="search_author_hint">搜索诗人</string>
+    <string name="search_collect">收藏夹</string>
+    <string name="search_collect_hint">搜索收藏夹</string>
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按诗数量排序</string>
 

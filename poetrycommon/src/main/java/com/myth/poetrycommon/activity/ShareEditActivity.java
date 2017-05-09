@@ -59,8 +59,8 @@ public class ShareEditActivity extends BaseActivity {
                     changePictureFragment.save();
                 }
                 if (!StringUtils.isNumeric(writing.bgimg) && writing.bitmap != null) {
-                    String filename = writing.bitmap.hashCode() + "";
-                    File file = new File(Constant.SHARE_DIR, filename);
+                    String filename = writing.bitmap.hashCode() + ".jpg";
+                    File file = new File(Constant.BACKGROUND_DIR, filename);
                     FileUtils.saveBitmap(writing.bitmap, file);
                     writing.bgimg = (file.getAbsolutePath());
                 }

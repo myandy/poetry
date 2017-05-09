@@ -232,7 +232,7 @@ public class EditActivity extends BaseActivity {
 
     private void save() {
         if (!StringUtils.isNumeric(writing.bgimg) && writing.bitmap != null) {
-            File file = new File(Constant.BACKGROUND_DIR, writing.bitmap.hashCode() + "");
+            File file = new File(Constant.BACKGROUND_DIR, writing.bitmap.hashCode() + ".jpg");
             FileUtils.saveBitmap(writing.bitmap, file);
             writing.bgimg = (file.getAbsolutePath());
         }

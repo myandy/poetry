@@ -56,7 +56,6 @@
                 <com.myth.poetrycommon.view.TypefaceTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoLink="all"
                     android:gravity="start"
                     android:text="@string/about_text_qq"
                     android:textColor="@color/white"

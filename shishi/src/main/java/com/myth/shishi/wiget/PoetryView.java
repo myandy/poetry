@@ -21,6 +21,7 @@ import com.myth.poetrycommon.activity.ShareEditActivity;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.utils.StringUtils;
+import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
 import com.myth.shishi.activity.WebviewActivity;
@@ -179,7 +180,7 @@ public class PoetryView extends LinearLayout {
         poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
         poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());
 
-        shareView.setmColor(color);
+        shareView.setColor(color);
         String note = poetry.getIntro();
         if (note != null && note.length() > 10) {
             ((TextView) root.findViewById(R.id.note)).setText(note);

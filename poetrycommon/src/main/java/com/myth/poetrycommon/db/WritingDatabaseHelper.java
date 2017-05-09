@@ -29,11 +29,11 @@ public class WritingDatabaseHelper {
         generateText(writing);
         String sqlStr = "insert into "
                 + TABLE_NAME
-                + " (id,ci_id,bgimg,create_dt,text,update_dt) values ( "
-                + "?,?,?,?,?,?)";
+                + " (id,bgimg,create_dt,text,update_dt) values ( "
+                + "?,?,?,?,?)";
         getDB().execSQL(
                 sqlStr,
-                new String[]{writing.id + "", writing.formerId + "",
+                new String[]{writing.id + "",
                         writing.bgimg,
                         writing.create_dt + "", writing.text,
                         System.currentTimeMillis() + ""});

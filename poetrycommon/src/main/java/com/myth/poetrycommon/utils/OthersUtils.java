@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -15,11 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 public class OthersUtils {
@@ -39,7 +34,6 @@ public class OthersUtils {
         return ret;
     }
 
-
     /**
      * 实现文本复制功能 add by wangqianzhou
      *
@@ -49,18 +43,6 @@ public class OthersUtils {
         // 得到剪贴板管理器
         ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         cmb.setText(content.trim());
-    }
-
-    /**
-     * 实现粘贴功能 add by wangqianzhou
-     *
-     * @param context
-     * @return
-     */
-    public static String paste(Context context) {
-        // 得到剪贴板管理器
-        ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        return cmb.getText().toString().trim();
     }
 
     /**
@@ -116,43 +98,10 @@ public class OthersUtils {
 
     }
 
-    public static String readAssertResource(Context context, String strAssertFileName) {
-        AssetManager assetManager = context.getAssets();
-        String strResponse = "";
-        try {
-            InputStream ims = assetManager.open(strAssertFileName);
-            strResponse = getStringFromInputStream(ims);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return strResponse;
-    }
-
-    private static String getStringFromInputStream(InputStream a_is) {
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try {
-            br = new BufferedReader(new InputStreamReader(a_is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-        return sb.toString();
-    }
-
     /**
      * 获取屏幕宽度
      *
-     * @param activity
+     * @param
      * @return
      */
     public static int getDisplayWidth(Context context) {

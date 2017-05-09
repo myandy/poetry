@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorListActivity;
@@ -63,30 +64,6 @@ public class MainView extends RelativeLayout {
                     .getTypeface());
         }
 
-        TextView favorite = (TextView) root.findViewById(R.id.favorite);
-        favorite.setTypeface(myApplication.getTypeface());
-        favorite.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-//                ArrayList<Writing> writings = WritingDatabaseHelper
-//                        .getAllWriting();
-//                if (writings == null || writings.size() == 0) {
-//                    Toast.makeText(mContext, "点击左下角的加号去添加作品吧",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//                    Intent intent = new Intent(mContext,
-//                            AuthorPageActivity.class);
-//                    mContext.startActivity(intent);
-//                }
-                Intent intent = new Intent(mContext,
-                        PoetrySearchActivity.class);
-                intent.putExtra("collect", true);
-                mContext.startActivity(intent);
-
-            }
-        });
 
         TextView duishi = (TextView) root.findViewById(R.id.duishi);
         duishi.setTypeface(myApplication.getTypeface());
@@ -119,7 +96,7 @@ public class MainView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mContext).setItems(
-                        new String[]{mContext.getString(R.string.search_author_hint), mContext.getString(R.string.search_poetry_hint)},
+                        new String[]{mContext.getString(R.string.search_author), mContext.getString(R.string.search_poetry), mContext.getString(R.string.search_collect), mContext.getString(R.string.search_writing)},
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -129,9 +106,18 @@ public class MainView extends RelativeLayout {
                                     Intent intent = new Intent(mContext,
                                             AuthorSearchActivity.class);
                                     mContext.startActivity(intent);
-                                } else {
+                                } else if (which == 1) {
                                     Intent intent = new Intent(mContext,
                                             PoetrySearchActivity.class);
+                                    mContext.startActivity(intent);
+                                } else if (which == 2) {
+                                    Intent intent = new Intent(mContext,
+                                            PoetrySearchActivity.class);
+                                    intent.putExtra("collect", true);
+                                    mContext.startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(mContext,
+                                            WritingSearchActivity.class);
                                     mContext.startActivity(intent);
                                 }
                                 dialog.dismiss();
@@ -147,9 +133,7 @@ public class MainView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
-                // 获取CommunitySDK实例, 参数1为Context类型
                 CommunitySDK mCommSDK = CommunityFactory.getCommSDK(mContext);
-                // 打开微社区的接口, 参数1为Context类型
                 mCommSDK.openCommunity(mContext);
 
             }

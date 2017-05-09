@@ -20,12 +20,15 @@ public class PoetrySearchActivity extends SearchListActivity<Poetry> {
 
     private Author author;
 
+    private boolean isCollect = false;
+
     @Override
     public List<Poetry> getData() {
         if (getIntent().hasExtra("author")) {
             author = (Author) getIntent().getSerializableExtra("author");
             return PoetryDatabaseHelper.getAllByAuthor(author.getAuthor());
         } else if (getIntent().hasExtra("collect")) {
+            isCollect = true;
             return PoetryDatabaseHelper.getAllCollect();
         } else {
             return PoetryDatabaseHelper.getAll();
@@ -46,7 +49,7 @@ public class PoetrySearchActivity extends SearchListActivity<Poetry> {
 
     @Override
     public int getSearchHint() {
-        return R.string.search_poetry_hint;
+        return isCollect ? R.string.search_collect_hint : R.string.search_poetry_hint;
     }
 
     @Override
@@ -99,7 +102,7 @@ public class PoetrySearchActivity extends SearchListActivity<Poetry> {
             super.onBindViewHolder(holder, position);
             ViewHolder viewHolder = (ViewHolder) holder;
             viewHolder.name.setTypeface(BaseApplication.instance.getTypeface());
-            viewHolder. tag.setTypeface(BaseApplication.instance.getTypeface());
+            viewHolder.tag.setTypeface(BaseApplication.instance.getTypeface());
             viewHolder.name.setText(list.get(position).getTitle());
             viewHolder.tag.setText(list.get(position).getPoetry());
         }
