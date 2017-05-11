@@ -1,6 +1,5 @@
 package com.myth.shishi.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,6 @@ import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.poetrycommon.entity.ColorEntity;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.VerticalTextView;
-import com.myth.shishi.MyApplication;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorPageActivity;
 import com.myth.shishi.adapter.AuthorListAdapter.ViewHolder.ViewHolderItem;
@@ -78,7 +76,7 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder1.enname = (VerticalTextView) convertView.findViewById(R.id.enname1);
             holder1.stoneView = new CircleStringView(parent.getContext());
             android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
-                    ResizeUtils.getInstance().dip2px(40), ResizeUtils.getInstance().dip2px(40));
+                    ResizeUtils.getInstance().dip2px(30), ResizeUtils.getInstance().dip2px(30));
             holder1.middle.addView(holder1.stoneView, layoutParams);
 
             holder2.item = convertView.findViewById(R.id.item2);
@@ -139,16 +137,10 @@ public class AuthorListAdapter extends RecyclerView.Adapter<AuthorListAdapter.Vi
             holder.name.setTextColor(mContext.getResources().getColor(R.color.white));
             holder.enname.setTextColor(mContext.getResources().getColor(R.color.white));
 
-            holder.stoneView.setType(holder.author.getDynasty(), color);
-            String count = holder.author.getP_num() + "";
-            if (holder.author.getP_num() < 100) {
-                count = "0" + holder.author.getP_num();
-            }
-            holder.num.setText(count);
-            holder.name.setText(holder.author.getAuthor() + "");
-            holder.enname.setText(holder.author.getEn_name());
-
-            MyApplication myApplication = (MyApplication) ((Activity) mContext).getApplication();
+            holder.stoneView.setType(holder.author.dynasty, color);
+            holder.num.setText(String.format("%03d", holder.author.p_num));
+            holder.name.setText(holder.author.author + "");
+            holder.enname.setText(holder.author.en_name);
         }
     }
 

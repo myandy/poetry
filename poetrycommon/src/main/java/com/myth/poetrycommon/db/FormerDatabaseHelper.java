@@ -1,9 +1,7 @@
 package com.myth.poetrycommon.db;
 
-import android.database.sqlite.SQLiteDatabase;
-
-
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.myth.poetrycommon.BaseApplication;
@@ -68,6 +66,12 @@ public class FormerDatabaseHelper {
             }
         }
         return list;
+    }
+
+    public static void delete(Former data) {
+        getWritingDB().execSQL("delete from " + TABLE_NAME + " where " + "id" + " = "
+                + data.id);
+        BaseApplication.instance.needBackup = true;
     }
 
     public static void update(Former data) {

@@ -17,5 +17,6 @@
     <string name="about_text">本应用为非盈利个人应用，设计风格借鉴于词Ci。之前开发了词Ci android版，应用户的建议再开发了本应用。</string>
     <string name="about_text_qq">官方QQ群：305395176</string>
     <string name="about_qq">305395176</string>
+    <string name="intro_title">诗Shi介绍</string>
 
 </resources>

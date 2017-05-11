@@ -63,5 +63,7 @@
     <string name="about_email_toast">邮箱号已复制到剪切板，我们会查看并考虑您的每一个建议</string>
     <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
     <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
+    <string name="community_name">诗词社区</string>
+    <string name="former_delete">格律已删除</string>
 
 </resources>

@@ -3,7 +3,7 @@
 
     <color name="white">#ffffff</color>
     <color name="white_light">#e7ede5</color>
-    <color name="white_hint">#6a6a6a</color>
+    <color name="white_hint">#9a9a9a</color>
     <color name="black">#000000</color>
     <color name="black_light">#666666</color>
     <color name="black_hint">#b3b3b3</color>

@@ -1,255 +1,271 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="16dp"
-        android:background="@drawable/setting_bg"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/item_yun"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/setting_bg"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/yun_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_yun"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            <RelativeLayout
+                android:id="@+id/item_yun"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
 
-            <TextView
-                android:id="@+id/yun_value"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:text="@string/setting_yun"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/yun_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_yun"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
-        <View
+                <TextView
+                    android:id="@+id/yun_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:text="@string/setting_yun"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_typeface"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/typeface_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_typeface"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/typeface_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:text="@string/setting_yun"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_check"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/check_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_check"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/check_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_username"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/username_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_username"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/username_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:hint="点击输入"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/setting_bg"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/item_typeface"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
 
-            <TextView
-                android:id="@+id/typeface_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_typeface"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            <RelativeLayout
+                android:id="@+id/item_about"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
 
-            <TextView
-                android:id="@+id/typeface_value"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:text="@string/setting_yun"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_about"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
+                <TextView
+                    android:id="@+id/about_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/item_check"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
 
-            <TextView
-                android:id="@+id/check_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_check"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
 
-            <TextView
-                android:id="@+id/check_value"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/item_congratuate_us"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
+                <TextView
+                    android:id="@+id/congratuate_us_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center"
+                    android:text="@string/setting_congratuate_us"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
-        <RelativeLayout
-            android:id="@+id/item_about"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/next_hl"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/about_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_about"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
 
-            <TextView
-                android:id="@+id/about_value"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/item_weibo"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
+                <TextView
+                    android:id="@+id/weibo_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:drawableRight="@drawable/next_hl"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/weibo_title"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/item_username"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
 
-            <TextView
-                android:id="@+id/username_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_username"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
 
-            <TextView
-                android:id="@+id/username_value"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:hint="点击输入"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/item_backup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
-
-        <RelativeLayout
-            android:id="@+id/item_congratuate_us"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <TextView
-                android:id="@+id/congratuate_us_title"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:gravity="center"
-                android:text="@string/setting_congratuate_us"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
-                android:drawableRight="@drawable/next_hl"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
-
-        <RelativeLayout
-            android:id="@+id/item_weibo"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <TextView
-                android:id="@+id/weibo_title"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:drawableRight="@drawable/next_hl"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="@string/weibo_title"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/setting_line"/>
-
-        <RelativeLayout
-            android:id="@+id/item_backup"
-            android:layout_width="match_parent"
-            android:layout_height="45dp">
-
-            <TextView
-                android:id="@+id/backup_title"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="16dp"
-                android:drawableRight="@drawable/next_hl"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center_vertical"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="@string/backup_title"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
-        </RelativeLayout>
-
+                <TextView
+                    android:id="@+id/backup_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:drawableRight="@drawable/next_hl"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/backup_title"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>

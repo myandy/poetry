@@ -57,10 +57,13 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listDivider">@drawable/list_divide</item>
     </style>
 
     <style name="CustomerTheme" parent="@android:style/Theme.Light">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>

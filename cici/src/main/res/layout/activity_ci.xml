@@ -64,7 +64,7 @@
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
 
             <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/content"

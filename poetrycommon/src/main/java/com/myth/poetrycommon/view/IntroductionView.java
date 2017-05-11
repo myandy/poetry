@@ -7,7 +7,6 @@ import android.widget.RelativeLayout;
 import android.widget.StackView;
 import android.widget.TextView;
 
-import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.R;
 import com.myth.poetrycommon.adapter.IntroAdapter;
 import com.myth.poetrycommon.utils.ResizeUtils;
@@ -18,10 +17,13 @@ public class IntroductionView extends RelativeLayout {
 
     private int[] mImages;
 
-    public IntroductionView(Context context, int[] images) {
+    private String mIntro;
+
+    public IntroductionView(Context context, int[] images, String intro) {
         super(context);
         mContext = context;
         mImages = images;
+        mIntro = intro;
         initView();
     }
 
@@ -31,7 +33,7 @@ public class IntroductionView extends RelativeLayout {
         View root = inflater.inflate(R.layout.layout_intro, null);
 
         TextView title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(BaseApplication.instance.getTypeface());
+        title.setText(mIntro);
         final StackView stackView = (StackView) root.findViewById(R.id.stack_view);
         ResizeUtils.getInstance().layoutSquareView(stackView);
 

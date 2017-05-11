@@ -42,7 +42,7 @@ public class CircleImageView extends View {
         canvas.drawCircle(ResizeUtils.getInstance().dip2px(50), ResizeUtils.getInstance().dip2px(38),
                 ResizeUtils.getInstance().dip2px(36), paint);
         canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), mImage),
-                ResizeUtils.getInstance().dip2px(22), ResizeUtils.getInstance().dip2px(10), paint);
+                ResizeUtils.getInstance().dip2px(20), ResizeUtils.getInstance().dip2px(8), paint);
     }
 
 }

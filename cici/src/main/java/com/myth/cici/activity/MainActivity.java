@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity {
             if (position == getCount() - 1) {
                 view = new MainView(mActivity);
             } else if (isNoWriting()) {
-                view = new IntroductionView(mActivity, INTRO_LIST);
+                view = new IntroductionView(mActivity, INTRO_LIST,getString(R.string.intro_title));
             } else {
                 WritingView writingView=new WritingView(mActivity, datas.get(position));
                 writingView.setOnDeleteListener(new WritingView.OnDeleteListener() {

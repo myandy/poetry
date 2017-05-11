@@ -1,74 +1,46 @@
 package com.myth.shishi.entity;
 
+import com.myth.poetrycommon.entity.ISearchAble;
 import com.myth.poetrycommon.entity.Writing;
 
 import java.io.Serializable;
 
-public class Poetry implements Serializable {
+public class Poetry implements Serializable, ISearchAble {
 
     /**
      * 注释内容
      */
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
-    private String author;
+    public String author;
 
-    private String intro;
+    public String intro;
 
-    private String title;
+    public String title;
 
-    private String poetry;
+    public String poetry;
 
-    private int collect;
+    public int collect;
 
-    private int id;
+    public int id;
 
-    public String getAuthor() {
-        return author;
+    @Override
+    public String getSearchText() {
+        return title + poetry + author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public String getTitle() {
+    public String getShowTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public String getShowDesc() {
+        return poetry.replaceAll("\\n", " ");
     }
 
-    public String getPoetry() {
-        return poetry;
-    }
-
-    public void setPoetry(String poetry) {
-        this.poetry = poetry;
-    }
-
-    public int getCollect() {
-        return collect;
-    }
-
-    public void setCollect(int collect) {
-        this.collect = collect;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public String getShowTag() {
+        return author;
     }
 
 

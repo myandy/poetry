@@ -1,28 +1,25 @@
 package com.myth.poetrycommon.view;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-@SuppressLint({"DrawAllocation", "DrawAllocation", "DrawAllocation"})
 public class MirrorLoaderView extends View {
 
-    Bitmap mBitmap = null;                              //Bitmap对象    
-    Shader mBitmapShader = null;               //Bitmap渲染对象
+    Bitmap mBitmap = null;
+    Shader mBitmapShader = null;
 
     public void setDrawableId(int drawableId) {
-        mBitmap = ((BitmapDrawable) getResources().
-                getDrawable(drawableId)).getBitmap();
+        mBitmap = BitmapFactory.decodeResource(getResources(), drawableId);
         invalidate();
     }
 
@@ -50,7 +47,7 @@ public class MirrorLoaderView extends View {
         matrix.setScale(scale, scale);
         mBitmap = Bitmap.createBitmap(mBitmap, 0, 0, mBitmap.getWidth(),
                 mBitmap.getHeight(), matrix, true);
-        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP,
+        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.MIRROR,
                 Shader.TileMode.MIRROR);
 
         Paint mPaint = new Paint();

@@ -1,5 +1,6 @@
 package com.myth.poetrycommon.fragment;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AccelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -140,6 +142,7 @@ public class EditFragment extends Fragment {
             editTexts.add(edittext);
             edittext.requestFocus();
             editContent.addView(edittext);
+            edittext.setOnFocusChangeListener(etOnFocusChangeListener);
         } else {
             sList = CheckUtils.getCodeFormPingze(s.split("。"));
             if (sList != null) {
@@ -249,7 +252,7 @@ public class EditFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                keyboard.setVisibility(View.GONE);
+                hideKeyBoard();
                 ((BaseActivity) mContext).setBottomVisible();
                 hideSoftInputFromWindow();
                 getfocus.requestFocus();
@@ -261,18 +264,52 @@ public class EditFragment extends Fragment {
         editTopBackground = (ImageView) view.findViewById(R.id.edit_top_background);
     }
 
+    private void hideKeyBoard() {
+        float translationY = keyboard.getTranslationY();
+        ObjectAnimator keyboardAnimal;
+        keyboardAnimal = ObjectAnimator.ofFloat(keyboard, "translationY", translationY, translationY - 300);
+        keyboardAnimal.setInterpolator(new AccelerateInterpolator());
+        keyboardAnimal.setDuration(200);
+        keyboardAnimal.start();
+
+        float translationX = title.getTranslationX();
+        ObjectAnimator titleAnimal;
+        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", translationX, translationX - 100);
+        titleAnimal.setInterpolator(new AccelerateInterpolator());
+        titleAnimal.setDuration(200);
+        titleAnimal.start();
+    }
+
+    private void showKeyBoard() {
+        float translationY = keyboard.getTranslationY();
+        ObjectAnimator objectAnimator;
+        objectAnimator = ObjectAnimator.ofFloat(keyboard, "translationY", translationY, translationY + 300);
+        objectAnimator.setInterpolator(new AccelerateInterpolator());
+        objectAnimator.setDuration(200);
+        objectAnimator.start();
+
+        float translationX = title.getTranslationX();
+        ObjectAnimator titleAnimal;
+        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", translationX, translationX + 100);
+        titleAnimal.setInterpolator(new AccelerateInterpolator());
+        titleAnimal.setDuration(200);
+        titleAnimal.start();
+    }
+
     private View.OnFocusChangeListener etOnFocusChangeListener = new View.OnFocusChangeListener() {
 
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             if (!hasFocus) {
-                if (BaseApplication.getCheckAble(mContext)) {
+                if (BaseApplication.getCheckAble(mContext) && sList != null) {
                     int index = (int) v.getTag();
                     CheckUtils.checkEditText((EditText) v, sList[index]);
                 }
             } else {
-                keyboard.setVisibility(View.VISIBLE);
-                ((BaseActivity) mContext).setBottomGone();
+                if (((BaseActivity) mContext).isBottomVisible()) {
+                    ((BaseActivity) mContext).setBottomGone();
+                    showKeyBoard();
+                }
             }
         }
     };

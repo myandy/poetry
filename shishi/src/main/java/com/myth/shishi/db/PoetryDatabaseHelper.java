@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.shishi.entity.Poetry;
 
 import java.util.ArrayList;
@@ -11,46 +12,49 @@ import java.util.ArrayList;
 public class PoetryDatabaseHelper {
     private static String TABLE_NAME = "t_poetry";
 
+    private static SQLiteDatabase getDB() {
+        return BaseApplication.instance.getDataDB();
+    }
+
     public static ArrayList<Poetry> getAll() {
-        SQLiteDatabase db = DBManager.getNewDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME, null);
+        return getPoetryListFromCursor(cursor);
+    }
+
+    public static ArrayList<Poetry> getRandom200() {
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME +" order by random() limit 200 ", null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static ArrayList<Poetry> getAllByAuthor(String author) {
-        SQLiteDatabase db = DBManager.getNewDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_author like '" + author + "'", null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME + " where d_author like '" + author + "'", null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static ArrayList<Poetry> getAllCollect() {
-        SQLiteDatabase db = DBManager.getNewDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where collect is " + 1 + "", null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME + " where collect is " + 1 + "", null);
         return getPoetryListFromCursor(cursor);
     }
 
     public static void updateCollect(int id, boolean isCollect) {
-        SQLiteDatabase db = DBManager.getNewDatabase();
         int collect = isCollect ? 1 : 0;
-        db.execSQL(" update " + TABLE_NAME + " set collect= " + collect + "  where d_num is " + id);
+        getDB().execSQL(" update " + TABLE_NAME + " set collect= " + collect + "  where d_num is " + id);
     }
 
     public static boolean isCollect(String poetry) {
-        SQLiteDatabase db = DBManager.getNewDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_poetry like '" + poetry + "'", null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME + " where d_poetry like '" + poetry + "'", null);
         ArrayList<Poetry> list = getPoetryListFromCursor(cursor);
         if (list != null && list.size() > 0) {
-            return list.get(0).getCollect() == 1;
+            return list.get(0).collect == 1;
         }
         return false;
     }
 
     public static boolean isCollect(int id) {
-        SQLiteDatabase db = DBManager.getNewDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where d_num is " + id, null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME + " where d_num is " + id, null);
         ArrayList<Poetry> list = getPoetryListFromCursor(cursor);
         if (list != null && list.size() > 0) {
-            return list.get(0).getCollect() == 1;
+            return list.get(0).collect == 1;
         }
         return false;
     }
@@ -60,12 +64,12 @@ public class PoetryDatabaseHelper {
         try {
             while (cursor.moveToNext()) {
                 Poetry data = new Poetry();
-                data.setAuthor(cursor.getString(cursor.getColumnIndex("d_author")));
-                data.setPoetry(cursor.getString(cursor.getColumnIndex("d_poetry")));
-                data.setIntro(cursor.getString(cursor.getColumnIndex("d_intro")));
-                data.setTitle(cursor.getString(cursor.getColumnIndex("d_title")));
-                data.setCollect(cursor.getInt(cursor.getColumnIndex("collect")));
-                data.setId(cursor.getInt(cursor.getColumnIndex("d_num")));
+                data.author = cursor.getString(cursor.getColumnIndex("d_author"));
+                data.poetry = cursor.getString(cursor.getColumnIndex("d_poetry"));
+                data.intro = cursor.getString(cursor.getColumnIndex("d_intro"));
+                data.title = cursor.getString(cursor.getColumnIndex("d_title"));
+                data.collect = cursor.getInt(cursor.getColumnIndex("collect"));
+                data.id = cursor.getInt(cursor.getColumnIndex("d_num"));
                 list.add(data);
             }
         } catch (Exception e) {

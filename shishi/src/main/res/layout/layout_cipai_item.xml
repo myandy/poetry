@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:id="@+id/item1"
-            android:layout_width="70dp"
+            android:layout_width="65dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical" >
@@ -21,7 +21,7 @@
             <RelativeLayout
                 android:id="@+id/head1"
                 android:layout_width="fill_parent"
-                android:layout_height="3dp" />
+                android:layout_height="5dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
 
         <LinearLayout
             android:id="@+id/item2"
-            android:layout_width="70dp"
+            android:layout_width="65dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
@@ -78,7 +78,7 @@
             <RelativeLayout
                 android:id="@+id/head2"
                 android:layout_width="fill_parent"
-                android:layout_height="3dp" />
+                android:layout_height="5dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

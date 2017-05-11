@@ -19,14 +19,13 @@ import com.myth.cici.db.CiDatabaseHelper;
 import com.myth.cici.db.CipaiDatabaseHelper;
 import com.myth.cici.entity.Ci;
 import com.myth.cici.entity.Cipai;
-import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.activity.EditActivity;
 import com.myth.poetrycommon.activity.ShareEditActivity;
-import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
+import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class CiActivity extends BaseActivity {
 
     private Cipai cipai;
 
-    private int num;
+    private int num = -1;
 
     private TextView content;
 
@@ -163,12 +162,7 @@ public class CiActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity,
                         ShareEditActivity.class);
-                Writing writing = new Writing();
-                writing.content = ci.text;
-                writing.author = ci.author;
-                cipai = ci.getCipai();
-                writing.former = cipai;
-                intent.putExtra("data", writing);
+                intent.putExtra("data", ci.toWriting());
                 startActivity(intent);
             }
         });

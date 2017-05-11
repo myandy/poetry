@@ -18,7 +18,7 @@ import com.myth.poetrycommon.activity.BackupActivity;
 import com.myth.poetrycommon.db.YunDatabaseHelper;
 import com.myth.poetrycommon.utils.OthersUtils;
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,13 +138,8 @@ public class SettingActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.item_backup).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mActivity, BackupActivity.class);
-                startActivity(intent);
-            }
-        });
+        findViewById(R.id.item_backup).setOnClickListener(this);
+
     }
 
     private void refreshYun() {
@@ -177,4 +172,13 @@ public class SettingActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.item_backup:
+                Intent backupIntent = new Intent(mActivity, BackupActivity.class);
+                startActivity(backupIntent);
+                break;
+        }
+    }
 }

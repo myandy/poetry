@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="50dp">
+    android:paddingTop="70dp">
 
     <com.myth.poetrycommon.view.ShareView
         android:id="@+id/share_view"
@@ -14,7 +14,7 @@
         android:id="@+id/seekBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:max="255"
         android:progress="127" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:max="24"
         android:progress="0" />
 

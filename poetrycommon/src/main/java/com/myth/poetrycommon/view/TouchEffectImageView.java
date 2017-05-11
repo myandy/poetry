@@ -8,28 +8,22 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-public class TouchEffectImageView extends ImageView
-{
+public class TouchEffectImageView extends ImageView {
 
     private boolean clickAble = true;
 
-    public TouchEffectImageView(Context context, AttributeSet attributeSet)
-    {
+    public TouchEffectImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
+    public boolean onTouchEvent(MotionEvent event) {
 
-        if (clickAble)
-        {
-            switch (event.getAction())
-            {
+        if (clickAble) {
+            switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     Drawable drawable = getDrawable();
-                    if (drawable != null)
-                    {
+                    if (drawable != null) {
                         drawable.mutate().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                     }
                     break;
@@ -38,8 +32,7 @@ public class TouchEffectImageView extends ImageView
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:
                     Drawable drawableUp = getDrawable();
-                    if (drawableUp != null)
-                    {
+                    if (drawableUp != null) {
                         drawableUp.mutate().clearColorFilter();
                     }
                     break;
@@ -49,22 +42,18 @@ public class TouchEffectImageView extends ImageView
         return super.onTouchEvent(event);
     }
 
-    public void setClickDisable()
-    {
+    public void setClickDisable() {
         clickAble = false;
         Drawable drawable = getDrawable();
-        if (drawable != null)
-        {
+        if (drawable != null) {
             drawable.mutate().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         }
     }
 
-    public void setClickEnable()
-    {
+    public void setClickEnable() {
         clickAble = true;
         Drawable drawableUp = getDrawable();
-        if (drawableUp != null)
-        {
+        if (drawableUp != null) {
             drawableUp.mutate().clearColorFilter();
         }
     }

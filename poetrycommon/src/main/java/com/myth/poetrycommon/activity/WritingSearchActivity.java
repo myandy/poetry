@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
-import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.R;
 import com.myth.poetrycommon.adapter.BaseAdapter;
 import com.myth.poetrycommon.db.FormerDatabaseHelper;
@@ -15,26 +12,15 @@ import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.view.GCDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class WritingSearchActivity extends SearchListActivity<Writing> {
+public class WritingSearchActivity extends NormalSearchListActivity<Writing> {
     @Override
     public List<Writing> getData() {
         return WritingDatabaseHelper.getAllWriting();
     }
 
-    @Override
-    public List<Writing> searchList(String word) {
-        ArrayList<Writing> list = new ArrayList<>();
-        for (Writing data : originList) {
-            if (data.text.contains(word)) {
-                list.add(data);
-            }
-        }
-        return list;
-    }
 
     @Override
     public int getSearchHint() {
@@ -93,48 +79,5 @@ public class WritingSearchActivity extends SearchListActivity<Writing> {
             }
         };
     }
-
-
-    @Override
-    public BaseAdapter getSearchListAdapter() {
-        return new WritingSearchAdapter();
-    }
-
-
-    public static class WritingSearchAdapter extends BaseAdapter<Writing> {
-
-        public static class ViewHolder extends BaseHolder {
-            public TextView name;
-            public TextView tag;
-
-            public ViewHolder(View arg0) {
-                super(arg0);
-                name = (TextView) arg0.findViewById(com.myth.poetrycommon.R.id.name);
-                tag = (TextView) arg0.findViewById(com.myth.poetrycommon.R.id.tag);
-            }
-
-        }
-
-        @Override
-        public void onBindViewHolder(BaseHolder holder, int position) {
-            super.onBindViewHolder(holder, position);
-            ViewHolder viewHolder = (ViewHolder) holder;
-            viewHolder.name.setText(list.get(position).title);
-            viewHolder.tag.setText(list.get(position).content);
-
-            viewHolder.name.setTypeface(BaseApplication.instance.getTypeface());
-            viewHolder.tag.setTypeface(BaseApplication.instance.getTypeface());
-        }
-
-        @Override
-        protected int getLayoutId() {
-            return com.myth.poetrycommon.R.layout.adapter_cipai;
-        }
-
-        @Override
-        protected BaseHolder getHolder(View view) {
-            return new ViewHolder(view);
-        }
-
-    }
 }
+

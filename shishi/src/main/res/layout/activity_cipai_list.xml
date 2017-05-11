@@ -5,14 +5,14 @@
     <LinearLayout
         android:id="@+id/head"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="35dp"
         android:gravity="center">
 
         <TextView
             android:id="@+id/rect_left"
             android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/rect_left_selected"
             android:gravity="center"
             android:text="@string/sort_default"
@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/rect_right"
             android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/rect_right"
             android:gravity="center"
             android:text="@string/sort_count"

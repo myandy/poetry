@@ -81,7 +81,7 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder1.enname = (VerticalTextView) convertView.findViewById(R.id.enname1);
             holder1.stoneView = new StoneView(parent.getContext());
             android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
-                    ResizeUtils.getInstance().dip2px(40), ResizeUtils.getInstance().dip2px(40));
+                    ResizeUtils.getInstance().dip2px(30), ResizeUtils.getInstance().dip2px(30));
             holder1.middle.addView(holder1.stoneView, layoutParams);
 
             holder2.item = convertView.findViewById(R.id.item2);
@@ -94,8 +94,6 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder2.middle.addView(holder2.stoneView, layoutParams);
         }
     }
-
-    // Create new views (invoked by the layout manager)
     @Override
     public CipaiListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
@@ -160,13 +158,9 @@ public class CipaiListAdapter extends RecyclerView.Adapter<CipaiListAdapter.View
             holder.enname.setTextColor(mContext.getResources().getColor(R.color.white));
 
             holder.stoneView.setType(holder.cipai.tone_type, color);
-            String count = holder.cipai.wordcount + "";
-            if (holder.cipai.wordcount < 100) {
-                count = "0" + holder.cipai.wordcount;
-            }
-            holder.num.setText(count);
-            holder.name.setText(holder.cipai.name + "");
-            holder.enname.setText(holder.cipai.enname + "");
+            holder.num.setText(String.format("%03d", holder.cipai.wordcount));
+            holder.name.setText(holder.cipai.name );
+            holder.enname.setText(holder.cipai.enname );
 
         }
     }

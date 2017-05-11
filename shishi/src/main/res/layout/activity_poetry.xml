@@ -24,7 +24,7 @@
             android:textSize="40sp"/>
     </LinearLayout>
 
-    <ScrollView
+    <com.myth.poetrycommon.view.VScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/right"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
 
             <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/content"
@@ -51,7 +51,6 @@
                 android:layout_below="@id/author"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/white"
-                android:textIsSelectable="true"
                 android:textSize="18sp"/>
 
             <com.myth.poetrycommon.view.TypefaceTextView
@@ -62,9 +61,8 @@
                 android:layout_marginTop="10dp"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/white_hint"
-                android:textIsSelectable="true"
                 android:textSize="16sp"/>
         </RelativeLayout>
-    </ScrollView>
+    </com.myth.poetrycommon.view.VScrollView>
 
 </RelativeLayout>

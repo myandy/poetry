@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/launch_image"
                 android:paddingTop="50dp">
 
     <LinearLayout
@@ -10,7 +11,7 @@
         android:layout_alignParentRight="true"
         android:orientation="vertical">
 
-        <TextView
+        <com.myth.poetrycommon.view.TypefaceTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,14 +38,14 @@
             android:paddingLeft="20dp"
             android:paddingRight="30dp">
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
 
-            <TextView
+            <com.myth.poetrycommon.view.TypefaceTextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +73,7 @@
         </RelativeLayout>
     </ScrollView>
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/page"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -81,7 +82,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:text="21/199"
-        android:textColor="@color/white"
+        android:textColor="@color/white_hint"
         android:textSize="10sp"/>
 
     <View

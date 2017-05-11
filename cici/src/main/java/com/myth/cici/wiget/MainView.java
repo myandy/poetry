@@ -9,14 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
 import com.myth.cici.activity.CipaiListActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
+import com.myth.poetrycommon.db.WritingDatabaseHelper;
+import com.myth.poetrycommon.entity.Writing;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
+
+import java.util.List;
 
 public class MainView extends RelativeLayout {
 
@@ -74,11 +79,8 @@ public class MainView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
-                // 获取CommunitySDK实例, 参数1为Context类型
                 CommunitySDK mCommSDK = CommunityFactory.getCommSDK(mContext);
-                // 打开微社区的接口, 参数1为Context类型
                 mCommSDK.openCommunity(mContext);
-
             }
         });
 
@@ -88,9 +90,13 @@ public class MainView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, WritingSearchActivity.class);
-                mContext.startActivity(intent);
-
+                List<Writing> writings = WritingDatabaseHelper.getAllWriting();
+                if (writings.isEmpty()) {
+                    Toast.makeText(mContext, R.string.writing_empty, Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(mContext, WritingSearchActivity.class);
+                    mContext.startActivity(intent);
+                }
             }
         });
 

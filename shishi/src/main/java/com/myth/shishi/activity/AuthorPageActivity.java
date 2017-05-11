@@ -44,7 +44,7 @@ public class AuthorPageActivity extends BaseActivity {
     private void refresh() {
         if (getIntent().hasExtra("author")) {
             author = (Author) getIntent().getSerializableExtra("author");
-            list = PoetryDatabaseHelper.getAllByAuthor(author.getAuthor());
+            list = PoetryDatabaseHelper.getAllByAuthor(author.author);
         } else {
             isSelf = true;
             writings = WritingDatabaseHelper.getAllWriting();
@@ -53,7 +53,7 @@ public class AuthorPageActivity extends BaseActivity {
         if (getIntent().hasExtra("id")) {
             int id = getIntent().getIntExtra("id", 0);
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getId() == id) {
+                if (list.get(i).id == id) {
                     page = i;
                 }
             }
@@ -73,7 +73,7 @@ public class AuthorPageActivity extends BaseActivity {
 
     private int searchAuthor(String word) {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getTitle().contains(word)) {
+            if (list.get(i).getShowTitle().contains(word)) {
                 return i;
             }
         }

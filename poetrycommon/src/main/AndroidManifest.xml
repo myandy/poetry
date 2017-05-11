@@ -42,7 +42,16 @@
             android:name=".activity.BackupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
-
+        <activity
+            android:name=".activity.CommunityActivity"
+            android:icon="@mipmap/community_shotcut"
+            android:launchMode="singleTask"
+            android:label="@string/community_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.umeng.common.ui.activities.BrowserActivity"
@@ -52,8 +61,8 @@
         <activity
             android:name="com.umeng.comm.ui.activities.FeedsActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
         <!-- 发送feedActivity -->
         <activity
             android:name="com.umeng.comm.ui.activities.PostFeedActivity"

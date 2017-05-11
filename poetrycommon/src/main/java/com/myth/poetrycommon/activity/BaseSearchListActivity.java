@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.R;
 import com.myth.poetrycommon.adapter.BaseAdapter;
+import com.myth.poetrycommon.view.MyDecoration;
 
 import java.util.List;
 
@@ -21,11 +22,11 @@ import java.util.List;
  * Created by AndyMao on 17-4-18.
  */
 
-public abstract class SearchListActivity<T> extends BaseActivity {
+public abstract class BaseSearchListActivity<T> extends BaseActivity {
 
     private View clear;
 
-    protected RecyclerView listview;
+    protected RecyclerView mRecyclerView;
 
     public BaseAdapter adapter;
 
@@ -68,14 +69,16 @@ public abstract class SearchListActivity<T> extends BaseActivity {
     }
 
     protected void initView() {
-        listview = (RecyclerView) findViewById(R.id.listview);
-        listview.setHasFixedSize(true);
+        mRecyclerView = (RecyclerView) findViewById(R.id.listview);
+        mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
-        listview.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(new MyDecoration(this, MyDecoration.VERTICAL_LIST));
+
 
         adapter = getSearchListAdapter();
         adapter.setOnItemClickListener(getItemClickListener());
-        listview.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
         search = (EditText) findViewById(R.id.search);
         search.setHint(getSearchHint());
         search.setHintTextColor(getResources().getColor(R.color.black_hint));

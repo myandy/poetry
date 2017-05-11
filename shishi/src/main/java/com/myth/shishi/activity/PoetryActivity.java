@@ -41,7 +41,7 @@ import java.util.Random;
 
 public class PoetryActivity extends BaseActivity {
 
-    private ArrayList<Poetry> ciList = new ArrayList<Poetry>();
+    private ArrayList<Poetry> mList = new ArrayList<>();
 
     private TextView content;
 
@@ -90,7 +90,7 @@ public class PoetryActivity extends BaseActivity {
 
         setBottomVisible();
 
-        ciList = PoetryDatabaseHelper.getAll();
+        mList = PoetryDatabaseHelper.getRandom200();
         getRandomPoetry();
         initView();
     }
@@ -107,8 +107,8 @@ public class PoetryActivity extends BaseActivity {
     private int color;
 
     private void getRandomPoetry() {
-        poetry = ciList.get(new Random().nextInt(ciList.size()));
-        author = AuthorDatabaseHelper.getAuthorByName(poetry.getAuthor());
+        poetry = mList.get(new Random().nextInt(mList.size()));
+        author = AuthorDatabaseHelper.getAuthorByName(poetry.author);
         color = BaseApplication.instance.getRandomColor();
     }
 
@@ -133,7 +133,7 @@ public class PoetryActivity extends BaseActivity {
 
         title = (TextView) findViewById(R.id.title);
         title.setTypeface(BaseApplication.instance.getTypeface());
-        title.setText(poetry.getAuthor());
+        title.setText(poetry.author);
 
         content = (TextView) findViewById(R.id.content);
         content.setTypeface(BaseApplication.instance.getTypeface());
@@ -197,7 +197,7 @@ public class PoetryActivity extends BaseActivity {
     }
 
     private void refreshRandomView() {
-        title.setText(poetry.getAuthor());
+        title.setText(poetry.author);
         setColor();
         initContentView();
     }
@@ -208,15 +208,15 @@ public class PoetryActivity extends BaseActivity {
 
     private void initContentView() {
 
-        String note = poetry.getIntro();
+        String note = poetry.intro;
         ((TextView) findViewById(R.id.note)).setText(note);
 
-        poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
-        poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());
-        poetry.setPoetry(StringUtils.autoLineFeed(poetry.getPoetry()));
-        content.setText(poetry.getPoetry());
+        poetry.title = poetry.title.replaceAll("（.*）", "").trim();
+        poetry.poetry = poetry.poetry.replaceAll("【.*】", "").trim();
+        poetry.poetry = StringUtils.autoLineFeed(poetry.poetry);
+        content.setText(poetry.poetry);
         ((TextView) findViewById(R.id.author))
-                .setText(poetry.getTitle() + "\n");
+                .setText(poetry.getShowTitle() + "\n");
         setTextSize();
 
     }
@@ -301,7 +301,7 @@ public class PoetryActivity extends BaseActivity {
                         }
                     });
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
-            if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
+            if (PoetryDatabaseHelper.isCollect(poetry.poetry)) {
                 collect.setText("取消收藏");
             } else {
                 collect.setText("收藏");
@@ -310,8 +310,8 @@ public class PoetryActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-                    boolean isCollect = PoetryDatabaseHelper.isCollect(poetry.getId());
-                    PoetryDatabaseHelper.updateCollect(poetry.getId(),
+                    boolean isCollect = PoetryDatabaseHelper.isCollect(poetry.id);
+                    PoetryDatabaseHelper.updateCollect(poetry.id,
                             !isCollect);
                     if (isCollect) {
                         Toast.makeText(mActivity, "已取消收藏", Toast.LENGTH_LONG)
@@ -346,7 +346,7 @@ public class PoetryActivity extends BaseActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(mActivity,
                                     WebviewActivity.class);
-                            intent.putExtra("string", poetry.getAuthor());
+                            intent.putExtra("string", poetry.author);
                             mActivity.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
@@ -360,7 +360,7 @@ public class PoetryActivity extends BaseActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(mActivity,
                                     WebviewActivity.class);
-                            intent.putExtra("string", poetry.getTitle());
+                            intent.putExtra("string", poetry.getShowTitle());
                             mActivity.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
@@ -389,7 +389,7 @@ public class PoetryActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             if (mTTSEnable) {
-                                mSpeech.speak(poetry.getTitle().replaceAll("\\[.*\\]", "").replaceAll("（.*）", "").replaceAll("【.*】", "") + "\n" + poetry.getPoetry().replaceAll("[\\[\\]0-9]", "").replaceAll("【.*】", ""), TextToSpeech.QUEUE_FLUSH,
+                                mSpeech.speak(poetry.getShowTitle().replaceAll("\\[.*\\]", "").replaceAll("（.*）", "").replaceAll("【.*】", "") + "\n" + poetry.poetry.replaceAll("[\\[\\]0-9]", "").replaceAll("【.*】", ""), TextToSpeech.QUEUE_FLUSH,
                                         null);
                             } else {
                                 Toast.makeText(mActivity, R.string.tts_unable,
@@ -414,7 +414,7 @@ public class PoetryActivity extends BaseActivity {
 
         } else {
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
-            if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
+            if (PoetryDatabaseHelper.isCollect(poetry.poetry)) {
                 collect.setText("取消收藏");
             } else {
                 collect.setText("收藏");

@@ -125,13 +125,9 @@ public class PoetryView extends LinearLayout {
         });
 
         title = (TextView) root.findViewById(R.id.title);
-        title.setTypeface(BaseApplication.instance.getTypeface());
-        title.setText(poetry.getAuthor());
+        title.setText(poetry.author);
 
         content = (TextView) root.findViewById(R.id.content);
-        content.setTypeface(BaseApplication.instance.getTypeface());
-        ((TextView) root.findViewById(R.id.note)).setTypeface(BaseApplication.instance
-                .getTypeface());
 
         root.findViewById(R.id.content).setOnClickListener(
                 new OnClickListener() {
@@ -155,8 +151,6 @@ public class PoetryView extends LinearLayout {
                     }
                 });
 
-        ((TextView) root.findViewById(R.id.author)).setTypeface(BaseApplication.instance
-                .getTypeface());
 
         ((TextView) root.findViewById(R.id.page)).setText(page);
 
@@ -177,18 +171,18 @@ public class PoetryView extends LinearLayout {
 
     private void refreshView() {
 
-        poetry.setTitle(poetry.getTitle().replaceAll("（.*）", "").trim());
-        poetry.setPoetry(poetry.getPoetry().replaceAll("【.*】", "").trim());
+        poetry.title = (poetry.title.replaceAll("（.*）", "").trim());
+        poetry.poetry = (poetry.poetry.replaceAll("【.*】", "").trim());
 
         shareView.setColor(color);
-        String note = poetry.getIntro();
+        String note = poetry.intro;
         if (note != null && note.length() > 10) {
             ((TextView) root.findViewById(R.id.note)).setText(note);
         }
-        poetry.setPoetry(StringUtils.autoLineFeed(poetry.getPoetry()));
-        content.setText(poetry.getPoetry());
+        poetry.poetry = (StringUtils.autoLineFeed(poetry.poetry));
+        content.setText(poetry.poetry);
         ((TextView) root.findViewById(R.id.author))
-                .setText(poetry.getTitle() == null ? "" : poetry.getTitle()
+                .setText(poetry.getShowTitle() == null ? "" : poetry.getShowTitle()
                         + "\n");
 
         setTextSize();
@@ -276,7 +270,7 @@ public class PoetryView extends LinearLayout {
                     });
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
 
-            if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
+            if (PoetryDatabaseHelper.isCollect(poetry.poetry)) {
                 collect.setText("取消收藏");
             } else {
                 collect.setText("收藏");
@@ -286,8 +280,8 @@ public class PoetryView extends LinearLayout {
                 @Override
                 public void onClick(View v) {
                     boolean isCollect = PoetryDatabaseHelper
-                            .isCollect(poetry.getPoetry());
-                    PoetryDatabaseHelper.updateCollect(poetry.getId(),
+                            .isCollect(poetry.poetry);
+                    PoetryDatabaseHelper.updateCollect(poetry.id,
                             !isCollect);
                     if (isCollect) {
                         Toast.makeText(mContext, "已取消收藏", Toast.LENGTH_LONG)
@@ -323,7 +317,7 @@ public class PoetryView extends LinearLayout {
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext,
                                     WebviewActivity.class);
-                            intent.putExtra("string", poetry.getAuthor());
+                            intent.putExtra("string", poetry.author);
                             mContext.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
@@ -337,7 +331,7 @@ public class PoetryView extends LinearLayout {
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext,
                                     WebviewActivity.class);
-                            intent.putExtra("string", poetry.getTitle());
+                            intent.putExtra("string", poetry.getShowTitle());
                             mContext.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
@@ -367,7 +361,7 @@ public class PoetryView extends LinearLayout {
                         @Override
                         public void onClick(View v) {
                             if (mTTSEnable) {
-                                mSpeech.speak(poetry.getTitle() + "\n" + poetry.getPoetry().replaceAll("[\\[\\]0-9]", ""), TextToSpeech.QUEUE_FLUSH,
+                                mSpeech.speak(poetry.getShowTitle() + "\n" + poetry.poetry.replaceAll("[\\[\\]0-9]", ""), TextToSpeech.QUEUE_FLUSH,
                                         null);
                             } else {
                                 Toast.makeText(mContext, R.string.tts_unable,
@@ -391,7 +385,7 @@ public class PoetryView extends LinearLayout {
 
         } else {
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
-            if (PoetryDatabaseHelper.isCollect(poetry.getPoetry())) {
+            if (PoetryDatabaseHelper.isCollect(poetry.poetry)) {
                 collect.setText("取消收藏");
             } else {
                 collect.setText("收藏");

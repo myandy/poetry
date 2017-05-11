@@ -17,7 +17,7 @@ public class ColorDatabaseHelper {
     }
 
     public static ArrayList<ColorEntity> getAll() {
-        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME , null);
+        Cursor cursor = getDB().rawQuery("select * from " + TABLE_NAME +" order by id", null);
         return getColorListFromCursor(cursor);
     }
 

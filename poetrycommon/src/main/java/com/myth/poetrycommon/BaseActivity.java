@@ -64,6 +64,10 @@ public class BaseActivity extends Activity {
         return (ImageView) findViewById(R.id.bottom_left);
     }
 
+    public boolean isBottomVisible() {
+        return mBottomLayout.getVisibility() == View.VISIBLE;
+    }
+
     public void setBottomGone() {
         mBottomLayout.setVisibility(View.GONE);
     }
