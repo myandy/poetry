@@ -1,15 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
+              android:gravity="center_horizontal"
               android:orientation="vertical"
-              android:paddingTop="80dp">
+              android:paddingTop="170dp">
 
     <LinearLayout
         android:id="@+id/show_all"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="60dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -17,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="浏览所有"
-            android:textColor="@color/gc_white_to_grey"
+            android:textColor="@color/selector_white_to_grey"
             android:textSize="22sp"/>
 
         <com.myth.poetrycommon.view.TypefaceTextView
@@ -34,41 +33,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="牌"
-            android:textColor="@color/gc_white_to_grey"
+            android:textColor="@color/selector_white_to_grey"
             android:textSize="22sp"/>
     </LinearLayout>
 
     <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/show_one"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
+        android:layout_height="60dp"
+        android:gravity="center"
         android:text="随机一首词"
-        android:textColor="@color/gc_white_to_grey"
+        android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
     <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/writing"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="作品夹"
-        android:textColor="@color/gc_white_to_grey"
+        android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
     <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/community"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="社区"
-        android:textColor="@color/gc_white_to_grey"
+        android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
 

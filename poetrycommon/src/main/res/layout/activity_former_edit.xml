@@ -86,7 +86,8 @@
             android:gravity="center"
             android:text="@string/save"
             android:textColor="@color/white"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/delete"
@@ -97,8 +98,8 @@
             android:gravity="center"
             android:text="@string/delete"
             android:textColor="@color/white"
-            android:visibility="gone"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </ScrollView>

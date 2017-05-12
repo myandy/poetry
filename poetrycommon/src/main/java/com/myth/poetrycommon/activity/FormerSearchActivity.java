@@ -50,6 +50,7 @@ public class FormerSearchActivity extends NormalSearchListActivity<Former> {
                 Intent intent = new Intent(mActivity, EditActivity.class);
                 intent.putExtra("former", list.get(position));
                 startActivity(intent);
+                finish();
             }
 
             @Override

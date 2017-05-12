@@ -119,7 +119,7 @@ public class ShareActivity extends BaseActivity {
         });
 
         shareView.setWriting(writing);
-        ResizeUtils.getInstance().layoutSquareView(shareView);
+        ResizeUtils.getInstance().layoutSquareView(shareView, 680, 680);
         scaleRotateIn(shareView, 1000, 0);
     }
 

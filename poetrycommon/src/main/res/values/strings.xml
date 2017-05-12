@@ -63,7 +63,12 @@
     <string name="about_email_toast">邮箱号已复制到剪切板，我们会查看并考虑您的每一个建议</string>
     <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
     <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
+
+
     <string name="community_name">诗词社区</string>
     <string name="former_delete">格律已删除</string>
-
+    <string name="copy_text">复制文本</string>
+    <string name="shortcut_title">增加社区快捷方式</string>
+    <string name="writing_empty">您当前还没有作品哦，请点击左下角加号选择格律创作</string>
+    <string name="add_shortcut">操作成功！如果没有生成快捷方式请在设置中找到本应用并允许创建快捷方式</string>
 </resources>

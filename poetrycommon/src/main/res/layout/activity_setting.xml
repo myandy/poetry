@@ -31,7 +31,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="@string/setting_yun"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -42,7 +42,7 @@
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
                     android:text="@string/setting_yun"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -63,7 +63,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="@string/setting_typeface"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -74,7 +74,7 @@
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
                     android:text="@string/setting_yun"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -95,7 +95,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="@string/setting_check"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -126,7 +126,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="@string/setting_username"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -137,7 +137,8 @@
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
                     android:hint="点击输入"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
+                    android:textColorHint="@color/black_hint"
                     android:textSize="16sp"/>
             </RelativeLayout>
         </LinearLayout>
@@ -151,7 +152,6 @@
             android:background="@drawable/setting_bg"
             android:orientation="vertical">
 
-
             <RelativeLayout
                 android:id="@+id/item_about"
                 android:layout_width="match_parent"
@@ -164,8 +164,7 @@
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
-                    android:text="@string/setting_about"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -175,7 +174,7 @@
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -197,7 +196,7 @@
                     android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="@string/setting_congratuate_us"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -206,7 +205,7 @@
                     android:layout_alignParentRight="true"
                     android:drawableRight="@drawable/next_hl"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
@@ -230,19 +229,24 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:gravity="center_vertical"
+                    android:lines="1"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
-                    android:singleLine="true"
                     android:text="@string/weibo_title"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
 
+        </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/setting_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/setting_bg"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/item_backup"
@@ -259,11 +263,39 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:gravity="center_vertical"
+                    android:lines="1"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
-                    android:singleLine="true"
                     android:text="@string/backup_title"
-                    android:textColor="@color/white"
+                    android:textColor="@color/selector_white_to_grey"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_shortcut"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/shortcut_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:drawableRight="@drawable/next_hl"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="@string/shortcut_title"
+                    android:textColor="@color/selector_white_to_grey"
                     android:textSize="16sp"/>
             </RelativeLayout>
         </LinearLayout>

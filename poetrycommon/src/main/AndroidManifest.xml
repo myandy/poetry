@@ -29,15 +29,18 @@
         <activity
             android:name=".activity.FormerSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme"/>
+            android:theme="@style/AppBaseTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".activity.FormerEditActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme"/>
+            android:theme="@style/AppBaseTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".activity.WritingSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme"/>
+            android:theme="@style/AppBaseTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".activity.BackupActivity"
             android:screenOrientation="portrait"
@@ -45,14 +48,16 @@
         <activity
             android:name=".activity.CommunityActivity"
             android:icon="@mipmap/community_shotcut"
-            android:launchMode="singleTask"
-            android:label="@string/community_name">
+            android:label="@string/community_name"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
+
+        <!--umeng-->
         <activity
             android:name="com.umeng.common.ui.activities.BrowserActivity"
             android:configChanges="orientation|keyboardHidden"

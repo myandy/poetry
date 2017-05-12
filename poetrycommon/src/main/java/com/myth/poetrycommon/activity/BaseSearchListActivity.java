@@ -80,6 +80,7 @@ public abstract class BaseSearchListActivity<T> extends BaseActivity {
         adapter.setOnItemClickListener(getItemClickListener());
         mRecyclerView.setAdapter(adapter);
         search = (EditText) findViewById(R.id.search);
+        search.clearFocus();
         search.setHint(getSearchHint());
         search.setHintTextColor(getResources().getColor(R.color.black_hint));
         search.setTextColor(getResources().getColor(R.color.black));

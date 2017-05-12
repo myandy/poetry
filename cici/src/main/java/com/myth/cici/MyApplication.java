@@ -12,7 +12,7 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
 
-        Constant.init("cici","ci.db");
+        Constant.init("cici", "ci.db");
 
         PlatformConfig.setWeixin("wx96110a1e3af63a39", "c60e3d3ff109a5d17013df272df99199");
         PlatformConfig.setSinaWeibo("2655542749", "d3c6e64eb912183bdf2ecc299ddfe3a7");

@@ -86,6 +86,7 @@ public class ShareView extends ScrollView {
     }
 
     private void initView() {
+        setFillViewport(true);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.layout_share, this);
 
@@ -110,15 +111,15 @@ public class ShareView extends ScrollView {
     public void refresh() {
         if (type == TYPE_NORMAL) {
             if (StringUtils.isNumeric(writing.bgimg)) {
-                backgroundView.setDrawableId(BaseApplication.bgimgList[Integer.parseInt(writing.bgimg)]);
+                backgroundView.setDrawableId(BaseApplication.bgImgList[Integer.parseInt(writing.bgimg)]);
             } else {
                 pictureView.setImageDrawable(new BitmapDrawable(getResources(), writing.bgimg));
             }
         } else if (type == TYPE_BACKGROUND) {
             if (StringUtils.isNumeric(writing.bgimg)) {
-                backgroundView.setDrawableId(BaseApplication.bgimgList[Integer.parseInt(writing.bgimg)]);
+                backgroundView.setDrawableId(BaseApplication.bgImgList[Integer.parseInt(writing.bgimg)]);
             } else {
-                backgroundView.setDrawableId(BaseApplication.bgimgList[0]);
+                backgroundView.setDrawableId(BaseApplication.bgImgList[0]);
             }
         } else {
             if (TextUtils.isEmpty(writing.bgimg)) {

@@ -6,9 +6,6 @@ import java.io.Serializable;
 
 public class Ci implements Serializable {
 
-    /**
-     * 注释内容
-     */
     public static final long serialVersionUID = 1L;
 
     public int id;
@@ -22,14 +19,6 @@ public class Ci implements Serializable {
     public int ci_id;
 
     public Cipai cipai;
-
-    public Cipai getCipai() {
-        return cipai;
-    }
-
-    public void setCipai(Cipai cipai) {
-        this.cipai = cipai;
-    }
 
     public int getId() {
         return id;
@@ -73,6 +62,9 @@ public class Ci implements Serializable {
 
     public Writing toWriting() {
         Writing writing = new Writing();
+        if (cipai != null) {
+            writing.text = cipai.name;
+        }
         writing.content = text;
         writing.author = author;
         writing.former = cipai;

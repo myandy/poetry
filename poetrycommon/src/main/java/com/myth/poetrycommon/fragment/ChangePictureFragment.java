@@ -91,7 +91,7 @@ public class ChangePictureFragment extends Fragment {
     }
 
     private void refresh() {
-        shareView.setWriting(writing);
+        drawPicture(bright, radius);
         shareView.getPictureView().setImageDrawable(new BitmapDrawable(getResources(), destBitmap));
     }
 
@@ -121,7 +121,7 @@ public class ChangePictureFragment extends Fragment {
 
     private void initViews(View view) {
         shareView = (ShareView) view.findViewById(R.id.share_view);
-        ResizeUtils.getInstance().layoutSquareView(shareView);
+        ResizeUtils.getInstance().layoutSquareView(shareView, 680, 680);
         shareView.setType(ShareView.TYPE_PICTURE);
         shareView.setWriting(writing);
 
@@ -137,20 +137,20 @@ public class ChangePictureFragment extends Fragment {
             }
         });
 
-        // srcBitmap = BitmapFactory.decodeFile(pathName);
         if (srcBitmap == null) {
             srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zuibaichi);
             destBitmap = srcBitmap;
         }
 
         SeekBar seekBar1 = (SeekBar) view.findViewById(R.id.seekBar1);
+        bright = seekBar1.getProgress();
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * 拖动条停止拖动的时候调用
              */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                drawPicture(bright, radius);
+                refresh();
             }
 
             /**
@@ -166,18 +166,18 @@ public class ChangePictureFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bright = progress;
-
             }
         });
 
         SeekBar seekBar2 = (SeekBar) view.findViewById(R.id.seekBar2);
+        radius = seekBar2.getProgress();
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             /**
              * 拖动条停止拖动的时候调用
              */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                drawPicture(bright, radius);
+                refresh();
             }
 
             /**
@@ -232,7 +232,6 @@ public class ChangePictureFragment extends Fragment {
         }
 
         destBitmap = bmp;
-        refresh();
     }
 
 

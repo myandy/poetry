@@ -18,6 +18,16 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
 
     public List<T> list;
 
+    protected int mSelectedItemPosition = 0;
+    protected int mLastSelectedItemPosition = -1;
+
+    public void setSelectedItemPosition(int position) {
+        mLastSelectedItemPosition = mSelectedItemPosition;
+        mSelectedItemPosition = position;
+        notifyItemChanged(mLastSelectedItemPosition, true);
+        notifyItemChanged(mSelectedItemPosition, true);
+    }
+
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
@@ -43,6 +53,21 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
     public void onBindViewHolder(BaseHolder holder, int position) {
         holder.itemView.setOnClickListener(this);
         holder.itemView.setOnLongClickListener(this);
+        setSelected(holder, position == mSelectedItemPosition);
+    }
+
+    protected void setSelected(BaseHolder holder, boolean selected) {
+        holder.itemView.setSelected(selected);
+    }
+
+
+    @Override
+    public void onBindViewHolder(BaseHolder holder, int position, List<Object> payloads) {
+        if (payloads != null && payloads.size() > 0) {
+            setSelected(holder, position == mSelectedItemPosition);
+        } else {
+            super.onBindViewHolder(holder, position, payloads);
+        }
     }
 
     @Override
@@ -52,6 +77,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
         if (mOnItemClickListener != null) {
             mOnItemClickListener.onItemClick(position);
         }
+        setSelectedItemPosition(position);
     }
 
     @Override
@@ -85,6 +111,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+
         void onItemLongClick(int position);
     }
 }

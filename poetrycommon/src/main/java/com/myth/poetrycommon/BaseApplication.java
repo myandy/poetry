@@ -10,11 +10,9 @@ import android.preference.PreferenceManager;
 
 import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.poetrycommon.entity.ColorEntity;
+import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
-import com.umeng.socialize.PlatformConfig;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -26,9 +24,6 @@ public abstract class BaseApplication extends Application {
 
     public static boolean needBackup;
     public List<ColorEntity> colorList;
-
-    private HashMap<Integer, ColorEntity> colorMap;
-
     private Typeface typeface;
 
     public static final String TypefaceString[] = {"简体", "繁体", "系统字体"};
@@ -61,15 +56,17 @@ public abstract class BaseApplication extends Application {
         return false;
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         ResizeUtils.getInstance().init(this);
-
         if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {
             defaultTypeface = 1;
+        }
+        if (isFirstStart()) {
+            OthersUtils.addShortcut(this);
+            setHasStart();
         }
     }
 
@@ -103,29 +100,6 @@ public abstract class BaseApplication extends Application {
         return colorList.get(new Random().nextInt(colorList.size() - 1) + 1).toColor();
     }
 
-
-    public int getColorById(int id) {
-        ColorEntity colorEntity = getColorEntityById(id);
-        int color;
-        if (colorEntity != null) {
-            color = colorEntity.toColor();
-        } else {
-            color = Color.rgb(0, 0, 0);
-        }
-        return color;
-    }
-
-    public ColorEntity getColorEntityById(int id) {
-        if (colorMap == null) {
-            colorMap = new HashMap();
-            ArrayList<ColorEntity> colorList = ColorDatabaseHelper.getAll();
-            for (ColorEntity color : colorList) {
-                colorMap.put(color.getId(), color);
-            }
-        }
-        return colorMap.get(id);
-    }
-
     public void setTypeface(Context context, int type) {
         if (type == 0) {
             typeface = Typeface.createFromAsset(context.getAssets(), "fzqkyuesong.TTF");
@@ -136,11 +110,11 @@ public abstract class BaseApplication extends Application {
         }
     }
 
-    public static int[] bgimgList = {R.drawable.dust, R.drawable.bg001, R.drawable.bg002, R.drawable.bg004,
+    public static int[] bgImgList = {R.drawable.dust, R.drawable.bg001, R.drawable.bg002, R.drawable.bg004,
             R.drawable.bg006, R.drawable.bg007, R.drawable.bg011, R.drawable.bg013, R.drawable.bg072, R.drawable.bg084,
             R.drawable.bg096, R.drawable.bg118};
 
-    public static int[] bgSmallimgList = {R.drawable.dust, R.drawable.bg001_small, R.drawable.bg002_small,
+    public static int[] bgSmallImgList = {R.drawable.dust_small, R.drawable.bg001_small, R.drawable.bg002_small,
             R.drawable.bg004_small, R.drawable.bg006_small, R.drawable.bg007_small, R.drawable.bg011_small,
             R.drawable.bg013_small, R.drawable.bg072_small, R.drawable.bg084_small, R.drawable.bg096_small,
             R.drawable.bg118_small};
@@ -261,4 +235,15 @@ public abstract class BaseApplication extends Application {
     public void setTypeface(Typeface typeface) {
         this.typeface = typeface;
     }
+
+    public static boolean isFirstStart() {
+        return PreferenceManager.getDefaultSharedPreferences(instance).getBoolean("first_start", true);
+    }
+
+    public static void setHasStart() {
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(instance).edit();
+        edit.putBoolean("first_start", true);
+        edit.commit();
+    }
+
 }

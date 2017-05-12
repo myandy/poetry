@@ -68,6 +68,8 @@ public class EditFragment extends Fragment {
 
     private View keyboard;
 
+    private View getFocus;
+
     public EditFragment() {
     }
 
@@ -92,7 +94,7 @@ public class EditFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (StringUtils.isNumeric(writing.bgimg)) {
-            int id = BaseApplication.bgimgList[Integer.parseInt(writing.bgimg)];
+            int id = BaseApplication.bgImgList[Integer.parseInt(writing.bgimg)];
             editTopBackground.setImageResource(id);
             editContentBackground.setDrawableId(id);
         } else if (writing.bitmap != null) {
@@ -201,10 +203,9 @@ public class EditFragment extends Fragment {
 
         title.setTypeface(BaseApplication.instance.getTypeface());
         title.setTextColor(getColor());
-
-        if (TextUtils.isEmpty(writing.title)) {
-            title.setText("点击输入标题");
-        } else {
+        title.setHint(R.string.input_title);
+        title.setHintTextColor(getResources().getColor(R.color.black_hint));
+        if (!TextUtils.isEmpty(writing.title)) {
             title.setText(writing.title);
         }
 
@@ -221,7 +222,6 @@ public class EditFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         title.setText(et.getText().toString().trim());
-                        BaseApplication.setDefaultUserName(et.getText().toString().trim());
                     }
                 }).setNegativeButton(R.string.cancel, null).show();
             }
@@ -244,53 +244,49 @@ public class EditFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        final View getfocus = view.findViewById(R.id.getfocus);
-        getfocus.setFocusable(true);
-        getfocus.setFocusableInTouchMode(true);
-
         keyboard.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 hideKeyBoard();
                 ((BaseActivity) mContext).setBottomVisible();
-                hideSoftInputFromWindow();
-                getfocus.requestFocus();
-                getfocus.requestFocusFromTouch();
             }
         });
+        getFocus = view.findViewById(R.id.getfocus);
+        getFocus.setFocusable(true);
+        getFocus.setFocusableInTouchMode(true);
 
         editContentBackground = (MirrorLoaderView) view.findViewById(R.id.background_image);
         editTopBackground = (ImageView) view.findViewById(R.id.edit_top_background);
     }
 
     private void hideKeyBoard() {
-        float translationY = keyboard.getTranslationY();
         ObjectAnimator keyboardAnimal;
-        keyboardAnimal = ObjectAnimator.ofFloat(keyboard, "translationY", translationY, translationY - 300);
+        keyboardAnimal = ObjectAnimator.ofFloat(keyboard, "translationY", 0, -200);
         keyboardAnimal.setInterpolator(new AccelerateInterpolator());
         keyboardAnimal.setDuration(200);
         keyboardAnimal.start();
 
-        float translationX = title.getTranslationX();
         ObjectAnimator titleAnimal;
-        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", translationX, translationX - 100);
+        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", 0, -100);
         titleAnimal.setInterpolator(new AccelerateInterpolator());
         titleAnimal.setDuration(200);
         titleAnimal.start();
+
+        hideSoftInputFromWindow();
+        getFocus.requestFocus();
+        getFocus.requestFocusFromTouch();
     }
 
     private void showKeyBoard() {
-        float translationY = keyboard.getTranslationY();
         ObjectAnimator objectAnimator;
-        objectAnimator = ObjectAnimator.ofFloat(keyboard, "translationY", translationY, translationY + 300);
+        objectAnimator = ObjectAnimator.ofFloat(keyboard, "translationY", -200, 0);
         objectAnimator.setInterpolator(new AccelerateInterpolator());
         objectAnimator.setDuration(200);
         objectAnimator.start();
 
-        float translationX = title.getTranslationX();
         ObjectAnimator titleAnimal;
-        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", translationX, translationX + 100);
+        titleAnimal = ObjectAnimator.ofFloat(title, "translationX", -100, 0);
         titleAnimal.setInterpolator(new AccelerateInterpolator());
         titleAnimal.setDuration(200);
         titleAnimal.start();
@@ -313,14 +309,6 @@ public class EditFragment extends Fragment {
             }
         }
     };
-
-    private void hideSoftInputFromWindow() {
-        View view = ((Activity) mContext).getWindow().peekDecorView();
-        if (view != null) {
-            InputMethodManager inputmanger = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
 
     private int getColor() {
         int color = BaseApplication.instance.getColorByPos(BaseApplication.getDefaultShareColor(mContext));
@@ -361,7 +349,6 @@ public class EditFragment extends Fragment {
     };
 
     private String[] split(String str) {
-
         /* 正则表达式：句子结束符 */
         String regEx = "：|。|！|；";
         Pattern p = Pattern.compile(regEx);
@@ -381,8 +368,14 @@ public class EditFragment extends Fragment {
             }
         }
         return words;
-
     }
 
-
+    private void hideSoftInputFromWindow() {
+        View view = ((Activity) mContext).getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputmanger = (InputMethodManager) mContext
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 }

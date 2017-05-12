@@ -20,7 +20,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="增大字体"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
 
         <View
             android:layout_width="fill_parent"
@@ -34,7 +34,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="减小字体"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
 
         <View
             android:layout_width="fill_parent"
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="文字居中"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
 
         <View
             android:layout_width="fill_parent"
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="文字居左"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
 
         <View
             android:layout_width="fill_parent"
@@ -76,7 +76,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="内容左移"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
 
         <View
             android:layout_width="fill_parent"
@@ -90,7 +90,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="内容右移"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -103,7 +103,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="字体颜色"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
          <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -116,7 +116,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="显示作者"
-            android:textColor="@color/gc_white_to_grey" />
+            android:textColor="@color/selector_white_to_grey" />
     </LinearLayout>
 
 </LinearLayout>

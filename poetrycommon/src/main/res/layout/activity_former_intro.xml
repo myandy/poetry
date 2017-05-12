@@ -17,6 +17,7 @@
             android:gravity="center"
             android:maxEms="1"
             android:text="忆江南"
+            android:textColor="@color/white"
             android:textSize="44sp"/>
     </LinearLayout>
 
@@ -39,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.2"
                 android:textIsSelectable="true"
+                android:textColor="@color/white"
                 android:textSize="18sp"/>
 
             <WebView

@@ -56,6 +56,7 @@ public class CipaiActivity extends BaseActivity {
         TextView writeTV = new TextView(mActivity);
         writeTV.setText("填词");
         writeTV.setTextSize(18);
+        writeTV.setTextColor(getResources().getColor(R.color.white));
         writeTV.setPadding(15, 15, 15, 15);
         writeTV.setTypeface(BaseApplication.instance.getTypeface());
         writeTV.setOnClickListener(new OnClickListener() {
@@ -151,6 +152,7 @@ public class CipaiActivity extends BaseActivity {
                 text = ciList.get(position % ciList.size()).getAuthor() + "\n"
                         + text;
             }
+            textView.setTextColor(getResources().getColor(R.color.white));
             textView.setText(text);
             textView.setMaxLines(5);
             textView.setOnClickListener(new OnClickListener() {

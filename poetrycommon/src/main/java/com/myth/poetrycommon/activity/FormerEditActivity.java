@@ -56,14 +56,8 @@ public class FormerEditActivity extends BaseActivity {
         etPingze.setText(former.pingze);
 
         if (!isEdit) {
-            etName.setFocusable(false);
-            etName.setFocusableInTouchMode(false);
-            etIntro.setFocusable(false);
-            etIntro.setFocusableInTouchMode(false);
-            etPingze.setFocusable(false);
-            etPingze.setFocusableInTouchMode(false);
-            findViewById(R.id.button).setVisibility(View.GONE);
         } else {
+            findViewById(R.id.button).setVisibility(View.VISIBLE);
             findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -72,7 +66,6 @@ public class FormerEditActivity extends BaseActivity {
                         Toast.makeText(mActivity, R.string.former_add_value_null, Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                 }
             });
 
@@ -95,6 +88,12 @@ public class FormerEditActivity extends BaseActivity {
 
     private boolean validateSave() {
         return !TextUtils.isEmpty(etName.getText().toString().trim()) && !TextUtils.isEmpty(etPingze.getText().toString().trim());
+    }
+
+    private boolean hasChange() {
+        return !(TextUtils.equals(former.name, etName.getText().toString().trim()) &&
+                TextUtils.equals(former.source, etIntro.getText().toString().trim()) &&
+                TextUtils.equals(former.pingze, etPingze.getText().toString().trim()));
     }
 
     private void doSave() {
@@ -120,7 +119,7 @@ public class FormerEditActivity extends BaseActivity {
     }
 
     private void exit() {
-        if (validateSave()) {
+        if (isEdit && validateSave() && hasChange()) {
             Bundle bundle = new Bundle();
             bundle.putString(GCDialog.DATA_CONTENT, mActivity.getString(R.string.save_content));
             bundle.putString(GCDialog.DATA_TITLE, mActivity.getString(R.string.save_title));

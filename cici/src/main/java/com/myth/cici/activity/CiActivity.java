@@ -83,6 +83,7 @@ public class CiActivity extends BaseActivity {
                     .parent_id);
             cipai.source = (cipai1.source);
         }
+        ci.cipai = cipai;
     }
 
     private void setColor() {
@@ -115,7 +116,7 @@ public class CiActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mActivity).setItems(
-                        new String[]{"复制文本"},
+                        new String[]{getString(R.string.copy_text)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
@@ -138,7 +139,7 @@ public class CiActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(mActivity).setItems(
-                        new String[]{"复制文本"},
+                        new String[]{getString(R.string.copy_text)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {

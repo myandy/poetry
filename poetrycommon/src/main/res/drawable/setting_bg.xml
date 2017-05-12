@@ -7,10 +7,4 @@
     <!-- 圆角 -->
     <corners android:radius="16px" />
 
-    <!--
-         stroke
-        android:width="1px"
-        android:color="#1187dc" /
-    -->
-
 </shape>

@@ -15,8 +15,10 @@ import com.myth.poetrycommon.adapter.BaseAdapter;
 import com.myth.poetrycommon.adapter.ImageAdapter;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.ResizeUtils;
-import com.myth.poetrycommon.view.MyDecoration;
 import com.myth.poetrycommon.view.ShareView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChangeBackgroundFragment extends Fragment {
 
@@ -74,16 +76,21 @@ public class ChangeBackgroundFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.addItemDecoration(new MyDecoration(mContext, MyDecoration.VERTICAL_LIST));
 
         ImageAdapter adapter = new ImageAdapter();
+        List<Integer> list = new ArrayList<>();
+        for (int i : BaseApplication.bgSmallImgList) {
+            list.add(i);
+        }
+        adapter.setList(list);
         mRecyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 bg_index = position;
-                shareView.getBackgroundView().setDrawableId(BaseApplication.bgimgList[position]);
+                shareView.getBackgroundView().setDrawableId(BaseApplication.bgImgList[position]);
             }
 
             @Override
@@ -93,7 +100,7 @@ public class ChangeBackgroundFragment extends Fragment {
         });
         shareView = (ShareView) view.findViewById(R.id.share_view);
         shareView.setType(ShareView.TYPE_BACKGROUND);
-        ResizeUtils.getInstance().layoutSquareView(shareView);
+        ResizeUtils.getInstance().layoutSquareView(shareView, 680, 680);
     }
 
 

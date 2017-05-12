@@ -8,11 +8,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.text.ClipboardManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ScrollView;
+
+import com.myth.poetrycommon.R;
+import com.myth.poetrycommon.activity.CommunityActivity;
 
 import java.io.File;
 import java.util.List;
@@ -78,7 +82,14 @@ public class OthersUtils {
         }
         Bitmap bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
+        v.layout(0, 0, v.getWidth(), v.getHeight());
         v.draw(canvas);
+
+        Matrix matrix = new Matrix();
+        float scale = 1.0f * 600 / v.getWidth();
+        matrix.setScale(scale, scale);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                bitmap.getHeight(), matrix, true);
         return bitmap;
     }
 
@@ -148,5 +159,25 @@ public class OthersUtils {
             e.printStackTrace();
         }
         return "1.0";
+    }
+
+
+    /**
+     * 为程序创建桌面快捷方式
+     */
+    public static void addShortcut(Context context) {
+        Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, context.getResources().getString(R.string.community_name));
+        shortcut.putExtra("duplicate", false);
+
+        Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
+        shortcutIntent.setClassName(context, CommunityActivity.class.getName());
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+
+        Intent.ShortcutIconResource iconRes = Intent.ShortcutIconResource.fromContext(context, R.mipmap.community_shotcut);
+        shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
+
+        context.sendBroadcast(shortcut);
     }
 }
