@@ -1,7 +1,5 @@
 package com.myth.poetrycommon.fragment;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -31,7 +29,6 @@ import android.widget.SeekBar;
 
 import com.myth.poetrycommon.R;
 import com.myth.poetrycommon.entity.Writing;
-import com.myth.poetrycommon.utils.Fastblur;
 import com.myth.poetrycommon.utils.ImageUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.ShareView;
@@ -98,16 +95,13 @@ public class ChangePictureFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_PICK_IMG) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
                 Cursor cursor = mContext.getContentResolver().query(selectedImage, filePathColumn, null,
                         null, null);
                 cursor.moveToFirst();
-
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
@@ -145,24 +139,15 @@ public class ChangePictureFragment extends Fragment {
         SeekBar seekBar1 = (SeekBar) view.findViewById(R.id.seekBar1);
         bright = seekBar1.getProgress();
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            /**
-             * 拖动条停止拖动的时候调用
-             */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 refresh();
             }
 
-            /**
-             * 拖动条开始拖动的时候调用
-             */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
-            /**
-             * 拖动条进度改变的时候调用
-             */
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bright = progress;
@@ -172,24 +157,15 @@ public class ChangePictureFragment extends Fragment {
         SeekBar seekBar2 = (SeekBar) view.findViewById(R.id.seekBar2);
         radius = seekBar2.getProgress();
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            /**
-             * 拖动条停止拖动的时候调用
-             */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 refresh();
             }
 
-            /**
-             * 拖动条开始拖动的时候调用
-             */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
-            /**
-             * 拖动条进度改变的时候调用
-             */
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 radius = progress;
@@ -198,8 +174,6 @@ public class ChangePictureFragment extends Fragment {
 
     }
 
-    @SuppressLint("NewApi")
-    @TargetApi(11)
     private void drawPicture(int bright, int radius) {
         Bitmap bmp = Bitmap.createBitmap(srcBitmap.getWidth(), srcBitmap.getHeight(), Config.ARGB_8888);
 
@@ -223,9 +197,6 @@ public class ChangePictureFragment extends Fragment {
                 blur.forEach(overlayAlloc);
                 overlayAlloc.copyTo(bmp);
                 rs.destroy();
-            } else {
-                // 低版本的折衷处理方法
-                bmp = Fastblur.fastblur(mContext, bmp, radius);
             }
         } catch (Exception e) {
             Log.e("ChangePicture", "drawPictureError");

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class WritingDatabaseHelper {
     private static String TABLE_NAME = "writing";
 
+    private static String COLUMN_FORMER_ID = "ci_id";
+
     private static SQLiteDatabase getDB() {
         return BaseApplication.instance.getWritingDB();
     }
@@ -29,11 +31,11 @@ public class WritingDatabaseHelper {
         generateText(writing);
         String sqlStr = "insert into "
                 + TABLE_NAME
-                + " (id,bgimg,create_dt,text,update_dt) values ( "
-                + "?,?,?,?,?)";
+                + " (id," + COLUMN_FORMER_ID + ",bgimg,create_dt,text,update_dt) values ( "
+                + "?,?,?,?,?,?)";
         getDB().execSQL(
                 sqlStr,
-                new String[]{writing.id + "",
+                new String[]{writing.id + "", writing.formerId + "",
                         writing.bgimg,
                         writing.create_dt + "", writing.text,
                         System.currentTimeMillis() + ""});
@@ -64,7 +66,7 @@ public class WritingDatabaseHelper {
             data.title = (titleString);
             data.bgimg = (cursor.getString(cursor.getColumnIndex("bgimg")));
 
-            int ci_id_index = cursor.getColumnIndex("ci_id");
+            int ci_id_index = cursor.getColumnIndex(COLUMN_FORMER_ID);
             if (ci_id_index != -1) {
                 data.formerId = cursor.getInt(ci_id_index);
             }
@@ -89,7 +91,6 @@ public class WritingDatabaseHelper {
             writing.desc = jb.optString("desc");
             writing.content = jb.optString("content");
             writing.title = jb.optString("title");
-            writing.formerId = jb.optInt("ci_id");
         } catch (JSONException e) {
             writing.content = writing.text;
             e.printStackTrace();
@@ -109,7 +110,6 @@ public class WritingDatabaseHelper {
             jb.put("desc", writing.desc);
             jb.put("content", writing.content);
             jb.put("title", writing.title);
-            jb.put("ci_id", writing.formerId);
             writing.text = jb.toString();
 
         } catch (JSONException e) {

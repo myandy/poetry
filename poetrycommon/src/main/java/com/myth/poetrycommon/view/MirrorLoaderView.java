@@ -35,7 +35,6 @@ public class MirrorLoaderView extends View {
         super(context, attrs);
     }
 
-
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 

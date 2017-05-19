@@ -163,6 +163,7 @@ public class CiActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity,
                         ShareEditActivity.class);
+                ci.cipai = cipai;
                 intent.putExtra("data", ci.toWriting());
                 startActivity(intent);
             }
