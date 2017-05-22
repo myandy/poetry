@@ -65,6 +65,8 @@ public class FormerEditActivity extends BaseActivity {
                     if (!validateSave()) {
                         Toast.makeText(mActivity, R.string.former_add_value_null, Toast.LENGTH_SHORT).show();
                         return;
+                    } else {
+                        doSave();
                     }
                 }
             });

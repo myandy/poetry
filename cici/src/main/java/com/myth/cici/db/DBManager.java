@@ -1,6 +1,7 @@
 package com.myth.cici.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.util.Log;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class DBManager {
+    private static final String TAG = "DBManager";
+
     private final static int BUFFER_SIZE = 400000;
 
     public static final String DB_NAME = "ci.db"; // 保存的数据库文件名，今天用于保存用户数据
@@ -33,7 +36,7 @@ public class DBManager {
     /**
      * The Constant VERSION.
      */
-    public static final int DB_VERSION = 4;
+    public static final int DB_VERSION = 5;
 
     public static void initDatabase(Context context) {
         try {
@@ -90,7 +93,13 @@ public class DBManager {
         SQLiteDatabase db = getDatabase();
         if (db.getVersion() < 4) {
             db.execSQL("CREATE TABLE \"cipai\" (\"id\" INTEGER PRIMARY KEY  NOT NULL ,\"name\" NVARCHAR(100) NOT NULL ,\"source\" TEXT,\"pingze\" TEXT,\"type\" INTEGER)");
-            db.setVersion(DB_VERSION);
+            db.setVersion(4);
+        }
+        if (db.getVersion() == 4) {
+            if (!checkColumnExist(db, "writing", "ci_id")) {
+                db.execSQL("alter TABLE writing add column ci_id integer");
+                db.setVersion(DB_VERSION);
+            }
         }
     }
 
@@ -100,5 +109,33 @@ public class DBManager {
 
     public static SQLiteDatabase getDatabase() {
         return SQLiteDatabase.openOrCreateDatabase(DB_PATH, null);
+    }
+
+    /**
+     * 方法1：检查某表列是否存在
+     *
+     * @param db
+     * @param tableName  表名
+     * @param columnName 列名
+     * @return
+     */
+    private static boolean checkColumnExist(SQLiteDatabase db, String tableName
+            , String columnName) {
+        boolean result = false;
+        Cursor cursor = null;
+        try {
+            //查询一行
+            cursor = db.rawQuery("SELECT * FROM " + tableName + " LIMIT 0"
+                    , null);
+            result = cursor != null && cursor.getColumnIndex(columnName) != -1;
+        } catch (Exception e) {
+            Log.e(TAG, "checkColumnExists1..." + e.getMessage());
+        } finally {
+            if (null != cursor && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return result;
     }
 }
