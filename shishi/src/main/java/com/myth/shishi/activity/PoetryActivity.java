@@ -344,13 +344,10 @@ public class PoetryActivity extends BaseActivity {
 
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(mActivity,
-                                    WebviewActivity.class);
-                            intent.putExtra("string", poetry.author);
-                            mActivity.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
                             }
+                            OthersUtils.goBaike(mActivity,poetry.author);
                         }
                     });
             menuView.findViewById(R.id.tv6).setOnClickListener(
@@ -358,13 +355,10 @@ public class PoetryActivity extends BaseActivity {
 
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(mActivity,
-                                    WebviewActivity.class);
-                            intent.putExtra("string", poetry.getShowTitle());
-                            mActivity.startActivity(intent);
                             if (menu != null) {
                                 menu.dismiss();
                             }
+                            OthersUtils.goBaike(mActivity,poetry.title);
                         }
                     });
             menuView.findViewById(R.id.tv7).setOnClickListener(

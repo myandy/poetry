@@ -24,7 +24,6 @@ import com.myth.poetrycommon.utils.StringUtils;
 import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.PoetrySearchActivity;
-import com.myth.shishi.activity.WebviewActivity;
 import com.myth.shishi.db.PoetryDatabaseHelper;
 import com.myth.shishi.entity.Author;
 import com.myth.shishi.entity.Poetry;
@@ -315,10 +314,7 @@ public class PoetryView extends LinearLayout {
 
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(mContext,
-                                    WebviewActivity.class);
-                            intent.putExtra("string", poetry.author);
-                            mContext.startActivity(intent);
+                            OthersUtils.goBaike(mContext, poetry.author);
                             if (menu != null) {
                                 menu.dismiss();
                             }
@@ -329,10 +325,7 @@ public class PoetryView extends LinearLayout {
 
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(mContext,
-                                    WebviewActivity.class);
-                            intent.putExtra("string", poetry.getShowTitle());
-                            mContext.startActivity(intent);
+                            OthersUtils.goBaike(mContext, poetry.title);
                             if (menu != null) {
                                 menu.dismiss();
                             }

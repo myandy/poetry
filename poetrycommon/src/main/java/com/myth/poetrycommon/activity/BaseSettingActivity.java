@@ -121,7 +121,6 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
             public void onClick(View v) {
                 Uri uri = Uri.parse("market://details?id=" + getPackageName());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (OthersUtils.isValidIntent(mActivity, intent)) {
                     startActivity(intent);
                 }
@@ -134,7 +133,9 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("http://www.weibo.com/anddymao"));
-                startActivity(intent);
+                if (OthersUtils.isValidIntent(mActivity, intent)) {
+                    startActivity(intent);
+                }
             }
         });
 

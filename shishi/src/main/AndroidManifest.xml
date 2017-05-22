@@ -81,10 +81,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
         <activity
-            android:name=".activity.WebviewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme"/>
-        <activity
             android:name=".activity.DuiShiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
