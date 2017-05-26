@@ -41,10 +41,11 @@ captures/
 
 shishi/build
 shishi/bin/
-
+shishi/release
 
 cici/build
 cici/bin/
+cici/release
 
 .idea
 .idea/

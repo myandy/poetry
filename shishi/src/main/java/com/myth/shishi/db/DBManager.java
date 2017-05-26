@@ -94,14 +94,23 @@ public class DBManager {
         SQLiteDatabase db = getDatabase();
         if (db.getVersion() == 0) {
             // old version former_name is not null,need to be drop
-            db.execSQL(" create table writing1(id integer,ci_id integer,title text,text text, bgimg char(40), layout integer,create_dt DATETIME DEFAULT CURRENT_TIMESTAMP,update_dt DATETIME DEFAULT CURRENT_TIMESTAMP, primary key (id) )");
-            db.execSQL(" INSERT INTO writing1 (id,title,text,bgimg,layout,create_dt,update_dt) SELECT id,title,text,bgimg,layout,create_dt,update_dt FROM writing"); //将旧表的内容插入到新表中
-            db.execSQL(" DROP TABLE writing");
-            db.execSQL(" alter table writing1 rename to writing");
-            db.setVersion(1);
-            Log.d("myth", "DB update to 1");
+            db.beginTransaction();
+            try {
+                db.execSQL(" create table writing1(id integer,ci_id integer,title text,text text, bgimg char(40), layout integer,create_dt DATETIME DEFAULT CURRENT_TIMESTAMP,update_dt DATETIME DEFAULT CURRENT_TIMESTAMP, primary key (id) )");
+                db.execSQL(" INSERT INTO writing1 (id,title,text,bgimg,layout,create_dt,update_dt) SELECT id,title,text,bgimg,layout,create_dt,update_dt FROM writing"); //将旧表的内容插入到新表中
+                db.execSQL(" DROP TABLE writing");
+                db.execSQL(" alter table writing1 rename to writing");
 
-            db.execSQL("CREATE TABLE \"cipai\" (\"id\" INTEGER PRIMARY KEY  NOT NULL ,\"name\" NVARCHAR(100) NOT NULL ,\"source\" TEXT,\"pingze\" TEXT,\"type\" INTEGER)");
+                db.execSQL("CREATE TABLE \"cipai\" (\"id\" INTEGER PRIMARY KEY  NOT NULL ,\"name\" NVARCHAR(100) NOT NULL ,\"source\" TEXT,\"pingze\" TEXT,\"type\" INTEGER)");
+                db.setVersion(DB_VERSION);
+                db.setTransactionSuccessful();
+
+                Log.d("myth", "DB update to 2");
+            } catch (Exception e) {
+
+            } finally {
+                db.endTransaction();
+            }
         }
     }
 
