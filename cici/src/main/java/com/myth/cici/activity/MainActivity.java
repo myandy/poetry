@@ -101,7 +101,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         new BackupTask(this).execute(BackupTask.COMMAND_BACKUP);
     }
 
@@ -159,9 +158,9 @@ public class MainActivity extends BaseActivity {
             if (position == getCount() - 1) {
                 view = new MainView(mActivity);
             } else if (isNoWriting()) {
-                view = new IntroductionView(mActivity, INTRO_LIST,getString(R.string.intro_title));
+                view = new IntroductionView(mActivity, INTRO_LIST, getString(R.string.intro_title));
             } else {
-                WritingView writingView=new WritingView(mActivity, datas.get(position));
+                WritingView writingView = new WritingView(mActivity, datas.get(position));
                 writingView.setOnDeleteListener(new WritingView.OnDeleteListener() {
                     @Override
                     public void onDelete() {
@@ -170,9 +169,8 @@ public class MainActivity extends BaseActivity {
                 });
                 view = writingView;
             }
-            container.addView(view, 0);
+            container.addView(view, -1, -1);
             return view;
-
         }
 
         @Override

@@ -28,6 +28,8 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 
 import com.myth.poetrycommon.R;
+import com.myth.poetrycommon.activity.EditActivity;
+import com.myth.poetrycommon.activity.ShareEditActivity;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.ImageUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
@@ -54,19 +56,19 @@ public class ChangePictureFragment extends Fragment {
     public ChangePictureFragment() {
     }
 
-    public static ChangePictureFragment getInstance(Writing writing) {
-        ChangePictureFragment fileViewFragment = new ChangePictureFragment();
-        fileViewFragment.writing = writing;
-        return fileViewFragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
         View view = inflater.inflate(R.layout.fragment_picture, container, false);
+
+        if (getActivity() instanceof EditActivity) {
+            writing = ((EditActivity) getActivity()).writing;
+        } else if (getActivity() instanceof ShareEditActivity) {
+            writing = ((ShareEditActivity) getActivity()).writing;
+        }
         initViews(view);
+
         return view;
     }
 
@@ -84,7 +86,7 @@ public class ChangePictureFragment extends Fragment {
 
     public void save() {
         writing.bitmap = (destBitmap);
-        writing.bgimg = ("");
+        writing.bgimg = "";
     }
 
     private void refresh() {
@@ -108,7 +110,7 @@ public class ChangePictureFragment extends Fragment {
                     String picturePath = cursor.getString(columnIndex);
                     cursor.close();
 
-                    Bitmap bmp = ImageUtils.getimage(picturePath);
+                    Bitmap bmp = ImageUtils.getImage(picturePath);
                     srcBitmap = bmp;
                     destBitmap = bmp;
                 } catch (Exception e) {
@@ -180,6 +182,9 @@ public class ChangePictureFragment extends Fragment {
     }
 
     private void drawPicture(int bright, int radius) {
+        if (srcBitmap == null) {
+            return;
+        }
         Bitmap bmp = Bitmap.createBitmap(srcBitmap.getWidth(), srcBitmap.getHeight(), Config.ARGB_8888);
 
         try {

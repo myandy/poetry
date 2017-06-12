@@ -59,7 +59,11 @@ public class ResizeUtils {
     public void layoutSquareView(View itemContainer, int width, int height) {
         ViewGroup.LayoutParams params = itemContainer.getLayoutParams();
         params.width = resize(width);
-        params.height = resize(height);
+        if (height > 0) {
+            params.height = resize(height);
+        } else {
+            params.height = height;
+        }
         itemContainer.setLayoutParams(params);
     }
 }

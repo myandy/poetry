@@ -26,7 +26,7 @@ public class Writing implements Serializable,ISearchAble
 
     public int layout;
 
-    public Bitmap bitmap;
+    public transient Bitmap bitmap;
 
     public Former former;
     

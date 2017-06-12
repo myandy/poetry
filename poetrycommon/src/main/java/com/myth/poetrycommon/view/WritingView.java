@@ -41,7 +41,6 @@ public class WritingView extends LinearLayout {
         super(context, attrs);
     }
 
-
     public WritingView(Context context, Writing writing) {
         super(context);
         this.writing = writing;
@@ -51,7 +50,7 @@ public class WritingView extends LinearLayout {
 
     private void initView() {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View root = inflater.inflate(R.layout.layout_writing, this);
+        inflater.inflate(R.layout.layout_writing, this);
 
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER_HORIZONTAL);
@@ -61,14 +60,13 @@ public class WritingView extends LinearLayout {
 
         shareView.setWriting(writing);
 
-        TextView time = (TextView) root.findViewById(R.id.time);
+        TextView time = (TextView) findViewById(R.id.time);
         time.setText(DateUtils.longToFormat(writing.update_dt, DateUtils.YMD_HM_FORMAT));
 
 
         final AlertDialog dialog = new AlertDialog.Builder(mContext).setItems(new String[]{"分享", "编辑", "删除"},
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
                         if (which == 0) {
                             Intent intent = new Intent(mContext, ShareActivity.class);
                             intent.putExtra("writing", writing);
@@ -103,7 +101,7 @@ public class WritingView extends LinearLayout {
                     }
                 }).create();
 
-        root.findViewById(R.id.content_linear).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.content_linear).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {

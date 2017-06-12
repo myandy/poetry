@@ -68,6 +68,8 @@ public abstract class BaseApplication extends Application {
             OthersUtils.addShortcut(this);
             setHasStart();
         }
+
+//        LeakCanary.install(this);
     }
 
     public int getColorByPos(int pos) {
@@ -245,5 +247,4 @@ public abstract class BaseApplication extends Application {
         edit.putBoolean("first_start", true);
         edit.commit();
     }
-
 }

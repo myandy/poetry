@@ -36,4 +36,6 @@ dependencies {
 //    compile 'com.android.support:recyclerview-v7:+'
     compile project(':umeng_community_library_project')
     compile ('com.umeng.analytics:analytics:latest.integration')
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
 }

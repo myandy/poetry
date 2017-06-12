@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.R;
+import com.myth.poetrycommon.activity.EditActivity;
+import com.myth.poetrycommon.activity.ShareEditActivity;
 import com.myth.poetrycommon.adapter.BaseAdapter;
 import com.myth.poetrycommon.adapter.ImageAdapter;
 import com.myth.poetrycommon.entity.Writing;
@@ -35,17 +37,19 @@ public class ChangeBackgroundFragment extends Fragment {
     public ChangeBackgroundFragment() {
     }
 
-    public static ChangeBackgroundFragment getInstance(Writing writing) {
-        ChangeBackgroundFragment fileViewFragment = new ChangeBackgroundFragment();
-        fileViewFragment.writing = writing;
-        return fileViewFragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
         View view = inflater.inflate(R.layout.fragment_background, container, false);
+
+        if (getActivity() instanceof EditActivity) {
+            writing = ((EditActivity) getActivity()).writing;
+        }
+        else if (getActivity() instanceof ShareEditActivity) {
+            writing = ((ShareEditActivity) getActivity()).writing;
+        }
+
         initViews(view);
         return view;
     }

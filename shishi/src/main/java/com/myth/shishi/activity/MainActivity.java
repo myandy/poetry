@@ -61,8 +61,6 @@ public class MainActivity extends BaseActivity {
         viewPager.setOffscreenPageLimit(3);
         pagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(pagerAdapter);
-
-
         viewPager.setPageMargin(ResizeUtils.getInstance().resize(60));
         MyOnPageChangeListener myOnPageChangeListener = new MyOnPageChangeListener();
         viewPager.setOnPageChangeListener(myOnPageChangeListener);
@@ -97,9 +95,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
     }
-
 
     @Override
     protected void onResume() {
@@ -110,7 +106,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         new BackupTask(this).execute(BackupTask.COMMAND_BACKUP);
     }
 
@@ -168,7 +163,7 @@ public class MainActivity extends BaseActivity {
             if (position == getCount() - 1) {
                 view = new MainView(mActivity);
             } else if (isNoWriting()) {
-                view = new IntroductionView(mActivity, INTRO_LIST,getString(R.string.intro_title));
+                view = new IntroductionView(mActivity, INTRO_LIST, getString(R.string.intro_title));
             } else {
                 WritingView writingView = new WritingView(mActivity, datas.get(position));
                 writingView.setOnDeleteListener(new WritingView.OnDeleteListener() {
@@ -179,7 +174,7 @@ public class MainActivity extends BaseActivity {
                 });
                 view = writingView;
             }
-            container.addView(view, 0);
+            container.addView(view, -1, -1);
             return view;
 
         }

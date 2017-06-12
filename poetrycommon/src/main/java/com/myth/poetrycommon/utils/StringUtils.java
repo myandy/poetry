@@ -5,7 +5,6 @@ import android.text.TextUtils;
 public class StringUtils {
 
     public static boolean isEmpty(String s) {
-
         return TextUtils.isEmpty(s) || TextUtils.isEmpty(s.replaceAll("\n", "").replaceAll(" ", ""));
     }
 

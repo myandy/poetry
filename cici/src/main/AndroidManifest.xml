@@ -1,93 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--suppress CheckTagEmptyBody -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.myth.cici"
->
+          package="com.myth.cici"
+    >
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="21"/>
 
     <!-- 使用相机 -->
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="true"/>
     <!-- 检测网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 获取mac地址作为用户的备用唯一标识 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- 获取用户手机的IMEI，用来唯一的标识用户 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 缓存资源优先存入SDcard -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- 允许应用程序联网，以便向我们的服务器端发送数据 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 定位所需的权限 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 推送相关的权限 -->
-    <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <!-- QQ登录所需权限 -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <!-- 往SDCard的创建与删除文件权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
 
     <application
         android:name="com.myth.cici.MyApplication"
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/CustomerTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.CipaiListActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.CipaiActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.CiActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.SettingActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
         <activity
             android:name=".activity.AboutActivity"
-            android:theme="@style/AppBaseTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="550b99fafd98c544ba0006c6"/>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="xiaomi" />
+            android:value="xiaomi"/>
 
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="390b471f6bae9bf67170f079b8f75ccc" />
+            android:value="390b471f6bae9bf67170f079b8f75ccc"/>
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d9d0b7012b8240035a3cad73ef30efed" />
+            android:value="d9d0b7012b8240035a3cad73ef30efed"/>
 
     </application>
 

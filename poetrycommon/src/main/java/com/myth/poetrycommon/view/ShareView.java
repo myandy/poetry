@@ -100,12 +100,6 @@ public class ShareView extends ScrollView {
         text = (TextView) findViewById(R.id.text);
         author = (TextView) findViewById(R.id.author);
         desc = (TextView) findViewById(R.id.desc);
-
-
-        title.setTypeface(BaseApplication.instance.getTypeface());
-        text.setTypeface(BaseApplication.instance.getTypeface());
-        author.setTypeface(BaseApplication.instance.getTypeface());
-        desc.setTypeface(BaseApplication.instance.getTypeface());
     }
 
     public void refresh() {

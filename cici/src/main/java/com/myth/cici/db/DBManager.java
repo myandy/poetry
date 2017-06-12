@@ -3,7 +3,6 @@ package com.myth.cici.db;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
 import android.util.Log;
 
 import com.myth.cici.R;
@@ -25,12 +24,10 @@ public class DBManager {
 
     public static final String PACKAGE_NAME = "com.myth.cici";
 
-    public static final String DB_PATH = "/data"
-            + Environment.getDataDirectory().getAbsolutePath() + "/"
+    public static final String DB_PATH = "/data/data/"
             + PACKAGE_NAME + "/" + DB_NAME; // 在手机里存放数据库的位置
 
-    public static final String DB_NEW_PATH = "/data"
-            + Environment.getDataDirectory().getAbsolutePath() + "/"
+    public static final String DB_NEW_PATH = "/data/data/"
             + PACKAGE_NAME + "/" + DB_NEW_NAME; // 在手机里存放数据库的位置
 
     /**

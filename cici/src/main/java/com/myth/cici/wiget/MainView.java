@@ -1,17 +1,14 @@
 package com.myth.cici.wiget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myth.cici.MyApplication;
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
 import com.myth.cici.activity.CipaiListActivity;
@@ -23,33 +20,23 @@ import com.umeng.comm.core.impl.CommunityFactory;
 
 import java.util.List;
 
-public class MainView extends RelativeLayout {
+public class MainView extends FrameLayout {
 
-
-    private MyApplication myApplication;
     private Context mContext;
-
-    public MainView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
-
-    public MainView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
 
     public MainView(Context context) {
         super(context);
         mContext = context;
-        myApplication = (MyApplication) ((Activity) mContext).getApplication();
         initView();
     }
 
     private void initView() {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View root = inflater.inflate(R.layout.layout_main, null);
 
-        ViewGroup showAll = (ViewGroup) root.findViewById(R.id.show_all);
+        inflater.inflate(R.layout.layout_main, this);
+
+        ViewGroup showAll = (ViewGroup) findViewById(R.id.show_all);
         showAll.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -57,24 +44,18 @@ public class MainView extends RelativeLayout {
                 mContext.startActivity(new Intent(mContext, CipaiListActivity.class));
             }
         });
-        for (int i = 0; i < showAll.getChildCount(); i++) {
-            ((TextView) showAll.getChildAt(i)).setTypeface(myApplication.getTypeface());
-        }
 
-        TextView showOne = (TextView) root.findViewById(R.id.show_one);
-        showOne.setTypeface(myApplication.getTypeface());
+        TextView showOne = (TextView) findViewById(R.id.show_one);
         showOne.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CiActivity.class);
                 mContext.startActivity(intent);
-
             }
         });
 
-        TextView share = (TextView) root.findViewById(R.id.community);
-        share.setTypeface(myApplication.getTypeface());
+        TextView share = (TextView) findViewById(R.id.community);
         share.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -84,8 +65,7 @@ public class MainView extends RelativeLayout {
             }
         });
 
-        TextView writing = (TextView) root.findViewById(R.id.writing);
-        writing.setTypeface(myApplication.getTypeface());
+        TextView writing = (TextView) findViewById(R.id.writing);
         writing.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -99,8 +79,6 @@ public class MainView extends RelativeLayout {
                 }
             }
         });
-
-        addView(root, new LayoutParams(-1, -1));
     }
 
 }

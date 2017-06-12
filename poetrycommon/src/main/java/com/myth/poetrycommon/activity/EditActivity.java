@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -37,7 +38,7 @@ public class EditActivity extends BaseActivity {
 
     private Former former;
 
-    private Writing writing;
+    public Writing writing;
 
     ChangeBackgroundFragment changeBackgroundFragment;
 
@@ -45,7 +46,7 @@ public class EditActivity extends BaseActivity {
 
     ChangePictureFragment changePictureFragment;
 
-    ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    ArrayList<Fragment> fragments = new ArrayList<>();
 
     private int currentIndex = 0;
 
@@ -54,20 +55,41 @@ public class EditActivity extends BaseActivity {
     private String oldTitle;
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("former", former);
+        outState.putSerializable("writing", writing);
+        super.onSaveInstanceState(outState);
+        Log.w(TAG, "onSaveInstanceState" + (former == null) + (writing == null));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.w(TAG, "onRestoreInstanceState" + (former == null) + (writing == null));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.w(TAG, "onCreate" + (savedInstanceState == null));
         setContentView(R.layout.activity_edit);
 
-        former = (Former) getIntent().getSerializableExtra("former");
-        writing = (Writing) getIntent().getSerializableExtra("writing");
+        if (savedInstanceState != null) {
+            former = (Former) savedInstanceState.getSerializable("former");
+            writing = (Writing) savedInstanceState.getSerializable("writing");
+        }
+        else{
+            former = (Former) getIntent().getSerializableExtra("former");
+            writing = (Writing) getIntent().getSerializableExtra("writing");
+        }
 
         // 填新词
-        if (former != null) {
+        if (writing == null) {
             writing = new Writing();
             writing.id = (int) System.currentTimeMillis();
             writing.formerId = former.id;
             writing.bgimg = ("0");
-            writing.former = (former);
+            writing.former = former;
         }
         // 旧词编辑
         else if (writing != null) {
@@ -76,7 +98,6 @@ public class EditActivity extends BaseActivity {
                 former = FormerDatabaseHelper.getFormerById(writing.formerId);
             }
         }
-
 
         if (TextUtils.isEmpty(writing.author)) {
             writing.author = BaseApplication.getDefaultUserName();
@@ -113,7 +134,7 @@ public class EditActivity extends BaseActivity {
                     editFragment.save();
                 }
                 save();
-                writing.bitmap = (null);
+                writing.bitmap = null;
                 Intent intent = new Intent(mActivity, ShareActivity.class);
                 intent.putExtra("writing", writing);
                 startActivity(intent);
@@ -180,10 +201,11 @@ public class EditActivity extends BaseActivity {
         addBottomCenterView(picture, lps);
 
         // 创建修改实例
-        editFragment = EditFragment.getInstance(former, writing);
-        changeBackgroundFragment = ChangeBackgroundFragment.getInstance(writing);
-        changePictureFragment = ChangePictureFragment.getInstance(writing);
+        editFragment = new EditFragment();
+        changeBackgroundFragment = new ChangeBackgroundFragment();
+        changePictureFragment = new ChangePictureFragment();
 
+        fragments.clear();
         fragments.add(editFragment);
         fragments.add(changeBackgroundFragment);
         fragments.add(changePictureFragment);
@@ -234,7 +256,7 @@ public class EditActivity extends BaseActivity {
         if (!StringUtils.isNumeric(writing.bgimg) && writing.bitmap != null) {
             File file = new File(Constant.BACKGROUND_DIR, writing.bitmap.hashCode() + ".jpg");
             FileUtils.saveBitmap(writing.bitmap, file);
-            writing.bgimg = (file.getAbsolutePath());
+            writing.bgimg = file.getAbsolutePath();
         }
         WritingDatabaseHelper.saveWriting(writing);
     }

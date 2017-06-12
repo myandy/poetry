@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class ShareEditActivity extends BaseActivity {
 
-    private Writing writing;
+    public Writing writing;
 
     ChangeBackgroundFragment changeBackgroundFragment;
 
@@ -110,8 +110,8 @@ public class ShareEditActivity extends BaseActivity {
         addBottomCenterView(background, lps);
         addBottomCenterView(picture, lps);
 
-        changeBackgroundFragment = ChangeBackgroundFragment.getInstance(writing);
-        changePictureFragment = ChangePictureFragment.getInstance(writing);
+        changeBackgroundFragment = new ChangeBackgroundFragment();
+        changePictureFragment = new ChangePictureFragment();
 
         fragments.add(changeBackgroundFragment);
         fragments.add(changePictureFragment);

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <com.myth.poetrycommon.view.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:duplicateParentState="true"
@@ -22,7 +22,7 @@
             android:textColor="@color/selector_white_to_grey"
             android:textSize="22sp"/>
 
-        <TextView
+        <com.myth.poetrycommon.view.TypefaceTextView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/circle_background"
@@ -32,7 +32,7 @@
             android:textColor="@color/black_to_hint"
             android:textSize="22sp"/>
 
-        <TextView
+        <com.myth.poetrycommon.view.TypefaceTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="人"
@@ -40,7 +40,7 @@
             android:textSize="22sp"/>
     </LinearLayout>
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/show_one"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
@@ -51,7 +51,7 @@
         android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/duishi"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
@@ -60,7 +60,7 @@
         android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
@@ -70,7 +70,7 @@
         android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 
-    <TextView
+    <com.myth.poetrycommon.view.TypefaceTextView
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="60dp"

@@ -25,10 +25,10 @@ import android.widget.TextView;
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.R;
+import com.myth.poetrycommon.activity.EditActivity;
 import com.myth.poetrycommon.activity.FormerIntroActivity;
 import com.myth.poetrycommon.activity.YunSearchActivity;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
-import com.myth.poetrycommon.entity.Former;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.poetrycommon.utils.CheckUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
@@ -54,8 +54,6 @@ public class EditFragment extends Fragment {
 
     private View root;
 
-    private Former former;
-
     private Writing writing;
 
     private TextView title;
@@ -73,19 +71,17 @@ public class EditFragment extends Fragment {
     public EditFragment() {
     }
 
-    public static EditFragment getInstance(Former former, Writing writing) {
-        EditFragment fileViewFragment = new EditFragment();
-        fileViewFragment.former = former;
-        fileViewFragment.writing = writing;
-        return fileViewFragment;
-    }
-
     @Override
     public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mContext = inflater.getContext();
         root = inflater.inflate(R.layout.fragment_edit, container, false);
+
+        if (getActivity() instanceof EditActivity) {
+            writing = ((EditActivity) getActivity()).writing;
+        }
+
         initViews(root);
         return root;
     }
@@ -129,7 +125,7 @@ public class EditFragment extends Fragment {
         editTexts.clear();
         keyboard = view.findViewById(R.id.edit_keyboard);
         editContent = (LinearLayout) view.findViewById(R.id.edit_content);
-        String s = former.pingze;
+        String s = writing.former.pingze;
 
         if (TextUtils.isEmpty(s)) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -240,7 +236,7 @@ public class EditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, FormerIntroActivity.class);
-                intent.putExtra("former", former);
+                intent.putExtra("former", writing.former);
                 startActivity(intent);
             }
         });
