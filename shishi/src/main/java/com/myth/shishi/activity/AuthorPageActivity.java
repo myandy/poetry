@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 
 import com.myth.poetrycommon.BaseActivity;
+import com.myth.poetrycommon.BaseApplication;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Writing;
 import com.myth.shishi.R;
@@ -48,6 +49,10 @@ public class AuthorPageActivity extends BaseActivity {
         } else {
             isSelf = true;
             writings = WritingDatabaseHelper.getAllWriting();
+        }
+
+        if (author.color == 0) {
+            author.color = BaseApplication.instance.getRandomColor();
         }
 
         if (getIntent().hasExtra("id")) {
@@ -103,7 +108,7 @@ public class AuthorPageActivity extends BaseActivity {
     private PagerAdapter galleryAdapter = new PagerAdapter() {
         public Object instantiateItem(android.view.ViewGroup container,
                                       int position) {
-            View root=null;
+            View root = null;
             if (!isSelf) {
                 if (position <= 0 || position > list.size() + 1) {
                     return new View(mActivity);

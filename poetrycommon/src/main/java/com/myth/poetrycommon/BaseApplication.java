@@ -10,7 +10,6 @@ import android.preference.PreferenceManager;
 
 import com.myth.poetrycommon.db.ColorDatabaseHelper;
 import com.myth.poetrycommon.entity.ColorEntity;
-import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 
 import java.util.List;
@@ -65,7 +64,6 @@ public abstract class BaseApplication extends Application {
             defaultTypeface = 1;
         }
         if (isFirstStart()) {
-            OthersUtils.addShortcut(this);
             setHasStart();
         }
 

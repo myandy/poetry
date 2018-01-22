@@ -44,7 +44,7 @@ public class PoetrySearchActivity extends NormalSearchListActivity<Poetry> {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mActivity, AuthorPageActivity.class);
-                intent.putExtra("index", list.get(position).id);
+                intent.putExtra("id", list.get(position).id);
                 if (author == null) {
                     intent.putExtra("author", AuthorDatabaseHelper
                             .getAuthorByName(list.get(position)
