@@ -33,7 +33,7 @@ public class DBManager {
     /**
      * The Constant VERSION.
      */
-    public static final int DB_VERSION = 5;
+    public static final int DB_VERSION = 6;
 
     public static void initDatabase(Context context) {
         try {

@@ -83,13 +83,6 @@
             android:name="UMENG_CHANNEL"
             android:value="xiaomi"/>
 
-        <meta-data
-            android:name="UMENG_MESSAGE_SECRET"
-            android:value="390b471f6bae9bf67170f079b8f75ccc"/>
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="d9d0b7012b8240035a3cad73ef30efed"/>
-
     </application>
 
 </manifest>

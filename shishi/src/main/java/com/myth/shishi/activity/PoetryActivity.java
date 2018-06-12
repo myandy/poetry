@@ -408,7 +408,7 @@ public class PoetryActivity extends BaseActivity {
 
         } else {
             TextView collect = (TextView) menuView.findViewById(R.id.tv3);
-            if (PoetryDatabaseHelper.isCollect(poetry.poetry)) {
+            if (PoetryDatabaseHelper.isCollect(poetry.id)) {
                 collect.setText("取消收藏");
             } else {
                 collect.setText("收藏");

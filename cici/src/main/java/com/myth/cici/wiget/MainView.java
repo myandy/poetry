@@ -12,11 +12,10 @@ import android.widget.Toast;
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
 import com.myth.cici.activity.CipaiListActivity;
+import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Writing;
-import com.umeng.comm.core.CommunitySDK;
-import com.umeng.comm.core.impl.CommunityFactory;
 
 import java.util.List;
 
@@ -60,8 +59,8 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                CommunitySDK mCommSDK = CommunityFactory.getCommSDK(mContext);
-                mCommSDK.openCommunity(mContext);
+                Intent intent = new Intent(mContext, CommunityActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

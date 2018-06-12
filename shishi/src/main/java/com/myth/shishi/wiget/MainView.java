@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorListActivity;
@@ -18,8 +19,6 @@ import com.myth.shishi.activity.AuthorSearchActivity;
 import com.myth.shishi.activity.DuiShiActivity;
 import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
-import com.umeng.comm.core.CommunitySDK;
-import com.umeng.comm.core.impl.CommunityFactory;
 
 public class MainView extends FrameLayout {
 
@@ -118,9 +117,8 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                CommunitySDK mCommSDK = CommunityFactory.getCommSDK(mContext);
-                mCommSDK.openCommunity(mContext);
-
+                Intent intent = new Intent(mContext, CommunityActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }

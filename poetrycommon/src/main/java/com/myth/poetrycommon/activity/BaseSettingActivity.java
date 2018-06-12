@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.BaseApplication;
@@ -140,7 +139,6 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
         });
 
         findViewById(R.id.item_backup).setOnClickListener(this);
-        findViewById(R.id.item_shortcut).setOnClickListener(this);
 
         ((TextView) findViewById(R.id.about_title)).setText(getAboutTitle());
 
@@ -166,7 +164,6 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
         ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.backup_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
-        ((TextView) findViewById(R.id.shortcut_title)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {
@@ -183,10 +180,6 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
         if (i == R.id.item_backup) {
             Intent backupIntent = new Intent(mActivity, BackupActivity.class);
             startActivity(backupIntent);
-
-        } else if (i == R.id.item_shortcut) {
-            OthersUtils.addShortcut(mActivity);
-            Toast.makeText(mActivity, R.string.add_shortcut, Toast.LENGTH_LONG).show();
         }
     }
 

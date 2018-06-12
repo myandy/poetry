@@ -1,2 +1,1 @@
 include ':cici',':shishi', ':poetrycommon'
-include ':umeng_community_library_project'

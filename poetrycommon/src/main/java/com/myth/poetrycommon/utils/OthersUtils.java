@@ -15,9 +15,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 
-import com.myth.poetrycommon.R;
-import com.myth.poetrycommon.activity.CommunityActivity;
-
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.List;
@@ -162,25 +159,6 @@ public class OthersUtils {
         return "1.0";
     }
 
-
-    /**
-     * 为程序创建桌面快捷方式
-     */
-    public static void addShortcut(Context context) {
-        Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
-
-        shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, context.getResources().getString(R.string.community_name));
-        shortcut.putExtra("duplicate", false);
-
-        Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
-        shortcutIntent.setClassName(context, CommunityActivity.class.getName());
-        shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-
-        Intent.ShortcutIconResource iconRes = Intent.ShortcutIconResource.fromContext(context, R.mipmap.community_shotcut);
-        shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
-
-        context.sendBroadcast(shortcut);
-    }
 
     final static String BAIKE_URL_PRE = "http://wapbaike.baidu.com/search?submit=%E8%BF%9B%E5%85%A5%E8%AF%8D%E6%9D%A1&uid=bk_1345472299_718&ssid=&st=1&bd_page_type=1&bk_fr=srch&word=";
 

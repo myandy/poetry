@@ -9,8 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/** * Created by wnw on 16-5-22. */
-
 public class MyDecoration extends RecyclerView.ItemDecoration{
 
     private Context mContext;

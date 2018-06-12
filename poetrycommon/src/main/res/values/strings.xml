@@ -6,7 +6,6 @@
     <string name="search_writing_hint">搜索作品夹</string>
     <string name="search_former_hint">搜索格律</string>
 
-
     <string name="search">搜索</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
@@ -26,7 +25,6 @@
     <string name="tts_unable">抱歉，您的手机暂不支持系统语音朗读</string>
     <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
     <string name="auto_save">智能保存</string>
-
 
     <!-- setting-->
     <string name="setting_username">作者名</string>
@@ -64,11 +62,9 @@
     <string name="about_qq_toast">QQ群号已复制到剪切板，请打开QQ查找QQ群加入我们</string>
     <string name="about_wexin_toast">微信公众号已复制到剪切板，请打开微信查找公众号找到我们并关注</string>
 
-
-    <string name="community_name">诗词社区</string>
+    <string name="community_name">社区</string>
     <string name="former_delete">格律已删除</string>
     <string name="copy_text">复制文本</string>
-    <string name="shortcut_title">增加社区快捷方式</string>
     <string name="writing_empty">您当前还没有作品哦，请点击左下角加号选择格律创作</string>
-    <string name="add_shortcut">操作成功！如果没有生成快捷方式请在设置中找到本应用并允许创建快捷方式</string>
+    <string name="community_text">由于友盟停止提供第三方服服务，导致App内的社区关闭，我们开通了知识星球做为我们的新社区。\n在微信扫描二维码，即可进入,点击图片可以保存到相册。</string>
 </resources>
