@@ -329,7 +329,7 @@ public class ShareActivity extends BaseActivity {
             setting.getLocationOnScreen(location);
 
             location[0] = location[0] + setting.getWidth() / 2 - popupWidth / 2;
-            location[1] = location[1] - popupHeight;
+            location[1] = location[1] - popupHeight - ResizeUtils.getInstance().dip2px(20);
 
             menu.showAtLocation(setting, Gravity.NO_GRAVITY, location[0], location[1]);
             // 显示在某个位置

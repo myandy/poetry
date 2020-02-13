@@ -50,6 +50,8 @@ public class CipaiActivity extends BaseActivity {
         ciList.add(intro);
         ciList.addAll(cis);
         initView();
+
+
     }
 
     private void initView() {

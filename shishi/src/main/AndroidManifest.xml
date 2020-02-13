@@ -3,9 +3,7 @@
           package="com.myth.shishi"
     >
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="21"/>
+    <uses-sdk android:targetSdkVersion="21"/>
 
     <!-- 使用相机 -->
     <uses-feature

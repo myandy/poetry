@@ -1,6 +1,8 @@
 package com.myth.cici.wiget;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
+import com.myth.cici.activity.CiSearchActivity;
 import com.myth.cici.activity.CipaiListActivity;
 import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
@@ -69,13 +72,30 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                List<Writing> writings = WritingDatabaseHelper.getAllWriting();
-                if (writings.isEmpty()) {
-                    Toast.makeText(mContext, R.string.writing_empty, Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(mContext, WritingSearchActivity.class);
-                    mContext.startActivity(intent);
-                }
+                new AlertDialog.Builder(mContext).setItems(
+                        new String[]{mContext.getString(R.string.search_ci), mContext.getString(R.string.search_collect), mContext.getString(R.string.search_writing)},
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                if (which == 0) {
+                                    Intent intent = new Intent(mContext,
+                                            CiSearchActivity.class);
+                                    mContext.startActivity(intent);
+                                } else if (which == 1) {
+                                    Intent intent = new Intent(mContext,
+                                            CiSearchActivity.class);
+                                    intent.putExtra("collect", true);
+                                    mContext.startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(mContext,
+                                            WritingSearchActivity.class);
+                                    mContext.startActivity(intent);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
     }

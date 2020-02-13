@@ -4,7 +4,8 @@
     <string name="app_name">词Ci</string>
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按字数排序</string>
-
+    <string name="search_ci">所有词</string>
+    <string name="search_ci_hint">搜索词</string>
 
     <string name="setting_about">关于词Ci</string>
     <string name="about_text_qq">用户交流QQ群：535860726</string>

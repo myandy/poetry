@@ -347,7 +347,7 @@ public class PoetryActivity extends BaseActivity {
                             if (menu != null) {
                                 menu.dismiss();
                             }
-                            OthersUtils.goBaike(mActivity,poetry.author);
+                            OthersUtils.goBaike(mActivity, poetry.author);
                         }
                     });
             menuView.findViewById(R.id.tv6).setOnClickListener(
@@ -358,7 +358,7 @@ public class PoetryActivity extends BaseActivity {
                             if (menu != null) {
                                 menu.dismiss();
                             }
-                            OthersUtils.goBaike(mActivity,poetry.title);
+                            OthersUtils.goBaike(mActivity, poetry.title);
                         }
                     });
             menuView.findViewById(R.id.tv7).setOnClickListener(
@@ -400,7 +400,7 @@ public class PoetryActivity extends BaseActivity {
             more.getLocationOnScreen(location);
 
             location[0] = location[0] + more.getWidth() / 2 - popupWidth / 2;
-            location[1] = location[1] - popupHeight;
+            location[1] = location[1] - popupHeight - ResizeUtils.getInstance().dip2px(20);
 
             menu.showAtLocation(more, Gravity.NO_GRAVITY, location[0],
                     location[1]);

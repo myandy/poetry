@@ -27,8 +27,8 @@ android {
         }
 
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             zipAlignEnabled true
 
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
@@ -39,5 +39,5 @@ apply from: 'signing.gradle'
 
 dependencies {
 
-    compile project(':poetrycommon')
+    implementation project(':poetrycommon')
 }

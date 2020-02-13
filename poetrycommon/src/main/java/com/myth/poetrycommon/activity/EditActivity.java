@@ -77,8 +77,7 @@ public class EditActivity extends BaseActivity {
         if (savedInstanceState != null) {
             former = (Former) savedInstanceState.getSerializable("former");
             writing = (Writing) savedInstanceState.getSerializable("writing");
-        }
-        else{
+        } else {
             former = (Former) getIntent().getSerializableExtra("former");
             writing = (Writing) getIntent().getSerializableExtra("writing");
         }
@@ -220,7 +219,13 @@ public class EditActivity extends BaseActivity {
         transaction.commit();
     }
 
-    public void exit() {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        doSave();
+    }
+
+    private void doSave() {
         if (currentIndex == 1) {
             changeBackgroundFragment.save();
         } else if (currentIndex == 2) {
@@ -229,27 +234,12 @@ public class EditActivity extends BaseActivity {
         editFragment.save();
         if ((!StringUtils.isEmpty(writing.text) && !writing.text.replaceAll("\\\\n", "").equals(oldText.replaceAll("\\\\n", "")))
                 || (!StringUtils.isEmpty(writing.title) && !writing.title.equals(oldTitle))) {
-            Bundle bundle = new Bundle();
-            bundle.putString(GCDialog.DATA_CONTENT, mActivity.getString(R.string.save_content));
-            bundle.putString(GCDialog.DATA_TITLE, mActivity.getString(R.string.save_title));
-            bundle.putString(GCDialog.CONFIRM_TEXT, mActivity.getString(R.string.save));
-            bundle.putString(GCDialog.CANCEL_TEXT, mActivity.getString(R.string.give_up));
-            new GCDialog(mActivity, new OnCustomDialogListener() {
-
-                @Override
-                public void onConfirm() {
-                    save();
-                    finish();
-                }
-
-                @Override
-                public void onCancel() {
-                    finish();
-                }
-            }, bundle).show();
-        } else {
-            finish();
+           save();
         }
+    }
+
+    public void exit() {
+        finish();
     }
 
     private void save() {

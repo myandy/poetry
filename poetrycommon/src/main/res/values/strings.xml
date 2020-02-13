@@ -26,6 +26,9 @@
     <string name="tip_paste_auto">是否自动保存中文分句符后的内容到下一行</string>
     <string name="auto_save">智能保存</string>
 
+    <string name="search_collect">收藏夹</string>
+    <string name="search_collect_hint">搜索收藏夹</string>
+
     <!-- setting-->
     <string name="setting_username">作者名</string>
     <string name="username_input">请输入作者名</string>
@@ -66,5 +69,5 @@
     <string name="former_delete">格律已删除</string>
     <string name="copy_text">复制文本</string>
     <string name="writing_empty">您当前还没有作品哦，请点击左下角加号选择格律创作</string>
-    <string name="community_text">由于友盟停止提供第三方服服务，导致App内的社区关闭，我们开通了知识星球做为我们的新社区。\n在微信扫描二维码，即可进入,点击图片可以保存到相册。</string>
+    <string name="community_text">我们开通了知识星球做为我们的新社区。\n在微信扫描二维码，即可进入,点击图片可以保存到相册。</string>
 </resources>

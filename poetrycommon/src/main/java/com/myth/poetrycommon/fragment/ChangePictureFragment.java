@@ -113,6 +113,22 @@ public class ChangePictureFragment extends Fragment {
                     Bitmap bmp = ImageUtils.getImage(picturePath);
                     srcBitmap = bmp;
                     destBitmap = bmp;
+
+
+                    Intent intent = new Intent("com.android.camera.action.CROP");
+                    intent.setDataAndType(selectedImage, "image/*");
+                    intent.putExtra("scale", true);
+                    // 裁剪比例
+                    intent.putExtra("aspectX", 500);
+                    intent.putExtra("aspectY", 500);
+                    // 裁剪宽高
+
+                    intent.putExtra("outputX", 500);
+                    intent.putExtra("outputY", 500);
+                    // 文件输出位置
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("content://com.miui.gallery.open/raw/%2Fstorage%2Femulated%2F0%2FDCIM%2FCamera%2FIMG_20180713_162131111111.jpg"));
+                    startActivityForResult(intent, 1);
+
                 } catch (Exception e) {
 
                 }

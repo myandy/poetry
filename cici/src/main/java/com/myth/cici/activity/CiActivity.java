@@ -1,16 +1,24 @@
 package com.myth.cici.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +37,7 @@ import com.myth.poetrycommon.view.CircleImageView;
 import com.myth.poetrycommon.view.TouchEffectImageView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class CiActivity extends BaseActivity {
@@ -40,8 +49,6 @@ public class CiActivity extends BaseActivity {
     private int num = -1;
 
     private TextView content;
-
-    private boolean isRandom = false;
 
     private Ci ci;
 
@@ -55,6 +62,24 @@ public class CiActivity extends BaseActivity {
 
     TouchEffectImageView next;
 
+    int showMode;
+
+    private static final int TYPE_DEFAULT = 0;
+    private static final int TYPE_RANDOM = 1;
+    private static final int TYPE_SEARCH = 2;
+
+    private PopupWindow menu;
+
+    int[] location;
+
+    private View menuView;
+
+    private TouchEffectImageView more;
+
+    private TextToSpeech mSpeech;
+
+    private boolean mTTSEnable = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +90,36 @@ public class CiActivity extends BaseActivity {
             cipai = (Cipai) getIntent().getSerializableExtra("cipai");
             num = getIntent().getIntExtra("num", 0);
             ci = ciList.get(num);
+            showMode = TYPE_DEFAULT;
+        } else if (getIntent().hasExtra("id")) {
+            ci = CiDatabaseHelper.getCiById(getIntent().getIntExtra("id", 0));
+            cipai = CipaiDatabaseHelper.getCipaiById(ci.getCi_id());
+            cipai.color = BaseApplication.instance.getRandomColor();
+            ci.cipai = cipai;
+            showMode = TYPE_SEARCH;
         } else {
-            isRandom = true;
             ciList = CiDatabaseHelper.getAllCi();
             getRandomCi();
+            showMode = TYPE_RANDOM;
         }
 
         initView();
+
+        mSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mSpeech.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    } else {
+                        mTTSEnable = true;
+                        mSpeech.setSpeechRate(0.8f);
+                    }
+                }
+            }
+        });
     }
 
     private void getRandomCi() {
@@ -185,7 +233,7 @@ public class CiActivity extends BaseActivity {
     }
 
     private void initBottomRightView() {
-        if (isRandom) {
+        if (showMode == TYPE_RANDOM) {
             ImageView view = new TouchEffectImageView(mActivity, null);
             view.setImageResource(R.drawable.random);
             view.setScaleType(ScaleType.CENTER);
@@ -198,7 +246,7 @@ public class CiActivity extends BaseActivity {
                     refreshRandomView();
                 }
             });
-        } else {
+        } else if (showMode == TYPE_DEFAULT) {
             prev = new TouchEffectImageView(mActivity, null);
             prev.setImageResource(R.drawable.prev);
             prev.setScaleType(ScaleType.FIT_XY);
@@ -237,6 +285,18 @@ public class CiActivity extends BaseActivity {
             });
         }
 
+        more = new TouchEffectImageView(mActivity, null);
+        more.setImageResource(R.drawable.setting);
+        more.setScaleType(ScaleType.FIT_XY);
+        addBottomRightView(more);
+        more.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                showMenu();
+            }
+        });
+
     }
 
     private void refreshRandomView() {
@@ -254,7 +314,7 @@ public class CiActivity extends BaseActivity {
     }
 
     private void initContentView() {
-        if (!isRandom) {
+        if (showMode == TYPE_DEFAULT) {
             if (num < ciList.size() - 1) {
                 next.setClickEnable();
             } else {
@@ -283,4 +343,146 @@ public class CiActivity extends BaseActivity {
         }
     }
 
+    private void showMenu() {
+        if (menu == null) {
+            LayoutInflater inflater = (LayoutInflater) mActivity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            menuView = inflater.inflate(R.layout.dialog_ci, null);
+
+            // PopupWindow定义，显示view，以及初始化长和宽
+            menu = new PopupWindow(menuView,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+            // 必须设置，否则获得焦点后页面上其他地方点击无响应
+            menu.setBackgroundDrawable(new BitmapDrawable());
+            // 设置焦点，必须设置，否则listView无法响应
+            menu.setFocusable(true);
+            // 设置点击其他地方 popupWindow消失
+            menu.setOutsideTouchable(true);
+
+            menu.setAnimationStyle(R.style.popwindow_anim_style);
+
+            // 让view可以响应菜单事件
+            menuView.setFocusableInTouchMode(true);
+
+            menuView.setOnKeyListener(new View.OnKeyListener() {
+
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_MENU) {
+                        if (menu != null) {
+                            menu.dismiss();
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            location = new int[2];
+
+            TextView collect = (TextView) menuView.findViewById(R.id.tv3);
+            if (CiDatabaseHelper.isCollect(ci.id)) {
+                collect.setText("取消收藏");
+            } else {
+                collect.setText("收藏");
+            }
+            collect.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    boolean isCollect = CiDatabaseHelper.isCollect(ci.id);
+                    CiDatabaseHelper.updateCollect(ci.id,
+                            !isCollect);
+                    if (isCollect) {
+                        Toast.makeText(mActivity, "已取消收藏", Toast.LENGTH_LONG)
+                                .show();
+                    } else {
+                        Toast.makeText(mActivity, "已收藏", Toast.LENGTH_LONG)
+                                .show();
+                    }
+                    if (menu != null) {
+                        menu.dismiss();
+                    }
+                }
+            });
+            menuView.findViewById(R.id.tv5).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (menu != null) {
+                                menu.dismiss();
+                            }
+                            OthersUtils.goBaike(mActivity, ci.author);
+                        }
+                    });
+            menuView.findViewById(R.id.tv6).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (menu != null) {
+                                menu.dismiss();
+                            }
+                            OthersUtils.goBaike(mActivity, ci.cipai_name);
+                        }
+                    });
+            menuView.findViewById(R.id.tv7).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            OthersUtils.copy(
+                                    title.getText() + "\n" + content.getText(),
+                                    mActivity);
+                            Toast.makeText(mActivity, R.string.copy_text_done,
+                                    Toast.LENGTH_SHORT).show();
+                            if (menu != null) {
+                                menu.dismiss();
+                            }
+                        }
+                    });
+
+            menuView.findViewById(R.id.tv8).setOnClickListener(
+                    new OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            if (mTTSEnable) {
+                                mSpeech.speak(ci.cipai_name + ci.author + ci.text, TextToSpeech.QUEUE_FLUSH,
+                                        null);
+                            } else {
+                                Toast.makeText(mActivity, R.string.tts_unable,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+            menuView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            int popupWidth = menuView.getMeasuredWidth();
+            int popupHeight = menuView.getMeasuredHeight();
+
+            more.getLocationOnScreen(location);
+
+            location[0] = location[0] + more.getWidth() / 2 - popupWidth / 2 - ResizeUtils.getInstance().dip2px(5);
+            location[1] = location[1] - popupHeight - ResizeUtils.getInstance().dip2px(20);
+
+            menu.showAtLocation(more, Gravity.NO_GRAVITY, location[0],
+                    location[1]);
+            // 显示在某个位置
+
+        } else {
+            TextView collect = (TextView) menuView.findViewById(R.id.tv3);
+            if (CiDatabaseHelper.isCollect(ci.id)) {
+                collect.setText("取消收藏");
+            } else {
+                collect.setText("收藏");
+            }
+            menu.showAtLocation(more, Gravity.NO_GRAVITY, location[0],
+                    location[1]);
+        }
+
+    }
 }

@@ -20,7 +20,7 @@ public class DBManager {
 
     public static final String DB_NAME = "ci.db"; // 保存的数据库文件名，今天用于保存用户数据
 
-    public static final String DB_NEW_NAME = "ci_new.db"; // 新的数据库文件名，只保存内容数据
+    public static final String DB_NEW_NAME = "ci_version_8.db"; // 新的数据库文件名，只保存内容数据
 
     public static final String PACKAGE_NAME = "com.myth.cici";
 
@@ -33,7 +33,7 @@ public class DBManager {
     /**
      * The Constant VERSION.
      */
-    public static final int DB_VERSION = 6;
+    public static final int DB_VERSION = 8;
 
     public static void initDatabase(Context context) {
         try {
@@ -56,7 +56,6 @@ public class DBManager {
                 }
                 fos.close();
                 is.close();
-
                 getNewDatabase().setVersion(DB_VERSION);
             }
             if (!new File(DB_PATH).exists()) {
@@ -132,7 +131,6 @@ public class DBManager {
                 cursor.close();
             }
         }
-
         return result;
     }
 }

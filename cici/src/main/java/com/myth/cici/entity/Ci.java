@@ -1,10 +1,11 @@
 package com.myth.cici.entity;
 
+import com.myth.poetrycommon.entity.ISearchAble;
 import com.myth.poetrycommon.entity.Writing;
 
 import java.io.Serializable;
 
-public class Ci implements Serializable {
+public class Ci implements Serializable, ISearchAble {
 
     public static final long serialVersionUID = 1L;
 
@@ -19,6 +20,10 @@ public class Ci implements Serializable {
     public int ci_id;
 
     public Cipai cipai;
+
+    public int collect;
+
+    public String cipai_name;
 
     public int getId() {
         return id;
@@ -71,4 +76,23 @@ public class Ci implements Serializable {
         return writing;
     }
 
+    @Override
+    public String getSearchText() {
+        return text + cipai_name;
+    }
+
+    @Override
+    public String getShowTitle() {
+        return cipai_name;
+    }
+
+    @Override
+    public String getShowDesc() {
+        return text;
+    }
+
+    @Override
+    public String getShowTag() {
+        return author;
+    }
 }
