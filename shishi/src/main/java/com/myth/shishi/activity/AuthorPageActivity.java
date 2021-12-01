@@ -2,7 +2,7 @@ package com.myth.shishi.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 
 import com.myth.poetrycommon.BaseActivity;

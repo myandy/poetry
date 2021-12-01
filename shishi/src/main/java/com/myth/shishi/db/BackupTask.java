@@ -1,5 +1,7 @@
 package com.myth.shishi.db;
 
+import static com.myth.poetrycommon.BaseApplication.needBackup;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -16,7 +18,6 @@ public class BackupTask extends AsyncTask<String, Void, Integer> {
     public static final String COMMAND_BACKUP = "backupDatabase";
     public static final String COMMAND_RESTORE = "restoreDatabase";
     private Context mContext;
-    public static boolean needBackup;
 
     public BackupTask(Context context) {
         this.mContext = context;

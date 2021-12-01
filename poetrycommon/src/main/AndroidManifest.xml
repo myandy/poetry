@@ -49,6 +49,14 @@
             android:name=".activity.CommunityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
+        <activity
+            android:name=".activity.PrivacyPolicyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
+        <activity
+            android:name=".activity.TermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
     </application>
 
 </manifest>

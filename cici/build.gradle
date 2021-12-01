@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "com.myth.cici"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 28
 
-        versionCode 25
-        versionName '3.1'
+        versionCode 26
+        versionName '3.2'
     }
 
     signingConfigs {
@@ -40,4 +40,5 @@ apply from: 'signing.gradle'
 dependencies {
 
     implementation project(':poetrycommon')
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 }

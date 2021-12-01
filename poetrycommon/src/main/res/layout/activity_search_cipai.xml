@@ -66,7 +66,7 @@
         android:background="@color/back1"
         >
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

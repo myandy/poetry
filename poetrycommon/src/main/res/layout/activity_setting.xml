@@ -237,6 +237,62 @@
                     android:textSize="16sp"/>
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_user_policy"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/user_policy_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:drawableRight="@drawable/next_hl"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="@string/opt_terms"
+                    android:textColor="@color/selector_white_to_grey"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/setting_line"/>
+
+            <RelativeLayout
+                android:id="@+id/item_privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/privacy_policy_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="16dp"
+                    android:drawableRight="@drawable/next_hl"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:text="@string/opt_privacy"
+                    android:textColor="@color/selector_white_to_grey"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout

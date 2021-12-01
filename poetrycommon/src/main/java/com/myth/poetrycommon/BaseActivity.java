@@ -4,8 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -53,8 +53,6 @@ public class BaseActivity extends Activity {
         });
         mContentLayout = (FrameLayout) findViewById(R.id.content_layout);
         setBottomGone();
-
-        requestPermission();
     }
 
 
@@ -116,7 +114,7 @@ public class BaseActivity extends Activity {
 
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 0;
 
-    private void requestPermission() {
+    protected void requestPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},

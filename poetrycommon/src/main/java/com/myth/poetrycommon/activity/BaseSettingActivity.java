@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -138,10 +141,23 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
             }
         });
 
+        findViewById(R.id.item_user_policy).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, TermsActivity.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.item_privacy_policy).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, PrivacyPolicyActivity.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.item_backup).setOnClickListener(this);
-
         ((TextView) findViewById(R.id.about_title)).setText(getAboutTitle());
-
     }
 
     private void refreshYun() {
@@ -164,6 +180,8 @@ public abstract class BaseSettingActivity extends BaseActivity implements OnClic
         ((TextView) findViewById(R.id.weibo_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.backup_title)).setTypeface(BaseApplication.instance.getTypeface());
         ((TextView) findViewById(R.id.congratuate_us_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.user_policy_title)).setTypeface(BaseApplication.instance.getTypeface());
+        ((TextView) findViewById(R.id.privacy_policy_title)).setTypeface(BaseApplication.instance.getTypeface());
     }
 
     private void refreshCheck() {

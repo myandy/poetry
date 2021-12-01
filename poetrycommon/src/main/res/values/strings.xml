@@ -53,7 +53,7 @@
     <!--数据迁移-->
     <string name="backup_title">数据迁移</string>
     <string name="backup_text">说明：\n此功能用于非社区创建的诗词作品数据的迁移，更换手机时把旧手机的作品迁移到新手机上</string>
-    <string name="backup_step">迁移步骤：\n1.到旧手机目录%1$s下找到%2$s文件，复制到新手机对应目录，如果没有对应目录就手动创建，如果新手机已有同名文件请替换\n2.如果新手机的应用已经启动过请清除应用数据或者卸载后再安装，没有启动过请跳过此步骤\n3.打开应用数据即可自动更新了</string>
+    <string name="backup_step">迁移步骤：\n1.到旧手机目录%1$s下找到%2$s文件，复制到新手机对应目录，如果没有对应目录就手动创建，如果新手机已有同名文件请替换\n2.如果新手机的应用已经启动过请清除应用数据或者卸载后再安装，没有启动过请跳过此步骤\n3.在系统应用管理页面打开本应用读取存储权限\n4.打开应用数据即可自动更新了</string>
 
     <!--about-->
     <string name="version_text">当前版本：V%s</string>
@@ -70,4 +70,15 @@
     <string name="copy_text">复制文本</string>
     <string name="writing_empty">您当前还没有作品哦，请点击左下角加号选择格律创作</string>
     <string name="community_text">我们开通了知识星球做为我们的新社区。\n在微信扫描二维码，即可进入,点击图片可以保存到相册。</string>
+
+    <string name="privacy_exit">退出</string>
+    <string name="privacy_agree">同意</string>
+    <string name="users_note">用户须知</string>
+    <string name="privacy_tips_key1">《用户协议》</string>
+    <string name="privacy_tips_key2">《隐私政策》</string>
+    <string name="privacy_tips">为了保护您的隐私和使用安全，请您务必仔细阅读我们的《用户协议》和《隐私政策》。在确认充分理解并同意后再开始使用此应用。感谢！</string>
+    <string name="confirmed">用户须知已确认</string>
+    <string name="opt_terms">用户协议</string>
+    <string name="opt_privacy">隐私政策</string>
+
 </resources>

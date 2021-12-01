@@ -142,6 +142,7 @@ public class EditActivity extends BaseActivity {
         });
 
         initView();
+        requestPermission();
     }
 
     private void initView() {

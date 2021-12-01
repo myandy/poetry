@@ -2,9 +2,9 @@ package com.myth.shishi.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +19,7 @@ import com.myth.poetrycommon.BaseActivity;
 import com.myth.poetrycommon.activity.FormerSearchActivity;
 import com.myth.poetrycommon.db.WritingDatabaseHelper;
 import com.myth.poetrycommon.entity.Writing;
+import com.myth.poetrycommon.utils.PrivacyUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.myth.poetrycommon.view.IntroductionView;
 import com.myth.poetrycommon.view.TouchEffectImageView;
@@ -53,7 +54,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setBottomVisible();
-
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         ResizeUtils.getInstance().layoutSquareView(viewPager, 540, -1);
         viewPagerContainer = (RelativeLayout) findViewById(R.id.pager_layout);
@@ -95,6 +95,8 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        PrivacyUtils.checkAndshowPrivacy(this);
     }
 
     @Override

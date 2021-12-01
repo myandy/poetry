@@ -63,11 +63,6 @@ public abstract class BaseApplication extends Application {
         if (getResources().getConfiguration().locale.getCountry().equals("TW") || getResources().getConfiguration().locale.getCountry().equals("hk")) {
             defaultTypeface = 1;
         }
-        if (isFirstStart()) {
-            setHasStart();
-        }
-
-//        LeakCanary.install(this);
     }
 
     public int getColorByPos(int pos) {
@@ -236,13 +231,13 @@ public abstract class BaseApplication extends Application {
         this.typeface = typeface;
     }
 
-    public static boolean isFirstStart() {
-        return PreferenceManager.getDefaultSharedPreferences(instance).getBoolean("first_start", true);
+    public static boolean isCheckPrivacy() {
+        return PreferenceManager.getDefaultSharedPreferences(instance).getBoolean("check_privacy", false);
     }
 
-    public static void setHasStart() {
+    public static void setCheckPrivacy() {
         SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(instance).edit();
-        edit.putBoolean("first_start", true);
+        edit.putBoolean("check_privacy", true);
         edit.commit();
     }
 }

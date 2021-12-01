@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <string name="app_name">诗Shi</string>
     <string name="search_poetry">所有诗</string>
     <string name="search_poetry_hint">搜索诗</string>
@@ -10,7 +9,6 @@
 
     <string name="sort_default">默认排序</string>
     <string name="sort_count">按诗数量排序</string>
-
 
     <string name="setting_about">关于诗Shi</string>
     <string name="about_text">本应用为非盈利个人应用，设计风格借鉴于词Ci。之前开发了词Ci android版，应用户的建议再开发了本应用。</string>
