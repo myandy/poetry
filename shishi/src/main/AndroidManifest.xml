@@ -98,6 +98,16 @@
             android:name="UMENG_CHANNEL"
             android:value="mi"/>
 
+        <provider
+            android:authorities="com.myth.shishi.provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"/>
+        </provider>
+
     </application>
 
 </manifest>

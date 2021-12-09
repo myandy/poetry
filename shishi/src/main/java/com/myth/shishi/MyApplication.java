@@ -15,7 +15,7 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
-        Constant.init("shishi", "sqlite.db");
+        Constant.init(getApplicationContext(),"shishi", "sqlite.db");
     }
 
     @Override

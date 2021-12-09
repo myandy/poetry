@@ -57,6 +57,8 @@
             android:name=".activity.TermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
+
+
     </application>
 
 </manifest>

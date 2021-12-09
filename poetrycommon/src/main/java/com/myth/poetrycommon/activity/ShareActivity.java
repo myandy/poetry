@@ -141,7 +141,8 @@ public class ShareActivity extends BaseActivity {
 
 
     private String saveImage() {
-        String filename = writing.title + "_" + System.currentTimeMillis() + ".jpg";
+        String prefix = TextUtils.isEmpty(writing.title) ? writing.text : writing.title;
+        String filename = prefix + "_" + System.currentTimeMillis() + ".jpg";
         File file = new File(Constant.SHARE_DIR, filename);
         FileUtils.saveBitmap(OthersUtils.createViewBitmap(shareView), file);
         FileUtils.updateMediaFile(mActivity, file.getAbsolutePath());

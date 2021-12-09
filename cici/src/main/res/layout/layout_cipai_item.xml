@@ -1,21 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingLeft="12dp">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="12dp">
 
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/item1"
             android:layout_width="60dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/head1"
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="10dp" >
+                android:paddingTop="10dp">
 
                 <LinearLayout
                     android:id="@+id/middle1"
@@ -45,7 +45,8 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent"
+                android:clipChildren="false">
 
                 <com.myth.poetrycommon.view.VerticalTextView
                     android:id="@+id/enname1"
@@ -72,7 +73,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/head2"
@@ -84,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:orientation="horizontal"
-                android:paddingTop="10dp" >
+                android:paddingTop="10dp">
 
                 <LinearLayout
                     android:id="@+id/middle2"
@@ -102,7 +103,8 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent"
+                android:clipChildren="false">
 
                 <com.myth.poetrycommon.view.VerticalTextView
                     android:id="@+id/enname2"

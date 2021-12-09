@@ -46,7 +46,8 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent"
+                android:clipChildren="false">
 
                 <com.myth.poetrycommon.view.VerticalTextView
                     android:id="@+id/enname1"
@@ -103,7 +104,8 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent"
+                android:clipChildren="false">
 
                 <com.myth.poetrycommon.view.VerticalTextView
                     android:id="@+id/enname2"

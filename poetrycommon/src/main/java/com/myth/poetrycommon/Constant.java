@@ -1,5 +1,6 @@
 package com.myth.poetrycommon;
 
+import android.content.Context;
 import android.os.Environment;
 
 import com.myth.poetrycommon.utils.FileUtils;
@@ -29,10 +30,10 @@ public class Constant {
 
     public static String DBName;
 
-    public static void init(String name, String dbName) {
+    public static void init(Context context, String name, String dbName) {
         ROOT_DIR = Environment.getExternalStorageDirectory() + File.separator + name;
-        BACKGROUND_DIR = ROOT_DIR + "/background";
-        SHARE_DIR = ROOT_DIR + "/share";
+        BACKGROUND_DIR = context.getExternalFilesDir("background").getAbsolutePath();
+        SHARE_DIR = context.getExternalFilesDir("share").getAbsolutePath();
 
         DBName = dbName;
         FileUtils.createDir(BACKGROUND_DIR);

@@ -54,7 +54,6 @@ public class VerticalTextView extends TextView
             canvas.translate(0, getWidth());
             canvas.rotate(-90);
         }
-        canvas.clipRect(0, 0, getWidth(), getHeight(), android.graphics.Region.Op.REPLACE);
         super.draw(canvas);
     }
 }

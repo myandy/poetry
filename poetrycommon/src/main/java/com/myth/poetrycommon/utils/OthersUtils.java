@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 
+import androidx.core.content.FileProvider;
+
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.List;
@@ -63,14 +65,15 @@ public class OthersUtils {
         } else {
             File f = new File(imgPath);
             if (f != null && f.exists() && f.isFile()) {
-                intent.setType("image/jpg");
-                Uri u = Uri.fromFile(f);
-                intent.putExtra(Intent.EXTRA_STREAM, u);
+                intent.setType("image/*");
+                Uri uri = FileProvider.getUriForFile(
+                        context, context.getPackageName() + ".provider",
+                        new File(imgPath));
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
             }
         }
         intent.putExtra(Intent.EXTRA_SUBJECT, msgTitle);
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(Intent.createChooser(intent, activityTitle));
     }
 

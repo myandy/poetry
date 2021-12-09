@@ -10,7 +10,7 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         DBManager.initDatabase(getApplicationContext());
-        Constant.init("cici", "ci.db");
+        Constant.init(getApplicationContext(),"cici", "ci.db");
     }
 
     @Override
