@@ -12,11 +12,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.myth.poetrycommon.activity.CommunityActivity;
+import com.myth.poetrycommon.activity.WebViewActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AuthorListActivity;
 import com.myth.shishi.activity.AuthorSearchActivity;
-import com.myth.shishi.activity.DuiShiActivity;
 import com.myth.shishi.activity.PoetryActivity;
 import com.myth.shishi.activity.PoetrySearchActivity;
 
@@ -58,8 +58,9 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DuiShiActivity.class);
-                mContext.startActivity(intent);
+                WebViewActivity.start(mContext,"https://ai.binwang.me/couplet");
+//                Intent intent = new Intent(mContext, DuiShiActivity.class);
+//                mContext.startActivity(intent);
 
             }
         });

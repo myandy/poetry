@@ -4,6 +4,7 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         >
 
         <activity
@@ -57,7 +58,10 @@
             android:name=".activity.TermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"/>
-
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"/>
 
     </application>
 

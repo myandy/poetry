@@ -17,6 +17,8 @@ import android.widget.ScrollView;
 
 import androidx.core.content.FileProvider;
 
+import com.myth.poetrycommon.activity.WebViewActivity;
+
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.List;
@@ -166,11 +168,6 @@ public class OthersUtils {
     final static String BAIKE_URL_PRE = "http://wapbaike.baidu.com/search?submit=%E8%BF%9B%E5%85%A5%E8%AF%8D%E6%9D%A1&uid=bk_1345472299_718&ssid=&st=1&bd_page_type=1&bk_fr=srch&word=";
 
     public static void goBaike(Context context, String word) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(BAIKE_URL_PRE + URLEncoder.encode(word)));
-        if (OthersUtils.isValidIntent(context, intent)) {
-            context.startActivity(intent);
-        }
+        WebViewActivity.start(context,BAIKE_URL_PRE + URLEncoder.encode(word));
     }
 }
