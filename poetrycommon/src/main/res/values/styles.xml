@@ -68,6 +68,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:listDivider">@drawable/list_divide</item>
+        <item name="android:windowBackground">@drawable/launch_image</item>
     </style>
 
     <style name="CustomerTheme" parent="@android:style/Theme.Light">

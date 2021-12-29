@@ -54,20 +54,24 @@ public class MainView extends FrameLayout {
             }
         });
 
-        TextView duishi = (TextView) root.findViewById(R.id.duishi);
-        duishi.setOnClickListener(new OnClickListener() {
+        root.findViewById(R.id.duishi).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                WebViewActivity.start(mContext,"https://ai.binwang.me/couplet");
                 Intent intent = new Intent(mContext, AIPoetryActivity.class);
                 mContext.startActivity(intent);
+            }
+        });
 
+        root.findViewById(R.id.duilian).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                WebViewActivity.start(mContext, "https://ai.binwang.me/couplet");
             }
         });
 
         TextView showOne = (TextView) root.findViewById(R.id.show_one);
-
         showOne.setOnClickListener(new OnClickListener() {
 
             @Override

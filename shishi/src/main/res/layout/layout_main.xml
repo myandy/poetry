@@ -2,7 +2,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:paddingTop="170dp"
+              android:paddingTop="160dp"
               android:gravity="center_horizontal"
     >
 
@@ -56,7 +56,15 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="智能对诗"
+        android:text="智能写诗"
+        android:textColor="@color/selector_white_to_grey"
+        android:textSize="22sp"/>
+    <com.myth.poetrycommon.view.TypefaceTextView
+        android:id="@+id/duilian"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="对对联"
         android:textColor="@color/selector_white_to_grey"
         android:textSize="22sp"/>
 

@@ -12,6 +12,8 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.text.ClipboardManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 
@@ -168,6 +170,24 @@ public class OthersUtils {
     final static String BAIKE_URL_PRE = "http://wapbaike.baidu.com/search?submit=%E8%BF%9B%E5%85%A5%E8%AF%8D%E6%9D%A1&uid=bk_1345472299_718&ssid=&st=1&bd_page_type=1&bk_fr=srch&word=";
 
     public static void goBaike(Context context, String word) {
-        WebViewActivity.start(context,BAIKE_URL_PRE + URLEncoder.encode(word));
+        WebViewActivity.start(context, BAIKE_URL_PRE + URLEncoder.encode(word));
+    }
+
+    public static void fullScreen(final Activity activity, final boolean enable) {
+        if (activity == null) {
+            return;
+        }
+        Window window = activity.getWindow();
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        if (enable) {
+            layoutParams.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            layoutParams.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            window.setAttributes(layoutParams);
+        } else {
+            layoutParams.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+            layoutParams.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            window.setAttributes(layoutParams);
+        }
+        window.setAttributes(layoutParams);
     }
 }

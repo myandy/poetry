@@ -37,9 +37,7 @@ public class AuthorPageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_author_page);
-
         refresh();
-
     }
 
     private void refresh() {
@@ -63,9 +61,8 @@ public class AuthorPageActivity extends BaseActivity {
                 }
             }
         }
-
         initView();
-
+        findViewById(R.id.scanview).setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
 

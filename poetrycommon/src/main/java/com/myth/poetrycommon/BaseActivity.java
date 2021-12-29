@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.poetrycommon.utils.ResizeUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -39,8 +40,7 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG = getClass().getSimpleName();
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // 隐藏应用程序的标题栏，即当前activity的label
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        OthersUtils.fullScreen(this,true);
         super.setContentView(R.layout.activity_base);
         mActivity = this;
         mBottomLayout = (FrameLayout) findViewById(R.id.bottom_layout);

@@ -7,11 +7,14 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.myth.poetrycommon.BaseApplication
+import com.myth.poetrycommon.utils.OthersUtils
 import com.myth.shishi.R
 import com.myth.shishi.ai.AiPoet
 import com.myth.shishi.ai.PoetryStyle
@@ -39,6 +42,7 @@ class AIPoetryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ai_poetry)
+        OthersUtils.fullScreen(this,true)
         initAiPoet()
 
         initClickListeners()
