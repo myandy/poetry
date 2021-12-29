@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AIPoetryTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/white</item>
+
+        <item name="colorControlNormal">@color/black_hint</item>
+        <item name="android:textColorHint">@color/black_hint</item>
+        <item name="colorControlActivated">@android:color/white</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ThemeSplash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/app_bg_draw</item>
+    </style>
+
+
+</resources>

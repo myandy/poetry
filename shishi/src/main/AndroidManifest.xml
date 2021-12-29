@@ -84,6 +84,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".activity.AIPoetryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AIPoetryTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
 
         <!-- 友盟App Key, 必须替换为您在友盟官网上申请到的. -->
         <meta-data

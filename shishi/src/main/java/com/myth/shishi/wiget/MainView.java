@@ -15,6 +15,7 @@ import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WebViewActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
 import com.myth.shishi.R;
+import com.myth.shishi.activity.AIPoetryActivity;
 import com.myth.shishi.activity.AuthorListActivity;
 import com.myth.shishi.activity.AuthorSearchActivity;
 import com.myth.shishi.activity.PoetryActivity;
@@ -58,9 +59,9 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                WebViewActivity.start(mContext,"https://ai.binwang.me/couplet");
-//                Intent intent = new Intent(mContext, DuiShiActivity.class);
-//                mContext.startActivity(intent);
+//                WebViewActivity.start(mContext,"https://ai.binwang.me/couplet");
+                Intent intent = new Intent(mContext, AIPoetryActivity.class);
+                mContext.startActivity(intent);
 
             }
         });

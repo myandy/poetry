@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/launch_image">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="5dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <com.myth.poetrycommon.view.TypefaceTextView
+                    android:id="@+id/tv_acrostic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/point_red"
+                    android:drawablePadding="8dp"
+                    android:padding="10dp"
+                    android:text="藏头诗"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <com.myth.poetrycommon.view.TypefaceTextView
+                    android:id="@+id/tv_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/point_gray"
+                    android:drawablePadding="8dp"
+                    android:padding="10dp"
+                    android:text="意境诗"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_acrostic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_acrostic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="输入藏头词"
+                    android:maxLength="10"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:hint="输入作诗风格"
+                        android:maxLength="20"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/tv_random"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="3dp"
+                    android:src="@drawable/refresh" />
+
+            </RelativeLayout>
+
+            <com.myth.poetrycommon.view.TypefaceTextView
+                android:id="@+id/song"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="40dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp"
+                android:text="作 诗"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_card"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/dust"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.myth.poetrycommon.view.TypefaceTextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:lineSpacingExtra="8dp"
+                android:textColor="#444444"
+                android:textSize="20sp"
+                tools:text="人间无限路，天堑即淹留。\n工部将何及，孙纲事不通。\n智情心更重，心事日无通。\n能济婴儿辈，同欢孺子同。" />
+
+            <ImageView
+                android:id="@+id/iv_yz"
+                android:layout_width="15dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:transitionName="icon_yz" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
