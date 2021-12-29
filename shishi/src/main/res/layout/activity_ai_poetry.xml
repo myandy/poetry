@@ -116,10 +116,11 @@
     <RelativeLayout
         android:id="@+id/rl_card"
         android:layout_width="0dp"
-        android:layout_height="320dp"
+        android:layout_height="340dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="120dp"
+        android:paddingTop="10dp"
         android:background="@drawable/dust"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/ll_option"
@@ -135,16 +136,6 @@
             android:textColor="#444444"
             android:textSize="20sp"
             tools:text="人间无限路，天堑即淹留。\n工部将何及，孙纲事不通。\n智情心更重，心事日无通。\n能济婴儿辈，同欢孺子同。" />
-
-        <ImageView
-            android:id="@+id/iv_yz"
-            android:layout_width="15dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
-            android:transitionName="icon_yz" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

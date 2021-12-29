@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WebViewActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
+import com.myth.poetrycommon.utils.OthersUtils;
 import com.myth.shishi.R;
 import com.myth.shishi.activity.AIPoetryActivity;
 import com.myth.shishi.activity.AuthorListActivity;
@@ -123,8 +124,7 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CommunityActivity.class);
-                mContext.startActivity(intent);
+                OthersUtils.startCommunity(mContext);
             }
         });
     }

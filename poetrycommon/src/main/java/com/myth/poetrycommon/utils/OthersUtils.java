@@ -201,7 +201,7 @@ public class OthersUtils {
         req.userName = "gh_86ec102f0613";
         req.path = "pages/topics/topics?group_id=454122845288";
         req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
-        boolean b = api.sendReq(req);
+        boolean b = BaseApplication.instance.isCiApp() && api.sendReq(req);
         if (!b) {
             Intent intent = new Intent(context, CommunityActivity.class);
             context.startActivity(intent);

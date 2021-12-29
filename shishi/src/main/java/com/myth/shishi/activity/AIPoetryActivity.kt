@@ -1,20 +1,24 @@
 package com.myth.shishi.activity
 
+import android.app.AlertDialog
 import android.content.*
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
+import android.text.TextUtils
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.myth.poetrycommon.BaseApplication
+import com.myth.poetrycommon.Constant
+import com.myth.poetrycommon.utils.FileUtils
 import com.myth.poetrycommon.utils.OthersUtils
+import com.myth.shishi.MyApplication
 import com.myth.shishi.R
 import com.myth.shishi.ai.AiPoet
 import com.myth.shishi.ai.PoetryStyle
@@ -42,23 +46,21 @@ class AIPoetryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ai_poetry)
-        OthersUtils.fullScreen(this,true)
+        OthersUtils.fullScreen(this, true)
         initAiPoet()
 
         initClickListeners()
-        setAcrosticStatus(true)
-        et_style.setText(PoetryStyle.getRandomStyle())
+
+        et_style.setText(MyApplication.getAIPoetryStyle())
         et_style.setTypeface(BaseApplication.instance.getTypeface())
-        et_acrostic.setText("人工智能")
+        et_acrostic.setText(MyApplication.getAIPoetryAcrostic())
         et_acrostic.setTypeface(BaseApplication.instance.getTypeface())
 
         et_style.setHintTextColor(getColor(R.color.black_hint))
         et_acrostic.setHintTextColor(getColor(R.color.black_hint))
+        setAcrosticStatus(MyApplication.getAIPoetryTabAcrostic())
 
         song.performClick()
-        Handler().post {
-            ViewCompat.setTransitionName(iv_yz, "");
-        }
         ll_option.post {
             val llHeight = ll_option.height
             ll_option.translationY = llHeight.toFloat()
@@ -70,18 +72,51 @@ class AIPoetryActivity : AppCompatActivity() {
         backgroundFile = File(getExternalFilesDir(null), "background.jpg")
         loadBackground()
         loadTextColor()
+
+
+        val dialog = AlertDialog.Builder(this).setItems(
+            arrayOf("复制文本", "分享")
+        ) { dialog, which ->
+            if (which == 0) {
+                OthersUtils.copy(text.text.toString(), this)
+                Toast.makeText(this, R.string.copy_text_done, Toast.LENGTH_SHORT).show()
+            } else if (which == 1) {
+                val filePath: String = saveImage()
+                if (!TextUtils.isEmpty(filePath)) {
+                    OthersUtils.shareMsg(this, "诗Shi", "share", "content", filePath)
+                }
+            }
+            dialog.dismiss()
+        }.create()
+
+        rl_card.setOnClickListener {
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            } else {
+                dialog.show()
+            }
+        }
+
+    }
+
+    private fun saveImage(): String {
+        val prefix = "AI"
+        val filename = prefix + "_" + System.currentTimeMillis() + ".jpg"
+        val file = File(Constant.SHARE_DIR, filename)
+        FileUtils.saveBitmap(OthersUtils.createViewBitmap(rl_card), file)
+        FileUtils.updateMediaFile(this, file.absolutePath)
+        return file.absolutePath
     }
 
     private fun loadTextColor() {
         text.textColor = getSharedPreferences(SP_CONFIG_NAME, Context.MODE_PRIVATE)
             .getInt(SP_CONFIG_KEY_TEXT_COLOR, DEFAULT_TEXT_COLOR.toInt())
-
     }
 
     private fun loadBackground() {
         if (backgroundFile.isFile) {
             val bitmap = BitmapFactory.decodeFile(backgroundFile.absolutePath)
-            bitmap?.let{
+            bitmap?.let {
                 rl_card.background = BitmapDrawable(resources, bitmap)
             }
         }
@@ -162,5 +197,11 @@ class AIPoetryActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        MyApplication.setAIPoetryAcrostic(et_acrostic.text.toString())
+        MyApplication.setAIPoetryStyle(et_style.text.toString())
+        MyApplication.setAIPoetryTabAcrostic(acrostic)
+    }
 
 }
