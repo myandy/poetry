@@ -19,7 +19,12 @@ import android.widget.ScrollView;
 
 import androidx.core.content.FileProvider;
 
+import com.myth.poetrycommon.BaseApplication;
+import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WebViewActivity;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.io.File;
 import java.net.URLEncoder;
@@ -31,14 +36,12 @@ public class OthersUtils {
         PackageManager packageManager;
         List<ResolveInfo> resolveInfoList;
         boolean ret = false;
-
         packageManager = context.getPackageManager();
         resolveInfoList = packageManager.queryIntentActivities(intent, 0);
 
         if ((resolveInfoList != null) && (resolveInfoList.size() > 0)) {
             ret = true;
         }
-
         return ret;
     }
 
@@ -189,5 +192,19 @@ public class OthersUtils {
             window.setAttributes(layoutParams);
         }
         window.setAttributes(layoutParams);
+    }
+
+    public static void startCommunity(Context context) {
+        String appId = BaseApplication.instance.isCiApp() ? "wxfd03886a09d79515" : "wxfd03886a09d79515";
+        IWXAPI api = WXAPIFactory.createWXAPI(context, appId);
+        WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
+        req.userName = "gh_86ec102f0613";
+        req.path = "pages/topics/topics?group_id=454122845288";
+        req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
+        boolean b = api.sendReq(req);
+        if (!b) {
+            Intent intent = new Intent(context, CommunityActivity.class);
+            context.startActivity(intent);
+        }
     }
 }

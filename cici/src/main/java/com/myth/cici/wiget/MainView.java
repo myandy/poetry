@@ -9,18 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myth.cici.R;
 import com.myth.cici.activity.CiActivity;
 import com.myth.cici.activity.CiSearchActivity;
 import com.myth.cici.activity.CipaiListActivity;
-import com.myth.poetrycommon.activity.CommunityActivity;
 import com.myth.poetrycommon.activity.WritingSearchActivity;
-import com.myth.poetrycommon.db.WritingDatabaseHelper;
-import com.myth.poetrycommon.entity.Writing;
-
-import java.util.List;
+import com.myth.poetrycommon.utils.OthersUtils;
 
 public class MainView extends FrameLayout {
 
@@ -62,8 +57,7 @@ public class MainView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CommunityActivity.class);
-                mContext.startActivity(intent);
+                OthersUtils.startCommunity(mContext);
             }
         });
 

@@ -6,11 +6,11 @@ android {
 
     defaultConfig {
         applicationId "com.myth.cici"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 29
 
-        versionCode 26
-        versionName '3.2'
+        versionCode 27
+        versionName '3.3'
     }
 
     signingConfigs {

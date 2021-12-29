@@ -15,9 +15,7 @@ import com.myth.poetrycommon.utils.FileUtils;
 
 import java.io.File;
 
-
 public class CommunityActivity extends BaseActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
